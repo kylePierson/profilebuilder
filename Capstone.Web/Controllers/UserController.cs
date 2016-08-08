@@ -1,4 +1,5 @@
-﻿using Capstone.Data.Models;
+﻿using Capstone.Data.DataAccess;
+using Capstone.Data.Models;
 using Capstone.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -10,25 +11,31 @@ namespace Capstone.Web.Controllers
 {
     public class UserController : Controller
     {
+        private readonly IUserPasswordDAL userPasswordDal;
+
+        public UserController(IUserPasswordDAL userPasswordDal)
+        {
+            this.userPasswordDal = userPasswordDal;
+        }
 
         public ActionResult LogIn()
         {
             //username and password view model to send to view
             LoginViewModel model = new LoginViewModel();
-            return View("Login", model);
+            return View("LogIn", model);
         }
 
         [HttpPost]
         public ActionResult LogIn(string username, string password)
         {
-            UserPassword model = 
-            if (!ModelState.IsValid || )
+            UserPassword model = userPasswordDal.GetUser(username, password);
+
+            if (!ModelState.IsValid || model==null)
             {
-                
+                return View("LogIn");
             }
-            return View("Login");
-            //verify credentials, get role title and redirect to proper controller
-            //return RedirectToAction("Index", model.title, model);
+
+            return RedirectToAction("Index", model.RoleTitle, model);
         }
     }
 }
