@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4 login" >
+            <div class="col-sm-4">
+                @using (Html.BeginForm("User", "LogIn", FormMethod.Post))
+                {
+                    <label for="username"> username:</label>
+                    <input type="text" name="username" />
+                    <label for="password">password</label>
+                    <input type="text" name="password">
+                }
+                <button>Log in</button>
+                <br/>
+                @*add action link for forgot password*@
+
+               @Html.ActionLink("Forgot Password","")
+
+
+            </div>
+
+
+        </div>
+        <div class="col-sm-4 ">
+            <div class="col-sm-4 ">
+
+            </div>
+        </div>
+    </div>
+</div>
+

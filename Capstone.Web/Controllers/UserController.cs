@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
-    public class UsersController : Controller
+    public class UserController : Controller
     {
 
         public ActionResult LogIn()
@@ -22,10 +22,11 @@ namespace Capstone.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Login");
+                
             }
+            return View("Login");
             //verify credentials, get role title and redirect to proper controller
-            return RedirectToAction("Index", model.title, model);
+            //return RedirectToAction("Index", model.title, model);
         }
     }
 }

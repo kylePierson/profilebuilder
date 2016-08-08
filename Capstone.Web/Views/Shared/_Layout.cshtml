@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery-1.9.1.intellisense.js"></script>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="StyleSheet1.css" rel="stylesheet" />
+    <!-- Main Style Sheet
+    <link rel="stylesheet" href="css/main.css">
+     -->
+    <!-- Respond.js for IE 8 or less only -->
+    <!--[if (lt IE 9) & (!IEMobile)]>
+        <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+
+    <title>@ViewBag.Title</title>
+    
+</head>
+<body>
+
+    <header>
+        @ViewBag.Title
+    </header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <ul class="nav nav-tabs " role="tablist">
+                <li><a href="">Home</a></li>
+                <li><a href="">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section id="main-content">
+        @RenderBody()
+    </section>
+</body>
+</html>
+
