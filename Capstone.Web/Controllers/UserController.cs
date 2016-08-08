@@ -1,4 +1,5 @@
-﻿using Capstone.Web.Models;
+﻿using Capstone.Data.Models;
+using Capstone.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult LogIn(string username, string password)
         {
-            if (!ModelState.IsValid)
+            UserPassword model = 
+            if (!ModelState.IsValid || )
             {
                 
             }

@@ -10,7 +10,7 @@ namespace TechElevator.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    
+    using Capstone.Data.DataAccess;
 
     public static class NinjectWebCommon 
     {
@@ -46,7 +46,7 @@ namespace TechElevator.Web.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                
+                kernel.Bind<IUserPasswordDAL>().To<UserPasswordSqlDAL>();
 
                 RegisterServices(kernel);
                 return kernel;
