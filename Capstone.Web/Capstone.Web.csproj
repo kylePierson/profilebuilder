@@ -109,9 +109,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\kylepierson.jpg" />
-    <Content Include="Content\images\siminnickelen.jpg" />
-    <Content Include="Content\images\tylerpompeii.jpg" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -134,8 +131,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\User\CreateStaffUser.cshtml" />
     <Content Include="Views\User\LogIn.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
     <Folder Include="Views\Staff\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿@{
-    
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 
 <div class="container-fluid">
@@ -9,25 +9,27 @@
     <div class="row">
 
         <div class="col-sm-4">
-
+            <h2>Create a new staff</h2>
+            <p>Please make a new username and create a password and click on the create button. </p>
+            <p>User is going to recieve a link that will allow them to create their account and change their password.</p>
         </div>
-        <div class="col-sm-4 login" >
+        <div class="col-sm-4 login">
             <div class="col-sm-4">
-                @using (Html.BeginForm("User", "LogIn", FormMethod.Post))
+                @using (Html.BeginForm("", "", FormMethod.Post))
                 {
                     <label for="username"> username:</label>
                     <input type="text" name="username" />
                     <label for="password">password:</label>
                     <input type="text" name="password">
+                    <label for="repassword">re-password:</label>
+                    <input type="text" name="repassword">
                 }
-                <br/>
-                <button id="loginButton">Log in</button>
-                <br/>
+                <br />
+                <button id="loginButton">Create</button>
+                <br />
                 @*add action link for forgot password*@
-                <br/>
-               @Html.ActionLink("Forgot_Password?","")
-
-
+                <br />
+              
             </div>
 
 
