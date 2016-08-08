@@ -115,9 +115,12 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,11 +139,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TechElevator.Data\Capstone.Data.csproj">
+    <ProjectReference Include="..\Capstone.Data\Capstone.Data.csproj">
       <Project>{a98570b3-baaa-4e26-886a-305ff815e648}</Project>
       <Name>Capstone.Data</Name>
     </ProjectReference>

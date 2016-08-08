@@ -90,11 +90,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TechElevator.Data\Capstone.Data.csproj">
+    <ProjectReference Include="..\Capstone.Data\Capstone.Data.csproj">
       <Project>{a98570b3-baaa-4e26-886a-305ff815e648}</Project>
       <Name>Capstone.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TechElevator.Web\Capstone.Web.csproj">
+    <ProjectReference Include="..\Capstone.Web\Capstone.Web.csproj">
       <Project>{6a26a7d6-1747-46b7-acaa-f177e9106f33}</Project>
       <Name>Capstone.Web</Name>
     </ProjectReference>
