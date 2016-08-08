@@ -35,7 +35,7 @@ namespace Capstone.Web.Controllers
                 return View("LogIn");
             }
 
-            return RedirectToAction("Index", model.RoleTitle, model);
+            return RedirectToAction("Index", model.RoleTitle, model.Username);
         }
     }
 }

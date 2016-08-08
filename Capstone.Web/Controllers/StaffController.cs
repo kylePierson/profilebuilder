@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Capstone.Data.DataAccess;
+using Capstone.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,41 @@ namespace Capstone.Web.Controllers
 {
     public class StaffController : Controller
     {
-        // GET: Staff
-        public ActionResult Index()
+        IStaffDAL staffDal;
+        
+        public StaffController(IStaffDAL staffDal)
         {
-            return View();
+            this.staffDal = staffDal;
+        }
+
+        public ActionResult Index(string username)
+        {
+            Staff currentUser = staffDal.GetStaff(username);
+            return View("Index");
+        }
+
+        public ActionResult AddUser()
+        {
+            return View("AddUser");
+        }
+
+        public ActionResult CreateStaffUser()
+        {
+            return View("CreateStaffUser");
+        }
+
+        [HttpPost]
+        public ActionResult CreateStaffUser(UserPassword user)
+        {
+            
+            if (!ModelState.IsValid)
+            {
+                return View("CreateStaffUser");
+            }
+
+            //add user to correct db's
+
+            return RedirectToAction("Index");
         }
     }
 }
