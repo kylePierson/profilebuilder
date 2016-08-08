@@ -44,11 +44,9 @@ namespace Capstone.Data.DataAccess
                     while (reader.Read())
                     {
                         output = new UserPassword();
-                        output.CityId = Convert.ToInt32(reader["id"]);
-                        output.Name = Convert.ToString(reader["name"]);
-                        output.CountryCode = Convert.ToString(reader["countrycode"]);
-                        output.District = Convert.ToString(reader["district"]);
-                        output.Population = Convert.ToInt32(reader["population"]);
+                        output.Username = Convert.ToString(reader["username"]);
+                        output.Password = Convert.ToString(reader["password"]);
+                        output.RoleTitle = Convert.ToString(reader["role_title"]);
                     }
                 }
             }
