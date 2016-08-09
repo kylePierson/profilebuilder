@@ -58,5 +58,10 @@ namespace Capstone.Data.DataAccess
 
             return output;
         }
+
+        public void AddStaffUser(string username, string firstName, string lastName, string title)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

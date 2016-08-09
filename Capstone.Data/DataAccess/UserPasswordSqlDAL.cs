@@ -70,7 +70,6 @@ namespace Capstone.Data.DataAccess
 
                     SqlCommand cmd = new SqlCommand(SQL_AddUser, conn);
                     cmd.Parameters.AddWithValue("@username", user.Username);
-                    cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@roleTitle", user.RoleTitle);
                 }
             }
