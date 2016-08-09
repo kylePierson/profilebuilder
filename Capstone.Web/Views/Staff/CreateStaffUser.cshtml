@@ -8,7 +8,7 @@
 
             <div class="well">
                 
-                @using (Html.BeginForm("NewStaffCreated", "staff", new { username = Model.Username, }, FormMethod.Post))
+                @using (Html.BeginForm("CreateStaffUser", "staff", new { username = Model.Username, firstName = Model.FirstName, lastName = Model.LastName, title = Model.Title}, FormMethod.Post))
                 {
 
                 <label for="username"> Username:</label>
