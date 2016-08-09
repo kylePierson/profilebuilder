@@ -13,6 +13,8 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         private const string SQL_GetUser = "SELECT * FROM user_password WHERE @username=username AND @password=password;";
+        private const string SQL_AddUser = "INSERT INTO user_password VALUES (@username, @password, @roleTitle);";
+
 
         public UserPasswordSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
@@ -56,6 +58,26 @@ namespace Capstone.Data.DataAccess
             }
 
             return output;
+        }
+
+        public void AddUser(UserPassword user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_AddUser, conn);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+                    cmd.Parameters.AddWithValue("@roleTitle", user.RoleTitle);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
         }
     }
 }
