@@ -53,7 +53,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult CreateStudentUser()
         {
-            return View("CreateStaffUser");
+            return View("CreateStudentUser");
         }
 
         [HttpPost]
@@ -62,7 +62,7 @@ namespace Capstone.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View("CreateStaffUser");
+                return View("CreateStudentUser");
             }
 
             //add user to correct db's
@@ -73,5 +73,25 @@ namespace Capstone.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CreateEmployerUser()
+        {
+            return View("CreateEmployerUser");
+        }
+
+        [HttpPost]
+        public ActionResult CreateEmployerUser(string username, string firstname, string lastname)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View("CreateEmployerUser");
+            }
+
+            //add user to correct db's
+
+            userPasswordDal.AddUser(username, "password", "Employer");
+
+            return RedirectToAction("Index");
+        }
     }
 }
