@@ -1,5 +1,5 @@
 ﻿@{
-    
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
         <div class="col-sm-4">
 
         </div>
-        <div class="col-sm-4 login" >
+        <div class="col-sm-4 login">
             <div class="col-sm-4">
                 @using (Html.BeginForm("User", "LogIn", FormMethod.Post))
                 {
@@ -20,12 +20,15 @@
                     <label for="password">password:</label>
                     <input type="text" name="password">
                 }
-                <br/>
+                <br />
                 <button id="loginButton">Log in</button>
-                <br/>
+                <br />
                 @*add action link for forgot password*@
-                <br/>
-               @Html.ActionLink("Forgot_Password?","")
+                <br />
+                <div id="@*forgotPassword*@">
+                    @Html.ActionLink("Forgot Password?", "")
+                </div>
+
 
 
             </div>

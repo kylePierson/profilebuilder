@@ -1,21 +1,25 @@
 ﻿body {
-    background-color:#bcb9b9;
+    background-color: #bcb9b9;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.4em;
-    
 }
 
 
 /*---------------------     Log In    -----------------------*/
-.login{
-    background-color:#f2ebeb;
+.login {
+    background-color: #f2ebeb;
     border-radius: 15px;
     padding: 50px;
 }
-#loginButton{
+
+#loginButton {
     border-radius: 10px;
     box-shadow: 10px 10px 5px #888888;
 }
 
+#forgotPassword  {
+    white-space: nowrap;
+    text-decoration: none;
+}
 
-/*---------------------         -----------------------*/
+/*---------------------    Home     -----------------------*/
