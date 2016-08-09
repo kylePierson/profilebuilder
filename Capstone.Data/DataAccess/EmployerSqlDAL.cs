@@ -1,32 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Capstone.Data.Models;
-using System.Data.SqlClient;
-using System.Configuration;
 
 namespace Capstone.Data.DataAccess
 {
-    public class StudentSqlDAL : IStudentDAL
+    public class EmployerSqlDAL : IEmployerDAL
     {
         private string connectionString;
-        //edit query to be long version of input
-        private const string SQL_AddStudentUser = "INSERT INTO staff VALUES (@username, @firstname, @lastname, @class);";
 
-        public StudentSqlDAL()
+        private const string SQL_AddEmployerUser = "INSERT INTO employer VALUES (@username, @firstname, @lastname);";
+
+        public EmployerSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
         {
         }
 
         //Constructor
-        public StudentSqlDAL(string databaseconnectionString)
+        public EmployerSqlDAL(string databaseconnectionString)
         {
             connectionString = databaseconnectionString;
         }
 
-        public void AddStudentUser(string username, string firstName, string lastName, string cohort)
+        public void AddEmployerUser(string username, string firstName, string lastName, string company)
         {
             try
             {
@@ -34,11 +33,11 @@ namespace Capstone.Data.DataAccess
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(SQL_AddStudentUser, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_AddEmployerUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@firstname", firstName);
                     cmd.Parameters.AddWithValue("@lastname", lastName);
-                    cmd.Parameters.AddWithValue("@class", cohort);
+                    cmd.Parameters.AddWithValue("@company", company);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -47,11 +46,6 @@ namespace Capstone.Data.DataAccess
             {
                 throw;
             }
-        }
-
-        public List<Student> GetAllStudents()
-        {
-            throw new NotImplementedException();
         }
     }
 }

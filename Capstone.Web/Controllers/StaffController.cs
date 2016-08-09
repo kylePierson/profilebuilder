@@ -12,11 +12,15 @@ namespace Capstone.Web.Controllers
     {
         IStaffDAL staffDal;
         IUserPasswordDAL userPasswordDal;
+        IStudentDAL studentDal;
+        IEmployerDAL employerDal;
 
-        public StaffController(IStaffDAL staffDal, IUserPasswordDAL userPasswordDal)
+        public StaffController(IStaffDAL staffDal, IUserPasswordDAL userPasswordDal, IStudentDAL studentDal, IEmployerDAL employerDal)
         {
             this.staffDal = staffDal;
             this.userPasswordDal = userPasswordDal;
+            this.studentDal = studentDal;
+            this.employerDal = employerDal;
         }
 
         public ActionResult Index(string username)
@@ -68,7 +72,7 @@ namespace Capstone.Web.Controllers
             //add user to correct db's
 
             userPasswordDal.AddUser(username, "password", "Student");
-            //studentDal.AddStudentUser(username, firstname, lastname, cohort);
+            studentDal.AddStudentUser(username, firstname, lastname, cohort);
 
             return RedirectToAction("Index");
         }
@@ -79,7 +83,7 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateEmployerUser(string username, string firstname, string lastname)
+        public ActionResult CreateEmployerUser(string username, string firstname, string lastname, string company)
         {
 
             if (!ModelState.IsValid)
@@ -90,7 +94,7 @@ namespace Capstone.Web.Controllers
             //add user to correct db's
 
             userPasswordDal.AddUser(username, "password", "Employer");
-            //employerDal.AddEmployerUser(Data to pass here);
+            employerDal.AddEmployerUser(username, firstname, lastname, company);
 
             return RedirectToAction("Index");
         }
