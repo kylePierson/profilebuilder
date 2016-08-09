@@ -1,4 +1,4 @@
-DROP TABLE student_academic
+--DROP TABLE student_academic
 
 create table student (
  student_id integer identity,
@@ -36,7 +36,7 @@ username varchar (32) NOT NULL,
 CONSTRAINT staff_staff_id PRIMARY KEY (staff_id)
 );
 
-CREATE TABLE user_passord (
+CREATE TABLE user_password (
 username varchar (32) NOT NULL,
 password varchar (32) NOT NULL,
 

@@ -35,7 +35,7 @@ namespace Capstone.Data.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    username = "jTucholski";
+                    //username = "jTucholski";
                     SqlCommand cmd = new SqlCommand(SQL_GetUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
 

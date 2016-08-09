@@ -90,6 +90,7 @@ namespace Capstone.Web.Controllers
             //add user to correct db's
 
             userPasswordDal.AddUser(username, "password", "Employer");
+            //employerDal.AddEmployerUser(Data to pass here);
 
             return RedirectToAction("Index");
         }

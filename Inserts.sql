@@ -4,6 +4,9 @@ VALUES('Hyland', 'James', 'Vorous','Westlake, OH','pokemonGo69', 'J.valous@onbas
 INSERT INTO staff (firstname, lastname, title, username)
 Values('Josh', 'Tucholski', 'Instructor', 'jTucholski');
 
+insert into user_password (username, password, role_title)
+values ('jTucholski', 'password', 'Staff');
+
 INSERT INTO student (firstname, lastname, class, summary, perviousexperience, contactinfo, username)
 VALUES('Kyle', 'Pierson', '.NET', 'I am the best .NET student in this bitch', 'Bindows', 'myShitIsLegit@yahoo.com', 'TolegitToQuit');
 
