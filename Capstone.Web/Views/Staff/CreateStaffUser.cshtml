@@ -12,7 +12,7 @@
         <div class="col-md-4">
             <div class="well">
 
-                @using (Html.BeginForm("CreateStaffUser", "staff", new { username = Model.Username, firstName = Model.FirstName, lastName = Model.LastName, title = Model.Title }, FormMethod.Post))
+                @using (Html.BeginForm("CreateStaffUser", "staff",FormMethod.Post))
                 {
 
                     <label for="username"> Username:</label>
