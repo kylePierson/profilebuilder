@@ -13,6 +13,7 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         private const string SQL_GetUser = "SELECT * FROM staff WHERE @username=username;";
+        private const string SQL_AddStaffUser = "INSERT INTO staff VALUES (@username, @firstname, @lastname, @title);";
 
         public StaffSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
@@ -61,7 +62,25 @@ namespace Capstone.Data.DataAccess
 
         public void AddStaffUser(string username, string firstName, string lastName, string title)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_AddStaffUser, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@firstname", firstName);
+                    cmd.Parameters.AddWithValue("@lastname", lastName);
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
         }
     }
 }

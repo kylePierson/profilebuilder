@@ -10,5 +10,6 @@ namespace Capstone.Data.DataAccess
     public interface IStudentDAL
     {
         List<Student> GetAllStudents();
+        void AddStudentUser(string username, string firstName, string lastName, string cohort);
     }
 }

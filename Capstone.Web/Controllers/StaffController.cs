@@ -12,7 +12,7 @@ namespace Capstone.Web.Controllers
     {
         IStaffDAL staffDal;
         IUserPasswordDAL userPasswordDal;
-        
+
         public StaffController(IStaffDAL staffDal, IUserPasswordDAL userPasswordDal)
         {
             this.staffDal = staffDal;
@@ -38,14 +38,15 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult CreateStaffUser(string username, string firstName, string lastName, string title)
         {
-            
+
             if (!ModelState.IsValid)
             {
                 return View("CreateStaffUser");
             };
             //add user to correct db's
 
-            userPasswordDal.AddUser(username, "password" , "Staff");
+            userPasswordDal.AddUser(username, "password", "Staff");
+            staffDal.AddStaffUser(username, firstName, lastName, title);
 
             return RedirectToAction("Index");
         }
@@ -56,21 +57,21 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateStudentUser(UserPassword user)
+        public ActionResult CreateStudentUser(string username, string firstname, string lastname, string cohort)
         {
 
             if (!ModelState.IsValid)
             {
                 return View("CreateStaffUser");
             }
-            user.RoleTitle = "Staff";
 
             //add user to correct db's
 
-            //userPasswordDal.AddUser(user);
+            userPasswordDal.AddUser(username, "password", "Student");
+            //studentDal.AddStudentUser(username, firstname, lastname, cohort);
 
             return RedirectToAction("Index");
         }
-        
+
     }
 }

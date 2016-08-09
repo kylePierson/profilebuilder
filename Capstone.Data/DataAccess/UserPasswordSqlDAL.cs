@@ -71,7 +71,9 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_AddUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@roleTitle", role);
-                    cmd.Parameters.AddWithValue("@roleTitle", role);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
