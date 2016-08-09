@@ -7,12 +7,28 @@
     <div class="row">
         <div class="col-md-4">
 
-            <div class="well">
-               
-            </div>
+           
         </div>
         <div class="col-md-4">
+            <div class="well">
+                @using (Html.BeginForm("CreateStudentUser", "student", FormMethod.Post))
+                {
+                    <label for="username"> Username: </label>
+                    <input type="text" name="username" />
 
+                    <label for="firstName">First Name: </label>
+                    <input type="Text" name="firstName" />
+
+                    <label for="lastName">Last Name: </label>
+                    <input type="text" name="lastName" />
+
+                    <label for="cohort">Cohort: </label>
+                    <input type="Text" name="cohort" />
+                    <br>
+
+                    <button>Create</button>
+                }
+            </div>
         </div>
 
     </div>
