@@ -44,10 +44,35 @@ namespace Capstone.Web.Controllers
                 return View("CreateStaffUser");
             }
             user.RoleTitle = "Staff";
+
             //add user to correct db's
+
             userPasswordDal.AddUser(user);
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult CreateStudentUser()
+        {
+            return View("CreateStaffUser");
+        }
+
+        [HttpPost]
+        public ActionResult CreateStudentUser(UserPassword user)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View("CreateStaffUser");
+            }
+            user.RoleTitle = "Staff";
+
+            //add user to correct db's
+
+            userPasswordDal.AddUser(user);
+
+            return RedirectToAction("Index");
+        }
+        
     }
 }
