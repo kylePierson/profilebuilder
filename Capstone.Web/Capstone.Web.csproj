@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\joshtucholski.jpg" />
     <Content Include="Content\images\kylepierson.jpg" />
     <Content Include="Content\images\siminnickelen.jpg" />
     <Content Include="Content\images\tylerpompeii.jpg" />
@@ -139,6 +140,7 @@
     <Content Include="Views\User\LogIn.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Staff\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -148,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Staff\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capstone.Data\Capstone.Data.csproj">

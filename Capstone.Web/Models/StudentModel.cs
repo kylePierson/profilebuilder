@@ -10,7 +10,7 @@ namespace Capstone.Web.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public List<Capstone.Data.Models.Students> AllStudents { get; set; }
+        public List<Capstone.Data.Models.Student> AllStudents { get; set; }
 
 
 
