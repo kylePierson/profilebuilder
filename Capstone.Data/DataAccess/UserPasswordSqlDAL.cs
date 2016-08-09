@@ -60,7 +60,7 @@ namespace Capstone.Data.DataAccess
             return output;
         }
 
-        public void AddUser(UserPassword user)
+        public void AddUser(string username, string password, string role)
         {
             try
             {
@@ -69,8 +69,9 @@ namespace Capstone.Data.DataAccess
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(SQL_AddUser, conn);
-                    cmd.Parameters.AddWithValue("@username", user.Username);
-                    cmd.Parameters.AddWithValue("@roleTitle", user.RoleTitle);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@roleTitle", role);
+                    cmd.Parameters.AddWithValue("@roleTitle", role);
                 }
             }
             catch (SqlException ex)

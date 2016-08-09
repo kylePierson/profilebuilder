@@ -36,18 +36,16 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateStaffUser(UserPassword user)
+        public ActionResult CreateStaffUser(string username, string firstName, string lastName, string title)
         {
             
             if (!ModelState.IsValid)
             {
                 return View("CreateStaffUser");
-            }
-            user.RoleTitle = "Staff";
-
+            };
             //add user to correct db's
 
-            userPasswordDal.AddUser(user);
+            userPasswordDal.AddUser(username, "password" , "Staff");
 
             return RedirectToAction("Index");
         }
@@ -69,7 +67,7 @@ namespace Capstone.Web.Controllers
 
             //add user to correct db's
 
-            userPasswordDal.AddUser(user);
+            //userPasswordDal.AddUser(user);
 
             return RedirectToAction("Index");
         }
