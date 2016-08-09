@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\IStudentDAL.cs" />
     <Compile Include="DataAccess\IUserPasswordDAL.cs" />
     <Compile Include="DataAccess\IStaffDAL.cs" />
     <Compile Include="DataAccess\StaffSqlDAL.cs" />
     <Compile Include="DataAccess\UserPasswordSqlDAL.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UserPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
