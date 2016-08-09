@@ -50,6 +50,7 @@
     <Compile Include="DataAccess\IStaffDAL.cs" />
     <Compile Include="DataAccess\StaffSqlDAL.cs" />
     <Compile Include="DataAccess\UserPasswordSqlDAL.cs" />
+    <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UserPassword.cs" />
