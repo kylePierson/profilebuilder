@@ -12,16 +12,21 @@
         </div>
         <div class="col-sm-4 login">
             <div class="col-sm-4">
-                @using (Html.BeginForm("User", "LogIn", FormMethod.Post))
+                @using (Html.BeginForm("LogIn", "User", FormMethod.Post))
                 {
-                    <label for="username"> username:</label>
-                    <input type="text" name="username" />
+                    @Html.Label("username", "Username:")
+                    @Html.TextBox("username")
+                    @Html.ValidationMessage("username", "Required", new { @class = "text-danger" })
+                    @*<label for="username"> username:</label>
+                    <input type="text" name="username" />*@
                     <label for="password">password:</label>
                     <input type="text" name="password">
+                    <br />
+                    <br />
+                    <button id="loginButton">Log in</button>
+                    <br />
                 }
-                <br />
-                <button id="loginButton">Log in</button>
-                <br />
+                
                 @*add action link for forgot password*@
                 <br />
                 @Html.ActionLink("Forgot_Password?", "")

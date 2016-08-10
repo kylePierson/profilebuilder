@@ -20,9 +20,8 @@ namespace Capstone.Web.Controllers
 
         public ActionResult LogIn()
         {
-            //username and password view model to send to view
-            LoginViewModel model = new LoginViewModel();
-            return View("LogIn", model);
+
+            return View("LogIn");
         }
 
         [HttpPost]
@@ -35,7 +34,7 @@ namespace Capstone.Web.Controllers
                 return View("LogIn");
             }
 
-            return RedirectToAction("Index", model.RoleTitle, model.Username);
+            return RedirectToAction("Index", model.RoleTitle, new { username = model.Username });
         }
     }
 }
