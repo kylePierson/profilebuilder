@@ -109,8 +109,11 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@summary", summary);
                     //TODO
-                    cmd.Parameters.AddWithValue("@lastname", lastName);
-                    cmd.Parameters.AddWithValue("@class", cohort);
+                    cmd.Parameters.AddWithValue("@previousExperience", previousExperience);
+                    cmd.Parameters.AddWithValue("@degree", degree);
+                    cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
+                    cmd.Parameters.AddWithValue("@skills", skills);
+                    cmd.Parameters.AddWithValue("@interests", interests);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -138,11 +141,12 @@ namespace Capstone.Data.DataAccess
                     {
                         output = new Student();
                         output.Summary = Convert.ToString(reader["summary"]);
-                        // TODO
-                        output.FirstName = Convert.ToString(reader["firstname"]);
-                        output.Username = Convert.ToString(reader["username"]);
-                        output.LastName = Convert.ToString(reader["lastname"]);
-                        output.Title = Convert.ToString(reader["title"]);
+
+                        output.PreviousExperience = Convert.ToString(reader["previousExperience"]);
+                        output.AcademicDegree = Convert.ToString(reader["degree"]);
+                        output.ContantInfo = Convert.ToString(reader["contactInfo"]);
+                        output.Skills = Convert.ToString(reader["skills"]);
+                        output.Interests = Convert.ToString(reader["interests"]);
                     }
                 }
             }
@@ -153,7 +157,5 @@ namespace Capstone.Data.DataAccess
 
             return output;
         }
-
-        /* git clone*/
     }
 }
