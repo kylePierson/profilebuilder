@@ -10,7 +10,7 @@ namespace Capstone.Data.DataAccess
     public interface IStudentDAL
     {
         List<Student> GetAllStudents();
-        void AddStudentUser(string username, string firstName, string lastName, string cohort);
+        bool AddStudentUser(string username, string firstName, string lastName, string cohort);
         void UpdateStudentUser(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests);
         Student GetStudent(string username);
     }

@@ -29,8 +29,9 @@ namespace Capstone.Data.DataAccess
             connectionString = databaseconnectionString;
         }
 
-        public void AddStudentUser(string username, string firstName, string lastName, string cohort)
+        public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
         {
+            int rowsAffected = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -43,13 +44,15 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@class", cohort);
 
-                    cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
                 throw;
             }
+
+            return rowsAffected > 0;
         }
 
         public List<Student> GetAllStudents()

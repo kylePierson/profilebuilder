@@ -18,13 +18,9 @@
                     @Html.LabelFor(m => m.Username)
                     @Html.TextBoxFor(m => m.Username /*,new { @class = "form-control" }*/)
                     @Html.ValidationMessageFor(m => m.Username ,null, new { @class = "text-danger" })
-                    @*<label for="username"> username:</label>
-                    <input type="text" name="username" />*@
                     @Html.LabelFor(m => m.Password)
                     @Html.PasswordFor(m => m.Password)
                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
-                    @*<label for="password">password:</label>
-                    <input type="text" name="password">*@
                     <br />
                     <br />
                     <button id="loginButton">Log in</button>

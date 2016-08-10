@@ -10,6 +10,6 @@ namespace Capstone.Data.DataAccess
     public interface IStaffDAL
     {
         Staff GetStaff(string username);
-        void AddStaffUser(string username, string firstName, string lastName, string title);
+        bool AddStaffUser(string username, string firstName, string lastName, string title);
     }
 }

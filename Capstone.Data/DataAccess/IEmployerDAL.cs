@@ -8,6 +8,6 @@ namespace Capstone.Data.DataAccess
 {
     public interface IEmployerDAL
     {
-        void AddEmployerUser(string username, string firstName, string lastName, string company);
+        bool AddEmployerUser(string username, string firstName, string lastName, string company);
     }
 }

@@ -60,8 +60,9 @@ namespace Capstone.Data.DataAccess
             return output;
         }
 
-        public void AddStaffUser(string username, string firstName, string lastName, string title)
+        public bool AddStaffUser(string username, string firstName, string lastName, string title)
         {
+            int rowsAffected = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -74,13 +75,14 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@title", title);
 
-                    cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
                 throw;
             }
+            return rowsAffected > 0;
         }
     }
 }

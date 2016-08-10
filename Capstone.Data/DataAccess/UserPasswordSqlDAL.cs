@@ -60,8 +60,9 @@ namespace Capstone.Data.DataAccess
             return output;
         }
 
-        public void AddUser(string username, string password, string role)
+        public bool AddUser(string username, string password, string role)
         {
+            int rowsAffected = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -73,13 +74,15 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@roleTitle", role);
                     cmd.Parameters.AddWithValue("@password", password);
 
-                    cmd.ExecuteNonQuery();
+                    rowsAffected = cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
                 throw;
             }
+
+            return rowsAffected > 0;
         }
     }
 }
