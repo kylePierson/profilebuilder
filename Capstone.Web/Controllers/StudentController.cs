@@ -38,10 +38,17 @@ namespace Capstone.Web.Controllers
             {
                 return View("UpdateProfile");
             }
-            studentDAL.UpdateStudentUser(username, summary, previousExperience, degree, contactInfo, skills, interests);
-            return RedirectToAction("Index");
-        }
 
+            bool updateSuccess = studentDAL.UpdateStudentUser(username, summary, previousExperience, degree, contactInfo, skills, interests);
+            if (updateSuccess)
+            {
+                return RedirectToAction("Success", "Staff");
+            }
+            else
+            {
+                return RedirectToAction("Fail", "Staff");
+            }
+        }
 
     }
 }

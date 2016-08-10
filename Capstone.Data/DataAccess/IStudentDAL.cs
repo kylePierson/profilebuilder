@@ -11,7 +11,7 @@ namespace Capstone.Data.DataAccess
     {
         List<Student> GetAllStudents();
         bool AddStudentUser(string username, string firstName, string lastName, string cohort);
-        void UpdateStudentUser(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests);
+        bool UpdateStudentUser(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests);
         Student GetStudent(string username);
     }
 }

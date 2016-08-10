@@ -151,10 +151,10 @@ namespace Capstone.Data.DataAccess
                         output = new Student();
                         output.Summary = Convert.ToString(reader["summary"]);
 
-                        //output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+                        output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                       // output.Skills = Convert.ToString(reader["skills"]);
+                        output.Skills = Convert.ToString(reader["skills"]);
                         output.Interests = Convert.ToString(reader["interests"]);
                     }
                 }
