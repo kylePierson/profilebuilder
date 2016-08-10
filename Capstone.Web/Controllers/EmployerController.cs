@@ -14,5 +14,15 @@ namespace Capstone.Web.Controllers
             return View("Index");
         }
 
+        public ActionResult DeleteSkillInterested(string skill)
+        {
+            return View();
+        }
+
+        public ActionResult AddSkillInterested()
+        {
+            return View();
+        }
+
     }
 }
