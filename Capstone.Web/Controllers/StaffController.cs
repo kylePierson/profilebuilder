@@ -29,13 +29,13 @@ namespace Capstone.Web.Controllers
             return View("Index", currentUser);
         }
 
-        public ActionResult CreateStaffUser()
+        public ActionResult CreateStaffUser(string username)
         {
-            return View("CreateStaffUser");
+            return View("CreateStaffUser", username);
         }
 
         [HttpPost]
-        public ActionResult CreateStaffUser(string username, string firstName, string lastName, string title)
+        public ActionResult CreateStaffUser(string currentUsername, string username, string firstName, string lastName, string title)
         {
 
             if (!ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace Capstone.Web.Controllers
             }
 
 
-            return RedirectToAction("Success");
+            return RedirectToAction("Success", new { currentUser = currentUsername });
         }
 
         public ActionResult CreateStudentUser()
@@ -119,9 +119,10 @@ namespace Capstone.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Success()
+        public ActionResult Success(string currentUser)
         {
-            return View("Success");
+            UserPassword user = userPasswordDal.GetUser(currentUser);
+            return View("Success", user);
         }
     }
 }
