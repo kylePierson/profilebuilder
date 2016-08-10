@@ -25,7 +25,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Index(string username)
         {
-            username = "jTucholski";
+            //username = "jTucholski";
             Staff currentUser = staffDal.GetStaff(username);
             return View("Index", currentUser);
         }
