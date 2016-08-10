@@ -14,6 +14,7 @@ namespace Capstone.Data.DataAccess
         private string connectionString;
         private const string SQL_GetUser = "SELECT * FROM user_password WHERE @username=username AND @password=password;";
         private const string SQL_AddUser = "INSERT INTO user_password VALUES (@username, @password, @roleTitle);";
+        private const string SQL_GetUserByUsername = "SELECT * FROM user_password WHERE @username=username;";
 
 
         public UserPasswordSqlDAL()
@@ -40,6 +41,38 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_GetUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        output = new UserPassword();
+                        output.Username = Convert.ToString(reader["username"]);
+                        output.Password = Convert.ToString(reader["password"]);
+                        output.RoleTitle = Convert.ToString(reader["role_title"]);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return output;
+        }
+
+        public UserPassword GetUser(string username)
+        {
+            UserPassword output = null;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetUserByUsername, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

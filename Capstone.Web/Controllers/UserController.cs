@@ -9,11 +9,12 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ProfileBuilderController
     {
         private readonly IUserPasswordDAL userPasswordDal;
 
         public UserController(IUserPasswordDAL userPasswordDal)
+            : base(userPasswordDal)
         {
             this.userPasswordDal = userPasswordDal;
         }
@@ -28,13 +29,37 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult LogIn(LoginViewModel login)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View("LogIn");
-            }
-            UserPassword model = userPasswordDal.GetUser(login.Username, login.Password);
+                UserPassword model = userPasswordDal.GetUser(login.Username);
 
-            return RedirectToAction("Index", model.RoleTitle, new {username= model.Username});
+                if (model == null)
+                {
+                    ModelState.AddModelError("invalid username", "The username or password provided is invalid");
+                    return View("LogIn", login);
+                }
+                if (model.Password != login.Password)
+                {
+                    ModelState.AddModelError("invalid pwd", "The username or password provided is invalid");
+                    return View("LogIn", login);
+                }
+
+                //happy path
+                base.LogUserIn(model.Username);
+
+                return RedirectToAction("Index", model.RoleTitle, new { username = model.Username });
+            }
+            else
+            {
+                return View("LogIn", login);
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            base.LogUserOut();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

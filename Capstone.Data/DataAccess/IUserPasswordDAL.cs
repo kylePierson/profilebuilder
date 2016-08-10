@@ -11,6 +11,7 @@ namespace Capstone.Data.DataAccess
     public interface IUserPasswordDAL
     {
         UserPassword GetUser(string username, string password);
+        UserPassword GetUser(string username);
         bool AddUser(string username, string password, string role);
     }
 }
