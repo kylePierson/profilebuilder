@@ -17,6 +17,7 @@ namespace Capstone.Data.DataAccess
         private const string SQL_UpdateStudentUser = "UPDATE student SET summary=@summary, previousexperience=@previousExperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests where username = @username";
         private const string SQL_GetAllStudents = "";
         private const string SQL_GetStudent = "SELECT * FROM student WHERE @username=username;";
+        private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
         public StudentSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
         {
@@ -62,7 +63,7 @@ namespace Capstone.Data.DataAccess
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = SQL_GetAllStudents;
+                    cmd.CommandText = SQL_CreateStudentFromReader;
                     cmd.Connection = conn;
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -70,6 +71,7 @@ namespace Capstone.Data.DataAccess
                     while (reader.Read())
                     {
                         Student s = CreateStudentFromReader(reader);
+                        //get other info on student from other tables
                         output.Add(s);
                     }
                 }
@@ -85,15 +87,14 @@ namespace Capstone.Data.DataAccess
         private Student CreateStudentFromReader(SqlDataReader reader)
         {
             Student s = new Student();
-            s.
-            //s.Code = Convert.ToString(reader["code"]);
-            //s.Name = Convert.ToString(reader["name"]);
-            //s.Continent = Convert.ToString(reader["continent"]);
-            //s.Region = Convert.ToString(reader["region"]);
-            //s.SurfaceArea = Convert.ToDouble(reader["surfacearea"]);
-            //s.Population = Convert.ToInt32(reader["population"]);
-            //s.GovernmentForm = Convert.ToString(reader["governmentform"]);
-
+            s.FirstName = Convert.ToString(reader["firstname"]);
+            s.LastName = Convert.ToString(reader["lastname"]);
+            s.Username = Convert.ToString(reader["username"]);
+            s.StudentId = Convert.ToInt32(reader["student_id"]);
+            s.Class = Convert.ToString(reader["class"]);
+            s.Summary = Convert.ToString(reader["summary"]);
+            s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+            s.ContantInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
 
