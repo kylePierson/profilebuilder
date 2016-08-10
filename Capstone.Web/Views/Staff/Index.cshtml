@@ -1,4 +1,4 @@
-﻿@*@model Capstone.Data.Models.Staff*@
+﻿@model Capstone.Data.Models.Staff
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,29 +6,28 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-                    
+
+        </div>
+        <div class="col-md-4">
             <div class="well">
-               <h2>Hello @Model.FirstName ! </h2>
-                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), ".jpg")" class="img-circle profileImage" />  
-                <br/>
-                <br/>
-                <ul>
+                <h2>Hello @Model.FirstName ! </h2>
+                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                <br />
+                <br />
+                <ul class="creatNewUser">
                     <li><a href='@Url.Action("CreateStaffUser", "staff")'> Add a new Staff</a></li>
-                    <li><a href="@Url.Action("CreateStaffUser", "student")">Add a new Student</a></li>
+                    @*<li><a href="@Url.Action("CreateStaffUser", "student")">Add a new Student</a></li>*@
                     <li>Add a new employer</li>
                     <li>Change Password</li>
                 </ul>
-               
-            </div>
-        </div>
-        <div class="col-md-4">
-            
-            </div>
 
-        </div>
-        <div class="col-md-4">
-           
+            </div>
         </div>
 
     </div>
+    <div class="col-md-4">
+
+    </div>
+
+</div>
 

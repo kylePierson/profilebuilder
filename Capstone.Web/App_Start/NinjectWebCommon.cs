@@ -48,6 +48,8 @@ namespace TechElevator.Web.App_Start
 
                 kernel.Bind<IUserPasswordDAL>().To<UserPasswordSqlDAL>();
                 kernel.Bind<IStaffDAL>().To<StaffSqlDAL>();
+                kernel.Bind<IStudentDAL>().To<StudentSqlDAL>();
+                kernel.Bind<IEmployerDAL>().To<EmployerSqlDAL>();
 
                 RegisterServices(kernel);
                 return kernel;
