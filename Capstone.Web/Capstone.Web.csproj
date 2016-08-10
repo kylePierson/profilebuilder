@@ -109,9 +109,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\failToDo.jpg" />
     <Content Include="Content\images\josh.jpg" />
     <Content Include="Content\images\kylepierson.jpg" />
     <Content Include="Content\images\siminnickelen.jpg" />
+    <Content Include="Content\images\Sucess.jpg" />
     <Content Include="Content\images\tylerpompeii.jpg" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="Global.asax" />
@@ -145,6 +147,8 @@
     <Content Include="Views\Staff\CreateStaffUser.cshtml" />
     <Content Include="Views\Staff\CreateStudentUser.cshtml" />
     <Content Include="Views\Staff\CreateEmployerUser.cshtml" />
+    <Content Include="Views\Staff\Fail.cshtml" />
+    <Content Include="Views\Staff\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

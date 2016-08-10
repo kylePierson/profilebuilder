@@ -30,5 +30,32 @@
 
 .creatNewUser{
     padding: 7px; 
-    box-shadow: 10px 10px 5px #888888;
+    border:2px solid black;
+    border-radius: 5px;
+    list-style-type: none;
 }
+
+/*----------------------   Create a new users forms----------------------*/
+.creatNewUserForm{
+    padding: 30px;
+}
+
+.creatNewUserForm input, .creatNewUserForm label {
+    display:block;
+}
+
+.creatNewUserForm input{
+    border-radius:12px;
+
+}
+
+
+/*-----------------------  fail and success to update, create and ..   ---------------------*/
+.goHome{
+    background-color:#c1c1c1;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+
+
