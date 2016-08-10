@@ -4,23 +4,27 @@
 }
 
 <h2>Students</h2>
-<div class="col-sm-4">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
 
-</div>
+        </div>
 
-<div class="col-sm-4 student">
-    <ul>
-        @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
-        {
-            <li><img src="@string.Concat("../Content/Images/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg") class=" img-circle"" /></li>
-            <li>@item.FirstName</li>
-            <li>@item.LastName</li>
-        }
-    </ul>
+        <div class="col-sm-4 student">
+            <ul>
+                @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
+                {
+                    <li><img src="@string.Concat("../Content/Images/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg") class=" img-circle"" /></li>
+                    <li>@item.FirstName</li>
+                    <li>@item.LastName</li>
+                }
+            </ul>
 
-</div>
+        </div>
 
-<div class="col-sm-4">
+        <div class="col-sm-4">
 
+        </div>
+    </div>
 </div>
 

@@ -2,33 +2,48 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="well creatNewUserForm">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
 
-    @using (Html.BeginForm("CreateEmployerUser", "staff", FormMethod.Post))
-    {
+        </div>
 
-        <label for="username"> Username:</label>
-            <input type="text" name="username" />
+        <div class="col-sm-4 student">
+            <div class="well creatNewUserForm">
 
-            <label for="companyName">Company:</label>
-            <input type="text" name="companyName" />
-            <fieldset>
-                <legend>Contact prerson information:</legend>
+                @using (Html.BeginForm("CreateEmployerUser", "staff", FormMethod.Post))
+                {
 
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" />
+                    <label for="username"> Username:</label>
+                    <input type="text" name="username" />
 
-                <label for="lastName">Last Name: </label>
-                <input type="text" name="lastName" />
-            </fieldset>
-            
-            <label for="contactInfo">Contact Info:</label>
-            <input type="text" name="contactInfo" />
+                    <label for="companyName">Company:</label>
+                    <input type="text" name="companyName" />
+                    <label for="Address">Address: </label>
+                    <input type="text" name="address" />
+                    <br/>
 
-            <label for="Address">Address: </label>
-            <input type="text" name="address" />
-            <br />
+                    <fieldset>
+                        <legend>Contact prerson information:</legend>
 
-            <input class="btn btn-primary" type="submit" value="Submit">
-    }
+                        <label for="firstName">First Name:</label>
+                        <input type="text" name="firstName" />
+
+                        <label for="lastName">Last Name: </label>
+                        <input type="text" name="lastName" />
+                    </fieldset>
+
+                    <label for="contactInfo">Contact Info:</label>
+                    <input type="text" name="contactInfo" />
+
+                    <br />
+
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
 </div>

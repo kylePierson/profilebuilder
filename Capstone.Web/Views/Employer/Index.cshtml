@@ -1,0 +1,48 @@
+﻿@model Capstone.Data.Models.Employer
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <h2>Welcome @Model.CompanyName ! </h2>
+                <ul id="employerSkills">
+                    @*listing the languages each company is interested in*@
+                    @foreach(var item in Model.LanguagesInterested)
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+                <br/>
+                <button id="editInterests">Edit</button>
+                
+                <div id="editDiv">
+                    <ul>
+                        @foreach (var item in Model.LanguagesInterested)
+                        {
+                            <li>@item &nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("DeleteSkillInterested", "Employer",new { skill = item})'>delete</a></li>
+                        }
+                    </ul>
+                    <a href='@Url.Action("AddSkillInterested", "Employer")'>Add</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+
+
+            </div>
+        </div>
+    </div>
+  
+
+</div>
+
+
+
