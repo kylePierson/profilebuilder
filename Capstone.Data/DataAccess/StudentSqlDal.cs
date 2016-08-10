@@ -13,7 +13,7 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         //edit query to be long version of input
-        private const string SQL_AddStudentUser = "INSERT INTO student VALUES (@username, @firstname, @lastname, @class);";
+        private const string SQL_AddStudentUser = "INSERT INTO student (username, firstname, lastname, class) VALUES (@username, @firstname, @lastname, @class);";
         private const string SQL_UpdateStudentUser = "UPDATE student SET summary=@summary, previousexperience=@previousExperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests where username = @username";
         private const string SQL_GetAllStudents = "";
         private const string SQL_GetStudent = "SELECT * FROM student WHERE @username=username;";
@@ -85,6 +85,7 @@ namespace Capstone.Data.DataAccess
         private Student CreateStudentFromReader(SqlDataReader reader)
         {
             Student s = new Student();
+            s.
             //s.Code = Convert.ToString(reader["code"]);
             //s.Name = Convert.ToString(reader["name"]);
             //s.Continent = Convert.ToString(reader["continent"]);
@@ -152,5 +153,7 @@ namespace Capstone.Data.DataAccess
 
             return output;
         }
+
+        /* git clone*/
     }
 }
