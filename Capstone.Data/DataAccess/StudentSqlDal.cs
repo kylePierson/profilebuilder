@@ -105,8 +105,9 @@ namespace Capstone.Data.DataAccess
             return s;
         }
 
-        public void UpdateStudentUser(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests)
+        public bool UpdateStudentUser(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests)
         {
+            var updateIsDone = false;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -124,12 +125,14 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@interests", interests);
 
                     cmd.ExecuteNonQuery();
+                    updateIsDOne = true;
                 }
             }
             catch (SqlException ex)
             {
                 throw;
             }
+            return updateIsDone;
         }
 
         public Student GetStudent(string username)
