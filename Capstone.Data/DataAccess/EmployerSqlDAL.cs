@@ -12,7 +12,8 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
 
-        private const string SQL_AddEmployerUser = "INSERT INTO employer VALUES (@username, @firstname, @lastname);";
+        private const string SQL_AddEmployerUser = @"INSERT INTO employer 
+                                                    VALUES (@username, @firstname, @lastname);";
 
         public EmployerSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)

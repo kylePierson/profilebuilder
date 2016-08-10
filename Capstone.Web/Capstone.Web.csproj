@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -150,6 +151,7 @@
     <Content Include="Views\Staff\Fail.cshtml" />
     <Content Include="Views\Staff\Success.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Employer\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
