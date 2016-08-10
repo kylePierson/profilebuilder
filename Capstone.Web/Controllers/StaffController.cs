@@ -25,14 +25,8 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Index(string username)
         {
-            //username = "jTucholski";
             Staff currentUser = staffDal.GetStaff(username);
             return View("Index", currentUser);
-        }
-
-        public ActionResult AddUser()
-        {
-            return View("AddUser");
         }
 
         public ActionResult CreateStaffUser()
@@ -50,10 +44,19 @@ namespace Capstone.Web.Controllers
             };
             //add user to correct db's
 
-            userPasswordDal.AddUser(username, "password", "Staff");
-            staffDal.AddStaffUser(username, firstName, lastName, title);
+            bool userPassword = userPasswordDal.AddUser(username, "password", "Staff");
+            if (!userPassword)
+            {
+                return View("Fail");
+            }
+            bool staff = staffDal.AddStaffUser(username, firstName, lastName, title);
+            if (!staff)
+            {
+                return View("Fail");
+            }
 
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Success");
         }
 
         public ActionResult CreateStudentUser()
@@ -98,6 +101,11 @@ namespace Capstone.Web.Controllers
             employerDal.AddEmployerUser(username, firstname, lastname, company);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Success()
+        {
+            return View("Success");
         }
     }
 }
