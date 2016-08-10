@@ -13,8 +13,12 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         //edit query to be long version of input
-        private const string SQL_AddStudentUser = "INSERT INTO student (username, firstname, lastname, class) VALUES (@username, @firstname, @lastname, @class);";
-        private const string SQL_UpdateStudentUser = "UPDATE student SET summary=@summary, previousexperience=@previousExperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests where username = @username";
+        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class) 
+                                                    VALUES (@username, @firstname, @lastname, @class);";
+
+        private const string SQL_UpdateStudentUser = @"UPDATE student 
+                                                        SET summary=@summary, previousexperience=@previousexperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests 
+                                                        where username = @username";
         private const string SQL_GetAllStudents = "";
         private const string SQL_GetStudent = "SELECT * FROM student WHERE @username=username;";
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
@@ -113,7 +117,7 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@summary", summary);
                     //TODO
-                    cmd.Parameters.AddWithValue("@previousExperience", previousExperience);
+                    cmd.Parameters.AddWithValue("@previousexperience", previousExperience);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
                     cmd.Parameters.AddWithValue("@skills", skills);
@@ -130,6 +134,7 @@ namespace Capstone.Data.DataAccess
 
         public Student GetStudent(string username)
         {
+            username = "siminN";
             Student output = null;
             try
             {
@@ -146,10 +151,10 @@ namespace Capstone.Data.DataAccess
                         output = new Student();
                         output.Summary = Convert.ToString(reader["summary"]);
 
-                        output.PreviousExperience = Convert.ToString(reader["previousExperience"]);
+                        //output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                        output.Skills = Convert.ToString(reader["skills"]);
+                       // output.Skills = Convert.ToString(reader["skills"]);
                         output.Interests = Convert.ToString(reader["interests"]);
                     }
                 }

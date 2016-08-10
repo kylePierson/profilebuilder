@@ -1,0 +1,53 @@
+﻿@model Capstone.Data.Models.Student
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <h2>Hello @Model.FirstName ! </h2>
+                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                <br />
+                <br />
+                <table>
+                   
+                        <tr>
+                            <td>Summary</td>
+                            <td>Previous Experience</td>
+                            <td>Degree</td>
+                            <td>Contact Info</td>
+                            <td>Skills</td>
+                            <td>Interests</td>
+                        </tr>
+                  
+                        <tr>
+                            <td>@Model.Summary</td>
+                            <td>@Model.PreviousExperience</td>
+                            <td>@Model.AcademicDegree</td>
+                            <td>@Model.ContantInfo</td>
+                            <td>@Model.Skills</td>
+                            <td>@Model.Interests</td>
+                        </tr>
+                  
+                </table>
+                          
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <ul class="creatNewUser">
+            <li><a href='@Url.Action("UpdateProfile", "Student")'> Update Profile</a></li>
+            <li>Change Password</li>
+        </ul>
+    </div>
+
+</div>
+
+

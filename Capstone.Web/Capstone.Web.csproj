@@ -149,6 +149,7 @@
     <Content Include="Views\Staff\CreateEmployerUser.cshtml" />
     <Content Include="Views\Staff\Fail.cshtml" />
     <Content Include="Views\Staff\Success.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
