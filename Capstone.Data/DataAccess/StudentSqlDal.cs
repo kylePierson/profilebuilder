@@ -125,7 +125,7 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@interests", interests);
 
                     cmd.ExecuteNonQuery();
-                    updateIsDOne = true;
+                    updateIsDone = true;
                 }
             }
             catch (SqlException ex)
