@@ -14,8 +14,9 @@ namespace Capstone.Data.DataAccess
         private string connectionString;
         //edit query to be long version of input
         private const string SQL_AddStudentUser = "INSERT INTO student VALUES (@username, @firstname, @lastname, @class);";
+        private const string SQL_UpdateStudentUser = "UPDATE student SET summary=@summary, previousexperience=@previousExperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests where username = @username";
         private const string SQL_GetAllStudents = "";
-
+        private const string SQL_GetStudent = "SELECT * FROM student WHERE @username=username;";
         public StudentSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
         {
@@ -93,6 +94,63 @@ namespace Capstone.Data.DataAccess
             //s.GovernmentForm = Convert.ToString(reader["governmentform"]);
 
             return s;
+        }
+
+        public void UpdateStudentUser(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_UpdateStudentUser, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@summary", summary);
+                    //TODO
+                    cmd.Parameters.AddWithValue("@lastname", lastName);
+                    cmd.Parameters.AddWithValue("@class", cohort);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        public Student GetStudent(string username)
+        {
+            Student output = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetStudent, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        output = new Student();
+                        output.Summary = Convert.ToString(reader["summary"]);
+                        // TODO
+                        output.FirstName = Convert.ToString(reader["firstname"]);
+                        output.Username = Convert.ToString(reader["username"]);
+                        output.LastName = Convert.ToString(reader["lastname"]);
+                        output.Title = Convert.ToString(reader["title"]);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return output;
         }
     }
 }
