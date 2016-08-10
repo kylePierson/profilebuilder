@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Capstone.Web.Models.LoginViewModel
+@{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,13 +15,16 @@
             <div class="col-sm-4">
                 @using (Html.BeginForm("LogIn", "User", FormMethod.Post))
                 {
-                    @Html.Label("username", "Username:")
-                    @Html.TextBox("username")
-                    @Html.ValidationMessage("username", "Required", new { @class = "text-danger" })
+                    @Html.LabelFor(m => m.Username)
+                    @Html.TextBoxFor(m => m.Username /*,new { @class = "form-control" }*/)
+                    @Html.ValidationMessageFor(m => m.Username ,null, new { @class = "text-danger" })
                     @*<label for="username"> username:</label>
                     <input type="text" name="username" />*@
-                    <label for="password">password:</label>
-                    <input type="text" name="password">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+                    @*<label for="password">password:</label>
+                    <input type="text" name="password">*@
                     <br />
                     <br />
                     <button id="loginButton">Log in</button>

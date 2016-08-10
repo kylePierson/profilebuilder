@@ -20,21 +20,21 @@ namespace Capstone.Web.Controllers
 
         public ActionResult LogIn()
         {
-
-            return View("LogIn");
+            //username and password view model to send to view
+            LoginViewModel model = new LoginViewModel();
+            return View("LogIn", model);
         }
 
         [HttpPost]
-        public ActionResult LogIn(string username, string password)
+        public ActionResult LogIn(LoginViewModel login)
         {
-            UserPassword model = userPasswordDal.GetUser(username, password);
-
-            if (!ModelState.IsValid || model==null)
+            if (!ModelState.IsValid)
             {
                 return View("LogIn");
             }
+            UserPassword model = userPasswordDal.GetUser(login.Username, login.Password);
 
-            return RedirectToAction("Index", model.RoleTitle, new { username = model.Username });
+            return RedirectToAction("Index", model.RoleTitle, new {username= model.Username});
         }
     }
 }
