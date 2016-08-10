@@ -80,7 +80,7 @@ namespace Capstone.Data.DataAccess
             }
             catch (SqlException ex)
             {
-                throw;
+                
             }
             return rowsAffected > 0;
         }

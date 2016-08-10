@@ -75,8 +75,16 @@ namespace Capstone.Web.Controllers
 
             //add user to correct db's
 
-            userPasswordDal.AddUser(username, "password", "Student");
-            studentDal.AddStudentUser(username, firstname, lastname, cohort);
+            bool userPassword = userPasswordDal.AddUser(username, "password", "Student");
+            if (!userPassword)
+            {
+                return View("Fail");
+            }
+            bool student = studentDal.AddStudentUser(username, firstname, lastname, cohort);
+            if (!student)
+            {
+                return View("Fail");
+            }
 
             return RedirectToAction("Index");
         }
@@ -97,8 +105,16 @@ namespace Capstone.Web.Controllers
 
             //add user to correct db's
 
-            userPasswordDal.AddUser(username, "password", "Employer");
-            employerDal.AddEmployerUser(username, firstname, lastname, company);
+            bool userPassword = userPasswordDal.AddUser(username, "password", "Employer");
+            if (!userPassword)
+            {
+                return View("Fail");
+            }
+            bool employer = employerDal.AddEmployerUser(username, firstname, lastname, company);
+            if (!employer)
+            {
+                return View("Fail");
+            }
 
             return RedirectToAction("Index");
         }
