@@ -22,6 +22,12 @@ namespace Capstone.Data.DataAccess
         private const string SQL_GetAllStudents = "";
         private const string SQL_GetStudent = "SELECT * FROM student WHERE @username=username;";
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
+        private string SQL_getstudentList_KnownLanguage = @"select student.firstname, student.lastname, student.class
+                        from student
+                        inner join student_language on student.student_id = student_language.student_id
+                        inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
+                        where programming_language.name = @language";
+
         public StudentSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
         {
@@ -100,7 +106,7 @@ namespace Capstone.Data.DataAccess
             s.StudentId = Convert.ToInt32(reader["student_id"]);
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
-            s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+           // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
             s.ContantInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
@@ -117,7 +123,6 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_UpdateStudentUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@summary", summary);
-                    //TODO
                     cmd.Parameters.AddWithValue("@previousexperience", previousExperience);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
@@ -135,9 +140,45 @@ namespace Capstone.Data.DataAccess
             return updateIsDone;
         }
 
+        public List<Student> StudentsWithSpecificProgramingLanguage(string language)
+        {
+            // for simplisity assume language is c#
+            language = "C#";
+
+            List<Student> output = new List<Student>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_getstudentList_KnownLanguage, conn);
+                    cmd.Parameters.AddWithValue("@language", language);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Student newStudent = new Student();
+                        newStudent.FirstName = Convert.ToString(reader["firstName"]);
+                        newStudent.LastName = Convert.ToString(reader["lastName"]);
+                        newStudent.Class = Convert.ToString(reader["class"]);
+
+                        output.Add(newStudent);
+                    }
+                }
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+           
+          
+        }
+
         public Student GetStudent(string username)
         {
-            username = "siminN";
+           
             Student output = null;
             try
             {
@@ -153,6 +194,8 @@ namespace Capstone.Data.DataAccess
                     {
                         output = new Student();
                         output.Summary = Convert.ToString(reader["summary"]);
+
+                        
 
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["degree"]);

@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-4">
             <div class="well creatNewUserForm">
-
+                <h2>Create a New Staff Account</h2>
                 @using (Html.BeginForm("CreateStaffUser", "Staff",FormMethod.Post))
                 {
                     @Html.Hidden("currentUsername", Model.Username)

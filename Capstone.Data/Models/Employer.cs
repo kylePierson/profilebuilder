@@ -15,6 +15,8 @@ namespace Capstone.Data.Models
         public string ContactLastName { get; set; }
         public string ContactInfo { get; set; }
         public string Address { get; set; }
-        public List<string> LanguagesInterested { get; set; }
+        public string Programming_language { get; set; }
+        //to make it simple FOR NOW assume there is just one interest for each company
+        //public List<string> Programming_language { get; set; }
     }
 }

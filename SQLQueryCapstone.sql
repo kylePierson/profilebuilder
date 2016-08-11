@@ -1,4 +1,4 @@
---DROP TABLE student_academic
+DROP TABLE interests
 
 create table student (
  student_id integer identity,
@@ -57,7 +57,7 @@ CONSTRAINT academic_academic_id PRIMARY KEY (academic_id)
 
 create table interests (
 interest_id integer identity NOT NULL,
-interest varchar NOT NULL
+interest varchar(max) NOT NULL
 CONSTRAINT interests_interest_id PRIMARY KEY (interest_id) 
 );
 
@@ -101,4 +101,16 @@ create table project_programming (
 project_id integer NOT NULL,
 programminglanguage_id integer NOT NULL,
 CONSTRAINT project_programming_project_id_programminglanguage_id PRIMARY KEY (project_id,programminglanguage_id)
+);
+
+create table employer_language (
+employer_id integer NOT NULL,
+programminglanguage_id integer NOT NULL
+CONSTRAINT employer_language_employer_id_programminglanguage_id PRIMARY KEY (employer_id,programminglanguage_id)
+);
+
+create table student_language (
+student_id integer NOT NULL,
+programminglanguage_id integer NOT NULL
+CONSTRAINT student_language_student_id_programminglanguage_id PRIMARY KEY (student_id,programminglanguage_id)
 );
