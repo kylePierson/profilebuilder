@@ -61,5 +61,22 @@
     width: 200px;
 }
 
+/*--------------------Home index page -----------------------*/
+.studentDisplay {
+    list-style:none;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #c1c1c1;
+    width: 500px;
+    padding: 50px
+    
+}
 
+.studentDisplay li {
+    margin-left: auto;
+    margin-right: auto;
+    font-size:1.4em;
+    font-weight:bold;
+   
+}
 
