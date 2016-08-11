@@ -10,8 +10,9 @@
         <div class="col-md-4">
             <div class="well creatNewUserForm">
 
-                @using (Html.BeginForm("CreateStaffUser", "staff",FormMethod.Post))
+                @using (Html.BeginForm("CreateStaffUser", "Staff",FormMethod.Post))
                 {
+                    @Html.Hidden("currentUsername", Model.Username)
 
                     <label for="username"> Username:</label>
                     <input type="text" name="username" />

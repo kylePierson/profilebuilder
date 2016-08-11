@@ -36,3 +36,21 @@ Values ('Vending machine', 'people paid money and got snacks');
 
 INSERT INTO project_student (student_id, project_id)
 VALUES (2,1);
+
+INSERT INTO user_passord (username, password, role_title)
+VALUES ('TolegitToQuit', 'password', 'Student')
+
+INSERT INTO user_passord (username, password, role_title)
+VALUES ('siminN', 'password', 'Student')
+
+INSERT INTO user_passord (username, password, role_title)
+VALUES ('pokemonGo69', 'password', 'Employer')
+
+INSERT INTO user_passord (username, password, role_title)
+VALUES ('jTucholski', 'password', 'Staff')
+
+INSERT INTO academic(degree, school, student_id, school_address, major)
+VALUES ('Certificate','Tech Elevator', 2, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science')
+
+INSERT INTO academic(degree, school, student_id, school_address, major)
+VALUES ('Certificate','Tech Elevator', 1, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science')
