@@ -1,0 +1,36 @@
+﻿@model Capstone.Data.Models.UserPassword
+@{ 
+    Layout = null;
+}
+
+@if (Model == null) //unauthenticated
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Log In", "Login", "User")
+        </li>
+    </ul>
+}
+else //authenticated
+{
+    <ul class="nav navbar-nav">
+        <li>
+            @Html.ActionLink("Dashboard", "Index", Model.RoleTitle, new { username = Model.Username }, null)
+        </li>
+        <li>
+            @Html.ActionLink("Edit Profile", "EditProfile", Model.RoleTitle, new { username = Model.Username },null)
+        </li>
+        <li>
+            @Html.ActionLink("Change Password", "ChangePassword", "User", new { username = Model.Username }, null)
+        </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Hello @Model.Username</a></li>
+        <li>@Html.ActionLink("Log Out", "Logout", "User")</li>
+    </ul>
+
+
+}
+
+

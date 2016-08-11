@@ -1,6 +1,8 @@
 ﻿using Capstone.Data.DataAccess;
 using Capstone.Data.Models;
+using Capstone.Web.Filters;
 using Capstone.Web.Models;
+using Critter.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +55,38 @@ namespace Capstone.Web.Controllers
             {
                 return View("LogIn", login);
             }
+        }
+
+        [ProfileBuilderAuthorizationFilter]
+        public ActionResult ChangePassword(string username)
+        {
+            var model = new ChangePasswordViewModel();
+            model.Username = username;
+            return View("ChangePassword", model);
+        }
+
+        [HttpPost]
+        [ProfileBuilderAuthorizationFilter]
+        public ActionResult ChangePassword(string username, ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("ChangePassword", model);
+            }
+
+            var user = userPasswordDal.GetUser(username);
+
+            // User is not null and password is not equal to model.current password
+            if (user?.Password != model.CurrentPassword)
+            {
+                ModelState.AddModelError("incorrect password", "Supplied incorrect current password");
+                return View("ChangePassword", model);
+            }
+
+            userPasswordDal.ChangePassword(username, model.NewPassword);
+            //TODO: Come back and fix change password
+
+            return RedirectToAction("Dashboard", "Messages", new { username = base.CurrentUser });
         }
 
         public ActionResult Logout()
