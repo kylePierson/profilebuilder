@@ -80,7 +80,6 @@ namespace Capstone.Data.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
                     SqlCommand cmd = new SqlCommand(SQL_GetEmployer, conn);
                     cmd.Parameters.AddWithValue("@username", username);
 
@@ -88,9 +87,14 @@ namespace Capstone.Data.DataAccess
 
                     while (reader.Read())
                     {
-                        currentEmployer.CompanyName = Convert.ToString(reader["CompanyName"]);
+                        currentEmployer.CompanyName = Convert.ToString(reader["companyName"]);
                         currentEmployer.Programming_language = Convert.ToString(reader["languageInterested"]);
-
+                        currentEmployer.ContactFirstName = Convert.ToString(reader["contactFirstName"]);
+                        currentEmployer.ContactLastName = Convert.ToString(reader["contactLastName"]);
+                        currentEmployer.Address = Convert.ToString(reader["address"]);
+                        currentEmployer.ContactInfo= Convert.ToString(reader["contactInfo"]);
+                        currentEmployer.Username = Convert.ToString(reader["username"]);
+                        currentEmployer.EmployerId = Convert.ToInt32(reader["employerId"]);   
                     }
 
                 }

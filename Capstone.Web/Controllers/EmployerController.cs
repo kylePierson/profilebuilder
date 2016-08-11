@@ -3,15 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Capstone.Data.Models;
+using Capstone.Data.DataAccess;
 
 namespace Capstone.Web.Controllers
 {
     public class EmployerController : Controller
     {
+        IEmployerDAL employerDAL;
+
+        public EmployerController(IEmployerDAL employerDal)
+        {    
+            this.employerDAL = employerDal;
+        }
         // GET: Employer
-        public ActionResult Index()
+        public ActionResult Index(string username)
         {
-            return View("Index");
+            //assign a username for test
+            username = "pokemonGo69";
+
+            Employer model = employerDAL.GetEmployer(username);
+
+            return View("Index",model);
         }
 
         public ActionResult DeleteSkillInterested(string skill)
