@@ -29,13 +29,20 @@
                             <li>@item &nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("DeleteSkillInterested", "Employer",new { skill = item})'>delete</a></li>
                         }
                     </ul>
-                    <a href='@Url.Action("AddSkillInterested", "Employer")'>Add</a>
+                    <button id="addskill">Add</button>
+                    @using (Html.BeginForm("AddSkillInterested", "Employer", FormMethod.Post))
+                    {
+                        <label for="username"> Username: </label>
+                        <input type="text" name="username" />
+                        <br/>
+                        <button>Submit</button>
+                    }
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="well">
-
+                <h2>List of students:</h2>
 
             </div>
         </div>
