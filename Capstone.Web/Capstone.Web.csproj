@@ -153,7 +153,7 @@
     <Content Include="Views\Staff\Success.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
-    <Content Include="Views\Student\_StudentNewsFeed.cshtml" />
+    <Content Include="Views\Shared\_StudentNewsFeed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

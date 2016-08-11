@@ -106,7 +106,7 @@ namespace Capstone.Data.DataAccess
             s.StudentId = Convert.ToInt32(reader["student_id"]);
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
-            s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+           // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
             s.ContantInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
@@ -123,7 +123,6 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_UpdateStudentUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@summary", summary);
-                    //TODO
                     cmd.Parameters.AddWithValue("@previousexperience", previousExperience);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
@@ -196,13 +195,13 @@ namespace Capstone.Data.DataAccess
                         output = new Student();
                         output.Summary = Convert.ToString(reader["summary"]);
 
-                        //**********  I comment these out for test *************
+                        
 
-                        //output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-                       // output.AcademicDegree = Convert.ToString(reader["degree"]);
-                        //output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                        //output.Skills = Convert.ToString(reader["skills"]);
-                        //output.Interests = Convert.ToString(reader["interests"]);
+                        output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+                        output.AcademicDegree = Convert.ToString(reader["degree"]);
+                        output.ContantInfo = Convert.ToString(reader["contactInfo"]);
+                        output.Skills = Convert.ToString(reader["skills"]);
+                        output.Interests = Convert.ToString(reader["interests"]);
                     }
                 }
             }

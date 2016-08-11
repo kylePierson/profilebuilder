@@ -50,12 +50,14 @@ namespace Capstone.Web.Controllers
             }
         }
 
-        //public ActionResult StudentsWithSpecificProgramingLanguage(string language)
-        //{
-        //    // for simplisity assume language is c#
-        //    language = "C#";
-            
-        //}
+        public ActionResult NewsFeedByLanguage(string language)
+        {
+            // for simplisity assume language is c#
+            language = "C#";
+           // Student currentUser = studentDAL.GetStudent();
+            return View();
+
+        }
 
     }
 }

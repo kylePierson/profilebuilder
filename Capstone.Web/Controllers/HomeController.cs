@@ -21,7 +21,8 @@ namespace Capstone.Web.Controllers
         public ActionResult Index()
         {
             List<Student> model = new List<Student>();
-           
+            model = studentSqlDAl.GetAllStudents();
+                
             return View("Index", model);
         }
 

@@ -14,7 +14,7 @@
             <ul>
                 @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
                 {
-                    <li><img src="@string.Concat("../Content/Images/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg") class=" img-circle"" /></li>
+                    <li><img src="@string.Concat("/Content/images/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg") class=" img-circle"" /></li>
                     <li>@item.FirstName</li>
                     <li>@item.LastName</li>
                 }
