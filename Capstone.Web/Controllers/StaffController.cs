@@ -95,7 +95,7 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateEmployerUser(string username, string firstname, string lastname, string company)
+        public ActionResult CreateEmployerUser(string username, string firstname, string lastname, string company, string programingLanguage)
         {
 
             if (!ModelState.IsValid)
@@ -110,7 +110,7 @@ namespace Capstone.Web.Controllers
             {
                 return View("Fail");
             }
-            bool employer = employerDal.AddEmployerUser(username, firstname, lastname, company);
+            bool employer = employerDal.AddEmployerUser(username, firstname, lastname, company, programingLanguage);
             if (!employer)
             {
                 return View("Fail");

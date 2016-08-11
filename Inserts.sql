@@ -55,28 +55,49 @@ VALUES (2,1);
 
 --  assigning Kyle, using username to identify him, a password and roll
 INSERT INTO user_passord (username, password, role_title)
-VALUES ('TolegitToQuit', 'password', 'Student')
+VALUES ('TolegitToQuit', 'password', 'Student');
 
 --  assigning Simin, using username to identify her, a password and roll
 INSERT INTO user_passord (username, password, role_title)
-VALUES ('siminN', 'password', 'Student')
+VALUES ('siminN', 'password', 'Student');
 
 --  assigning James, using username to identify him, a password and roll
 INSERT INTO user_passord (username, password, role_title)
-VALUES ('pokemonGo69', 'password', 'Employer')
+VALUES ('pokemonGo69', 'password', 'Employer');
 
 --  assigning Josh, using username to identify him, a password and roll
 INSERT INTO user_passord (username, password, role_title)
-VALUES ('jTucholski', 'password', 'Staff')
+VALUES ('jTucholski', 'password', 'Staff');
 
 --using the student_id (2) to insert data in academic
 INSERT INTO academic(degree, school, student_id, school_address, major)
-VALUES ('Certificate','Tech Elevator', 2, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science')
+VALUES ('Certificate','Tech Elevator', 2, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science');
 
 --using the student_id (2) to insert data in academic
 INSERT INTO academic(degree, school, student_id, school_address, major)
-VALUES ('Certificate','Tech Elevator', 1, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science')
+VALUES ('Certificate','Tech Elevator', 1, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science');
 
 --This is just some shit
 SELECT *
-FROM softskills
+FROM softskills;
+
+-- insert into program_language
+INSERT INTO  programming_language (name) VALUEs ('C#');
+-- insert into employer_language
+INSERT INTO employer_language (employer_id, programminglanguage_id) VALUES (1,1);
+
+
+--insert into student-language
+insert into student_language Values (1, 1);
+insert into student_language Values (2, 1);
+
+Select * from student;
+select * from programming_language;
+select * from student_language;
+
+--Query for finding students that have a specific programming language
+select student.firstname, student.lastname, student.class
+from student
+inner join student_language on student.student_id = student_language.student_id
+inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
+where programming_language.name = 'C#';

@@ -26,7 +26,7 @@ namespace Capstone.Data.DataAccess
             connectionString = databaseconnectionString;
         }
 
-        public bool AddEmployerUser(string username, string firstName, string lastName, string company)
+        public bool AddEmployerUser(string username, string firstName, string lastName, string company, string programingLanguge)
         {
             int rowsAffected = 0;
             try
@@ -40,6 +40,7 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@firstname", firstName);
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@company", company);
+                    cmd.Parameters.AddWithValue("@programming_language", programingLanguge);
 
                     rowsAffected = cmd.ExecuteNonQuery();
                 }

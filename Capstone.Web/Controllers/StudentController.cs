@@ -25,7 +25,7 @@ namespace Capstone.Web.Controllers
             Student currentUser = studentDAL.GetStudent(username);
             return View("Index", currentUser);
         }
-        
+
         public ActionResult UpdateProfile(string username)
         {
             return View("UpdateProfile", username);
@@ -49,6 +49,13 @@ namespace Capstone.Web.Controllers
                 return RedirectToAction("Fail", "Staff");
             }
         }
+
+        //public ActionResult StudentsWithSpecificProgramingLanguage(string language)
+        //{
+        //    // for simplisity assume language is c#
+        //    language = "C#";
+            
+        //}
 
     }
 }

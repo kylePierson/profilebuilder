@@ -14,7 +14,7 @@
                 <h2>Welcome @Model.CompanyName ! </h2>
                 <ul id="employerSkills">
                     @*listing the languages each company is interested in*@
-                    @foreach(var item in Model.LanguagesInterested)
+                    @foreach(var item in Model.Programming_language)
                     {
                         <li>@item</li>
                     }
@@ -24,7 +24,7 @@
                 
                 <div id="editDiv">
                     <ul>
-                        @foreach (var item in Model.LanguagesInterested)
+                        @foreach (var item in Model.Programming_language)
                         {
                             <li>@item &nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("DeleteSkillInterested", "Employer",new { skill = item})'>delete</a></li>
                         }
@@ -43,6 +43,8 @@
         <div class="col-md-4">
             <div class="well">
                 <h2>List of students:</h2>
+               
+
 
             </div>
         </div>
