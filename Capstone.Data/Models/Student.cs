@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Capstone.Data.Models
 {
@@ -21,6 +22,7 @@ namespace Capstone.Data.Models
         public string ContantInfo { get; set; }
         public string Skills { get; set; }
         public string Interests { get; set; }
+       
         //public List<string> PreviousExperience { get; set; }
         //public List<string> AcademicDegree { get; set; }
     }

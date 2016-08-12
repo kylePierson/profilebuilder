@@ -31,7 +31,7 @@ namespace Capstone.Data.DataAccess
                         inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
                         where programming_language.name = @language";
 
-        private const string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname
+        private const string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname, student.class
                                 from student
                                 inner join student_language on student_language.student_id = student.student_id
                                 inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
@@ -242,7 +242,8 @@ namespace Capstone.Data.DataAccess
                         Student newStudent = new Student();
 
                         newStudent.FirstName = Convert.ToString(reader["firstname"]);
-                        newStudent.FirstName = Convert.ToString(reader["lastname"]);
+                        newStudent.LastName = Convert.ToString(reader["lastname"]);
+                        newStudent.Class = Convert.ToString(reader["class"]);
                         output.Add(newStudent);
                     }
                 }

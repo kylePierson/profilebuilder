@@ -165,13 +165,17 @@
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Shared\_AuthenticationBar.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
-    <Content Include="Views\Shared\_StudentNewsFeed.cshtml" />
     <Content Include="Views\Student\StudentNewsFeed.cshtml" />
+
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\StudentEmailPage.cshtml" />
     <Content Include="Views\Emails\StaffEmailPage.cshtml" />
     <Content Include="Views\Emails\EmployerEmailPage.cshtml" />
+
+    <Content Include="Views\Student\SearchStudents.cshtml" />
+    <Content Include="Views\Student\SearchStudentsByLanguage.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

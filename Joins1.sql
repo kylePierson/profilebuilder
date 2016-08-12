@@ -10,9 +10,9 @@ SELECT company, role_title
 FROM employer
 INNER JOIN user_passord ON employer.username = user_passord.username
 
-SELECT firstname, lastname, class
+SELECT firstname, lastname, class, username
 FROM student
-WHERE class = '.NET'
+
 
 SELECT firstname, lastname, major
 FROM student

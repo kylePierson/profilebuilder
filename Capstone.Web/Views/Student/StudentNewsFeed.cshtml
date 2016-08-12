@@ -1,18 +1,23 @@
 ﻿@model List<Capstone.Data.Models.Student>
+@{ 
+    Layout = null;
+}
 
 @*Check to see if the model is not null, then display the list of students with specific skills*@
+
 
 @if (Model != null)
 {
     <div>
         @foreach (var item in Model)
-        {
+       {
             <div class="newsFeedStudent">
-                <img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
                 <br />
                 <ul>
-                    <li>@string.Concat(item.FirstName, " ", item.LastName) </li>
-                    <li>@item.Class</li>
+                    <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" /></li>  
+                    <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName," ", item.LastName) </li>
+                    <li class="newsfeedInfo">@item.Class</li>
+                    <li>LinkedIn link comes here!</li>
                 </ul>
             </div>
         }

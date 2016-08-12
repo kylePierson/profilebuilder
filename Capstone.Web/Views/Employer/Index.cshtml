@@ -6,13 +6,18 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="well">
-                <h2>Welcome @Model.CompanyName ! </h2>
+                <h4>Search</h4>
+                @Html.Action("SearchStudentsByLanguage", "Student")
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well">
+                <h3>Welcome @Model.CompanyName ! </h3>
+                <h4>Programming languages you are intersted in: </h4>
                 <ul id="employerSkills">
+                   
                     @*for now assume there is only one interest*@
                     @*@foreach(var item in Model.Programming_language)
                     {
@@ -22,7 +27,6 @@
                     <li>@Model.Programming_language</li>
                 </ul>
                 <br/>
-                <button id="editInterests">Edit</button>
                 
                 <div id="editDiv">
                     <ul>
@@ -36,10 +40,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="well">
-                <h2>List of students:</h2>
-               
+                <h4>List of students:</h4>
+               <br/>
                 @Html.Action("NewsFeedByLanguage", "Student")
 
             </div>
