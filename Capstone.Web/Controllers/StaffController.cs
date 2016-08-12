@@ -1,5 +1,6 @@
 ﻿using Capstone.Data.DataAccess;
 using Capstone.Data.Models;
+using Capstone.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,8 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
-    public class StaffController : Controller
+    [ProfileBuilderAuthorizationFilter]
+    public class StaffController : ProfileBuilderController
     {
         IStaffDAL staffDal;
         IUserPasswordDAL userPasswordDal;
@@ -16,6 +18,7 @@ namespace Capstone.Web.Controllers
         IEmployerDAL employerDal;
 
         public StaffController(IStaffDAL staffDal, IUserPasswordDAL userPasswordDal, IStudentDAL studentDal, IEmployerDAL employerDal)
+            :base(userPasswordDal)
         {
             this.staffDal = staffDal;
             this.userPasswordDal = userPasswordDal;
@@ -23,6 +26,7 @@ namespace Capstone.Web.Controllers
             this.employerDal = employerDal;
         }
 
+        [ProfileBuilderAuthorizationFilter]
         public ActionResult Index(string username)
         {
             Staff currentUser = staffDal.GetStaff(username);

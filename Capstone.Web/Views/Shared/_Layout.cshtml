@@ -18,21 +18,20 @@
     <!--[if (lt IE 9) & (!IEMobile)]>
         <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
-
-    <title>@ViewBag.Title</title>
     
 </head>
 <body>
 
     <header>
-        @ViewBag.Title
+        @*@ViewBag.Title*@
     </header>
     <nav class="navbar navbar-default">
-        <div class="container">
-            <ul class="nav nav-tabs " role="tablist">
+        <div class="container-fluid">
+            @Html.Action("GetAuthenticatedUser", "ProfileBuilder")
+            @*<ul class="nav nav-tabs " role="tablist">
                 <li><a href="~/Home/Index">Home</a></li>   
                 <li><a href="~/User/LogIn">Log In</a></li>          
-            </ul>
+            </ul>*@
         </div>
     </nav>
     <section id="main-content">

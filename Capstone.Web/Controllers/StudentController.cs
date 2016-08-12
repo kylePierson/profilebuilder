@@ -2,9 +2,11 @@
 using Capstone.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace Capstone.Web.Controllers
 {
@@ -54,10 +56,30 @@ namespace Capstone.Web.Controllers
         {
             // for simplisity assume language is c#
             language = "C#";
-           // Student currentUser = studentDAL.GetStudent();
-            return View();
+           List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(language);
+           
+            return View("StudentNewsFeed",model);
 
         }
 
+        //maybe combine uploads into edit profile actionresult and view
+        [HttpPost]
+        public ActionResult Uploads(string username, IEnumerable<HttpPostedFileBase> files)
+        {
+            int iteration = 0;
+            string[] fileNames = new string[] { username, username + "_Resume", username + "_CoverLetter" };
+
+            foreach (var file in files)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = fileNames[iteration];
+                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                    file.SaveAs(path);
+                }
+                iteration++;
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

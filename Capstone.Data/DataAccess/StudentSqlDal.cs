@@ -28,6 +28,12 @@ namespace Capstone.Data.DataAccess
                         inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
                         where programming_language.name = @language";
 
+        private const string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname, student.class
+                                from student
+                                inner join student_language on student_language.student_id = student.student_id
+                                inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
+                                where programming_language.name = @language;";
+
         public StudentSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
         {
@@ -194,9 +200,7 @@ namespace Capstone.Data.DataAccess
                     {
                         output = new Student();
                         output.Summary = Convert.ToString(reader["summary"]);
-
-                        
-
+                
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
@@ -211,6 +215,39 @@ namespace Capstone.Data.DataAccess
             }
 
             return output;
+        }
+
+        public List<Student> GetAllStudentsWithKnowLanguage(string language)
+        {
+            List<Student> output = new List<Student>();
+           
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllStudent_Language, conn);
+                    cmd.Parameters.AddWithValue("@language", language);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Student newStudent = new Student();
+
+                        newStudent.FirstName = Convert.ToString(reader["firstname"]);
+                        newStudent.LastName = Convert.ToString(reader["lastname"]);
+                        newStudent.Class = Convert.ToString(reader["class"]);
+                        output.Add(newStudent);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return output;
+
         }
     }
 }

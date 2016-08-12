@@ -15,6 +15,7 @@ namespace Capstone.Data.DataAccess
         private const string SQL_GetUser = "SELECT * FROM user_password WHERE @username=username AND @password=password;";
         private const string SQL_AddUser = "INSERT INTO user_password VALUES (@username, @password, @roleTitle);";
         private const string SQL_GetUserByUsername = "SELECT * FROM user_password WHERE @username=username;";
+        private const string SQL_ChangePassword = "UPDATE user_password SET password=@newPassword WHERE username=@username;";
 
 
         public UserPasswordSqlDAL()
@@ -117,5 +118,30 @@ namespace Capstone.Data.DataAccess
 
             return rowsAffected > 0;
         }
+
+        public bool ChangePassword(string username, string newPassword)
+        {
+            int result = 0;
+            try
+            {
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_ChangePassword, conn);
+                    cmd.Parameters.AddWithValue("@newPassword", newPassword);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    result = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            return result > 0;
+        }
     }
 }
+
