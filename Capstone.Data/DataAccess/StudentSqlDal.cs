@@ -12,14 +12,17 @@ namespace Capstone.Data.DataAccess
     public class StudentSqlDAL : IStudentDAL
     {
         private string connectionString;
-        //edit query to be long version of input
+                                               //****DO NOT DELETE SQL_AddStudentUser QUERY********
         private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class) 
                                                     VALUES (@username, @firstname, @lastname, @class);";
+                                                 //****DO NOT DELETE SQL_AddStudentUser QUERY********
 
         private const string SQL_UpdateStudentUser = @"UPDATE student 
                                                         SET summary=@summary, previousexperience=@previousexperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests 
                                                         where username = @username";
         private const string SQL_GetAllStudents = "";
+
+        //Edit the next query VVV
         private const string SQL_GetStudent = "SELECT * FROM student WHERE @username=username;";
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
         private string SQL_getstudentList_KnownLanguage = @"select student.firstname, student.lastname, student.class
@@ -45,6 +48,7 @@ namespace Capstone.Data.DataAccess
             connectionString = databaseconnectionString;
         }
 
+        //*************************************************
         public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
         {
             int rowsAffected = 0;
@@ -65,11 +69,13 @@ namespace Capstone.Data.DataAccess
             }
             catch (SqlException ex)
             {
-                throw;
+                
             }
 
             return rowsAffected > 0;
         }
+        //***************************************************
+
 
         public List<Student> GetAllStudents()
         {

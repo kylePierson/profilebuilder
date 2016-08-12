@@ -24,6 +24,7 @@ namespace Capstone.Web.Controllers
         // GET: Student
         public ActionResult Index(string username)
         {
+            
             Student currentUser = studentDAL.GetStudent(username);
             return View("Index", currentUser);
         }

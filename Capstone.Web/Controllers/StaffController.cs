@@ -1,9 +1,12 @@
 ﻿using Capstone.Data.DataAccess;
 using Capstone.Data.Models;
 using Capstone.Web.Filters;
+using Postal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,13 +36,13 @@ namespace Capstone.Web.Controllers
             return View("Index", currentUser);
         }
 
-        public ActionResult CreateStaffUser(string username)
+        public ActionResult CreateStaffUser()
         {
-            return View("CreateStaffUser", username);
+            return View("CreateStaffUser");
         }
 
         [HttpPost]
-        public ActionResult CreateStaffUser(string currentUsername, string username, string firstName, string lastName, string title)
+        public ActionResult CreateStaffUser(string currentUsername, string newUsername, string firstName, string lastName, string title, string emailAddress)
         {
 
             if (!ModelState.IsValid)
@@ -48,19 +51,19 @@ namespace Capstone.Web.Controllers
             };
             //add user to correct db's
 
-            bool userPassword = userPasswordDal.AddUser(username, "password", "Staff");
+            bool userPassword = userPasswordDal.AddUser(newUsername, "password", "Staff");
             if (!userPassword)
             {
                 return View("Fail");
             }
-            bool staff = staffDal.AddStaffUser(username, firstName, lastName, title);
+            bool staff = staffDal.AddStaffUser(newUsername, firstName, lastName, title);
             if (!staff)
             {
                 return View("Fail");
             }
 
-
-            return RedirectToAction("Success", new { currentUser = currentUsername });
+            SendEmail(emailAddress, firstName, newUsername, "Staff");
+            return RedirectToAction("Success", new { username = currentUsername });
         }
 
         public ActionResult CreateStudentUser()
@@ -69,7 +72,7 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateStudentUser(string username, string firstname, string lastname, string cohort)
+        public ActionResult CreateStudentUser(string currentUsername, string newUsername, string firstname, string lastname, string cohort, string emailAddress)
         {
 
             if (!ModelState.IsValid)
@@ -79,18 +82,19 @@ namespace Capstone.Web.Controllers
 
             //add user to correct db's
 
-            bool userPassword = userPasswordDal.AddUser(username, "password", "Student");
+            bool userPassword = userPasswordDal.AddUser(newUsername, "password", "Student");
             if (!userPassword)
             {
                 return View("Fail");
             }
-            bool student = studentDal.AddStudentUser(username, firstname, lastname, cohort);
+            bool student = studentDal.AddStudentUser(newUsername, firstname, lastname, cohort);
             if (!student)
             {
                 return View("Fail");
             }
 
-            return RedirectToAction("Index");
+            SendEmail(emailAddress, firstname, newUsername, "Student");
+            return RedirectToAction("Success", new { username = currentUsername });
         }
 
         public ActionResult CreateEmployerUser()
@@ -99,7 +103,7 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateEmployerUser(string username, string firstname, string lastname, string company, string programingLanguage)
+        public ActionResult CreateEmployerUser(string currentUsername, string newUsername, string firstname, string lastname, string company, string programingLanguage, string email)
         {
 
             if (!ModelState.IsValid)
@@ -109,24 +113,34 @@ namespace Capstone.Web.Controllers
 
             //add user to correct db's
 
-            bool userPassword = userPasswordDal.AddUser(username, "password", "Employer");
+            bool userPassword = userPasswordDal.AddUser(newUsername, "password", "Employer");
             if (!userPassword)
             {
                 return View("Fail");
             }
-            bool employer = employerDal.AddEmployerUser(username, firstname, lastname, company, programingLanguage);
+            bool employer = employerDal.AddEmployerUser(newUsername, firstname, lastname, company, programingLanguage);
             if (!employer)
             {
                 return View("Fail");
             }
 
-            return RedirectToAction("Index");
+            SendEmail(email, firstname, newUsername, "Employer");
+            return RedirectToAction("Success", new { username = currentUsername });
         }
 
-        public ActionResult Success(string currentUser)
+        public ActionResult Success(string username)
         {
-            UserPassword user = userPasswordDal.GetUser(currentUser);
-            return View("Success", user);
+            //UserPassword user = userPasswordDal.GetUser(currentUser);
+            return View("Success", username);
+        }
+
+        private void SendEmail(string emailAddress, string firstName, string username, string role)
+        {
+            dynamic email = new Email(role+"EmailPage");
+            email.To = emailAddress;
+            email.FirstName = firstName;
+            email.Username = username;
+            email.Send();
         }
     }
 }

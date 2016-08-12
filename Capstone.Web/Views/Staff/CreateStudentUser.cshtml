@@ -12,10 +12,11 @@
         <div class="col-md-4">
             <div class="well creatNewUserForm">
                 <h2>Create a New Student Account</h2>
-                @using (Html.BeginForm("CreateStudentUser", "student", FormMethod.Post))
+                @using (Html.BeginForm("CreateStudentUser", "Staff", FormMethod.Post))
                 {
-                    <label for="username"> Username: </label>
-                    <input type="text" name="username" />
+                    @Html.Hidden("currentUsername", Model.Username)
+                    <label for="newUsername"> Username: </label>
+                    <input type="text" name="newUsername" />
 
                     <label for="firstName">First Name: </label>
                     <input type="Text" name="firstName" />
@@ -25,6 +26,9 @@
 
                     <label for="cohort">Cohort: </label>
                     <input type="Text" name="cohort" />
+
+                    <label for="emailAddress">Email: </label>
+                    <input type="Text" name="emailAddress" />
                     <br>
 
                     <input class="btn btn-primary" type="submit" value="Submit">
