@@ -4,6 +4,9 @@
     font-size: 1.4em;
 }
 
+.fontBold {
+    font-weight: bold;
+}
 
 /*---------------------     Log In    -----------------------*/
 .login {
@@ -17,66 +20,91 @@
     box-shadow: 10px 10px 5px #888888;
 }
 
-#forgotPassword  {
+#forgotPassword {
     white-space: nowrap;
     text-decoration: none;
 }
 
 /*---------------------    Staff dashboard    -----------------------*/
-.profileImage{
-   
-     box-shadow: 10px 10px 5px #888888;
+.profileImage {
+    box-shadow: 10px 10px 5px #888888;
 }
 
-.creatNewUser{
-    padding: 7px; 
-    border:2px solid black;
+.creatNewUser {
+    padding: 7px;
+    border: 2px solid black;
     border-radius: 5px;
     list-style-type: none;
 }
 
 /*----------------------   Create a new users forms----------------------*/
-.creatNewUserForm{
+.creatNewUserForm {
     padding: 30px;
 }
 
-.creatNewUserForm input, .creatNewUserForm label {
-    display:block;
-}
+    .creatNewUserForm input, .creatNewUserForm label {
+        display: block;
+    }
 
-.creatNewUserForm input{
-    border-radius:12px;
-
-}
+    .creatNewUserForm input {
+        border-radius: 12px;
+    }
 
 
 /*-----------------------  fail and success to update, create and ..   ---------------------*/
-.goHome{
-    background-color:#c1c1c1;
+.goHome {
+    background-color: #c1c1c1;
     border-radius: 10px;
     padding: 3px;
 }
 
-.fialImage{
+.fialImage {
     width: 200px;
 }
 
 /*--------------------Home index page -----------------------*/
 .studentDisplay {
-    list-style:none;
+    list-style: none;
     border: 1px solid black;
     border-radius: 20px;
     background-color: #c1c1c1;
     width: 500px;
-    padding: 50px
-    
+    padding: 50px;
 }
 
-.studentDisplay li {
-    margin-left: auto;
-    margin-right: auto;
-    font-size:1.4em;
-    font-weight:bold;
-   
+    .studentDisplay li {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+/*---------- emloyer dashboard--------------*/
+.imgNewsfeed {
+    width: 100px;
 }
 
+.newsFeedStudent {
+    border: 1px solid black;
+    margin: auto;
+
+}
+
+    .newsFeedStudent ul {
+        list-style: none;
+        background-color: #e6eeeb;
+        margin: auto;
+        border-radius: 2px;
+        padding-top: 3px;
+        padding-bottom: 5px;
+    }
+
+.newsfeedInfo li img {
+    padding-left: 50%;
+    padding-right: 50%;
+}
+
+.newsfeedInfo {
+    padding-left: 50%;
+    padding-right: 50%;
+}
