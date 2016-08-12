@@ -1,4 +1,7 @@
 ﻿@model List<Capstone.Data.Models.Student>
+@{ 
+    Layout = null;
+}
 
 @*Check to see if the model is not null, then display the list of students with specific skills*@
 
@@ -11,10 +14,10 @@
             <div class="newsFeedStudent">
                 <br />
                 <ul>
-                    <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive img-cirlce imgNewsfeed" /></li>
-                    <li></li>
-                    <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName, " ", item.LastName) </li>
+                    <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" /></li>  
+                    <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName," ", item.LastName) </li>
                     <li class="newsfeedInfo">@item.Class</li>
+                    <li>LinkedIn link comes here!</li>
                 </ul>
             </div>
         }

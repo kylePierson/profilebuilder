@@ -56,9 +56,9 @@ namespace Capstone.Web.Controllers
         {
             // for simplisity assume language is c#
             language = "C#";
-           List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(language);
-           
-            return View("StudentNewsFeed",model);
+            List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(language);
+
+            return View("StudentNewsFeed", model);
 
         }
 
@@ -80,6 +80,31 @@ namespace Capstone.Web.Controllers
                 iteration++;
             }
             return RedirectToAction("Index");
+        }
+
+
+        //drop down list for employer to select language to search students
+
+        public ActionResult SearchStudentsByLanguage()
+        {
+            List<SelectListItem> languagesDropDown = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text = "C#" },
+                new SelectListItem() { Text = "Java" },
+                new SelectListItem() { Text = "CSS" },
+                new SelectListItem() { Text = "HTML" },
+                new SelectListItem() { Text = "JavaScript" },
+                new SelectListItem() { Text = "JQuery" },
+                new SelectListItem() { Text = "SQL" }
+            };
+            List<SelectListItem> classDropDown = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text = ".NET" },
+                new SelectListItem() { Text = "JAVA" }               
+            };
+            ViewBag.languagesDropDownList = languagesDropDown;
+            ViewBag.classDropDownList = classDropDown;
+            return View("SearchStudents");
         }
     }
 }

@@ -90,7 +90,7 @@
 
 }
 
-    .newsFeedStudent ul {
+.newsFeedStudent ul {
         list-style: none;
         background-color: #e6eeeb;
         margin: auto;
@@ -100,11 +100,9 @@
     }
 
 .newsfeedInfo li img {
-    padding-left: 50%;
-    padding-right: 50%;
+   
 }
 
 .newsfeedInfo {
-    padding-left: 50%;
-    padding-right: 50%;
+    
 }

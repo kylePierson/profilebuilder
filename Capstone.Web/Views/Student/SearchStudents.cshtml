@@ -1,0 +1,17 @@
+﻿@model List<Capstone.Data.Models.Student>
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("SearchStudentsByLanguage", "Student", FormMethod.Post))
+{
+
+    <label for="language"> language</label>
+    @Html.DropDownList("language", (IEnumerable<SelectListItem>)ViewBag.languagesDropDownList)
+    <br/>
+
+    <label for="class"> Class</label>
+    @Html.DropDownList("class", (IEnumerable<SelectListItem>)ViewBag.classDropDownList)
+    <br />
+    <button>Search</button>
+}
