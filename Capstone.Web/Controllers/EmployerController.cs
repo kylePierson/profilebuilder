@@ -20,7 +20,7 @@ namespace Capstone.Web.Controllers
         public ActionResult Index(string username)
         {
             //assign a username for test
-            username = "pokemonGo69";
+            username = "user";
 
             Employer model = employerDAL.GetEmployer(username);
 

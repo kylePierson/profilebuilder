@@ -155,12 +155,10 @@
     <Content Include="Views\Staff\Success.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
-
     <Content Include="Views\Shared\_AuthenticationBar.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
-
     <Content Include="Views\Shared\_StudentNewsFeed.cshtml" />
-
+    <Content Include="Views\Student\StudentNewsFeed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

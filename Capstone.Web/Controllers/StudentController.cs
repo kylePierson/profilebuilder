@@ -55,8 +55,9 @@ namespace Capstone.Web.Controllers
         {
             // for simplisity assume language is c#
             language = "C#";
-           // Student currentUser = studentDAL.GetStudent();
-            return View();
+           List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(language);
+           
+            return View("StudentNewsFeed",model);
 
         }
 

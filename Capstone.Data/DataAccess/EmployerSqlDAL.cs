@@ -20,7 +20,7 @@ namespace Capstone.Data.DataAccess
                                     from employer
                                     inner join employer_language on employer.employer_id = employer_language.employer_id
                                     inner join programming_language on programming_language.programminglanguage_id = employer_language.programminglanguage_id
-                                    where employer.username ='@username;";
+                                    where employer.username = @username;";
 
         private const string SQL_AddInterest = @"UPDATE employer_language
                                    SET programminglanguage_id = (SELECT programminglanguage_id FROM programming_language WHERE name =@interest)
@@ -67,7 +67,7 @@ namespace Capstone.Data.DataAccess
             }
             catch (SqlException ex)
             {
-                
+
             }
             return rowsAffected > 0;
         }
@@ -87,18 +87,15 @@ namespace Capstone.Data.DataAccess
 
                     while (reader.Read())
                     {
-                        currentEmployer.CompanyName = Convert.ToString(reader["companyName"]);
-                        currentEmployer.Programming_language = Convert.ToString(reader["languageInterested"]);
-                        currentEmployer.ContactFirstName = Convert.ToString(reader["contactFirstName"]);
-                        currentEmployer.ContactLastName = Convert.ToString(reader["contactLastName"]);
-                        currentEmployer.Address = Convert.ToString(reader["address"]);
-                        currentEmployer.ContactInfo= Convert.ToString(reader["contactInfo"]);
-                        currentEmployer.Username = Convert.ToString(reader["username"]);
-                        currentEmployer.EmployerId = Convert.ToInt32(reader["employerId"]);   
+                        currentEmployer.CompanyName = Convert.ToString(reader["company"]);
+                        currentEmployer.Programming_language = Convert.ToString(reader["name"]);
+                        //currentEmployer.ContactFirstName = Convert.ToString(reader["contactFirstName"]);
+                        //currentEmployer.ContactLastName = Convert.ToString(reader["contactLastName"]);
+                        //currentEmployer.Address = Convert.ToString(reader["address"]);
+                        //currentEmployer.ContactInfo = Convert.ToString(reader["contactInfo"]);
+                        //currentEmployer.Username = Convert.ToString(reader["username"]);
                     }
-
                 }
-                
             }
             catch (SqlException ex)
             {
