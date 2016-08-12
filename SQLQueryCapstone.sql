@@ -1,4 +1,4 @@
-DROP TABLE interests
+--DROP DATABASE ProfileBuilder
 
 create table student (
  student_id integer identity,
@@ -9,8 +9,9 @@ create table student (
  perviousexperience varchar (max),
 
  contactinfo varchar (200),
- username varchar (200) NOT NULL,
+ username varchar (32) NOT NULL,
  CONSTRAINT pk_student_student_id PRIMARY KEY (student_id),
+
  CONSTRAINT ck_class CHECK (class IN ('.NET', 'Java'))
  );
 
@@ -41,7 +42,7 @@ username varchar (32) NOT NULL,
 password varchar (32) NOT NULL,
 
 role_title varchar(32) NOT NULL
-CONSTRAINT user_password_username_password PRIMARY KEY (username,password)
+CONSTRAINT user_password_username_password PRIMARY KEY (username)
 CONSTRAINT ck_role_title CHECK (role_title in('Student', 'Employer', 'Staff'))
 );
 
@@ -99,6 +100,8 @@ CONSTRAINT programming_language_programminglanguage_id PRIMARY KEY (programmingl
 
 create table project_programming (
 project_id integer NOT NULL,
+
+
 programminglanguage_id integer NOT NULL,
 CONSTRAINT project_programming_project_id_programminglanguage_id PRIMARY KEY (project_id,programminglanguage_id)
 );
@@ -114,3 +117,35 @@ student_id integer NOT NULL,
 programminglanguage_id integer NOT NULL
 CONSTRAINT student_language_student_id_programminglanguage_id PRIMARY KEY (student_id,programminglanguage_id)
 );
+
+
+ALTER TABLE student ADD FOREIGN KEY (username) REFERENCES user_password(username);
+ALTER TABLE employer ADD FOREIGN KEY (username) REFERENCES user_password(username);
+ALTER TABLE staff ADD FOREIGN KEY (username) REFERENCES user_password(username);
+ALTER TABLE academic ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
+ALTER TABLE student_interests ADD FOREIGN KEY (interest_id) REFERENCES interests(interest_id);
+ALTER TABLE student_interests ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
+ALTER TABLE student_softskills ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
+ALTER TABLE student_softskills ADD FOREIGN KEY (softskill_id) REFERENCES softskills(softskill_id);
+--
+ALTER TABLE project ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
+--dropped table
+--ALTER TABLE project_student ADD FOREIGN KEY (project_id) REFERENCES project(project_id);
+ALTER TABLE student_language ADD FOREIGN KEY (programminglanguage_id) REFERENCES programming_language (programminglanguage_id)
+ALTER TABLE student_language ADD FOREIGN KEY (student_id) REFERENCES student (student_id)
+ALTER TABLE employer_language ADD FOREIGN KEY (programminglanguage_id) REFERENCES programming_language (programminglanguage_id)
+
+
+DROP TABLE project_student 
+
+insert into project (title, summary, student_id)
+values ('TicTacToe', 'A interactive webpage using JavaScript', 2)
+
+SELECT * 
+FROM project
+
+ALTER TABLE project
+ADD student_id integer
+
+ALTER TABLE student
+ADD linkedin varchar(200)

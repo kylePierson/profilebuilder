@@ -39,7 +39,7 @@ INSERT INTO programming_language (name)
 VALUES ('C#')
 
 INSERT INTO student_language (student_id, programminglanguage_id)
-VALUES (1,1)
+VALUES (3,2)
 
 --just practicing UPDATING student(kyle) language
 UPDATE student_language
@@ -81,4 +81,6 @@ INNER JOIN employer_language ON employer.employer_id = employer_language.employe
 INNER JOIN programming_language ON employer_language.programminglanguage_id = programming_language.programminglanguage_id
 
 
+select *
+from student_language
 
