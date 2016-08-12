@@ -13,30 +13,26 @@
             <div class="well">
                 <h2>Welcome @Model.CompanyName ! </h2>
                 <ul id="employerSkills">
-                    @*listing the languages each company is interested in*@
-                    @foreach(var item in Model.Programming_language)
+                    @*for now assume there is only one interest*@
+                    @*@foreach(var item in Model.Programming_language)
                     {
                         <li>@item</li>
-                    }
+                    }*@
+
+                    <li>@Model.Programming_language</li>
                 </ul>
                 <br/>
                 <button id="editInterests">Edit</button>
                 
                 <div id="editDiv">
                     <ul>
-                        @foreach (var item in Model.Programming_language)
+                        @*@foreach (var item in Model.Programming_language)
                         {
                             <li>@item &nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("DeleteSkillInterested", "Employer",new { skill = item})'>delete</a></li>
-                        }
+                        }*@
                     </ul>
                     <button id="addskill">Add</button>
-                    @using (Html.BeginForm("AddSkillInterested", "Employer", FormMethod.Post))
-                    {
-                        <label for="username"> Username: </label>
-                        <input type="text" name="username" />
-                        <br/>
-                        <button>Submit</button>
-                    }
+                    <button id="deleteSkill">Delete</button>
                 </div>
             </div>
         </div>
@@ -44,7 +40,7 @@
             <div class="well">
                 <h2>List of students:</h2>
                
-                @*@Html.Action("NewsFeedByLanguage", "Student")*@
+                @Html.Action("NewsFeedByLanguage", "Student")
 
             </div>
         </div>
