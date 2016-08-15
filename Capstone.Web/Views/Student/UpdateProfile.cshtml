@@ -1,0 +1,61 @@
+﻿@model string
+@{
+    ViewBag.Title = "UpdateProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UpdateProfile</h2>
+
+@*string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <h2>Update Profile</h2>
+                @using (Html.BeginForm("UpdateProfile", "Student", FormMethod.Post))
+                {
+                    @Html.Hidden("username", Model)
+
+                    @Html.Label("summary", "Summary:")
+                    @Html.TextArea("summary")
+
+                    @Html.Label("previousExperience", "Previous Experience:")
+                    @Html.TextArea("previousExperience")
+
+                    @Html.Label("degree", "Degree:")
+                    @Html.TextArea("degree")
+
+                    @Html.Label("contactInfo", "Contact Info:")
+                    @Html.TextArea("contactInfo")
+
+                    @Html.Label("skills", "Skills:")
+                    @Html.TextArea("skills")
+
+                    @Html.Label("interests", "Interests:")
+                    @Html.TextArea("interests")
+
+                    <label for="file1">Photo:</label>
+                    <input type="file" name="files" id="file1" />
+
+                    <label for="file2">Resume:</label>
+                    <input type="file" name="files" id="file2" />
+
+                    <label for="file3">Cover Letter:</label>
+                    <input type="file" name="files" id="file3" />
+                    <br>
+
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+
+</div>

@@ -18,9 +18,6 @@ else //authenticated
             @Html.ActionLink("Dashboard", "Index", Model.RoleTitle, new { username = Model.Username }, null)
         </li>
         <li>
-            @Html.ActionLink("Edit Profile", "UpdateStudentProfile", Model.RoleTitle, new { username = Model.Username },null)
-        </li>
-        <li>
             @Html.ActionLink("Change Password", "ChangePassword", "User", new { username = Model.Username }, null)
         </li>
     </ul>
