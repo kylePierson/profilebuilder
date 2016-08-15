@@ -20,11 +20,11 @@ namespace Capstone.Web.Controllers
             this.studentDAL = studentDAL;
             this.userPasswordDAL = userPasswordDAL;
         }
-
+ 
         // GET: Student
         public ActionResult Index(string username)
         {
-            
+           
             Student currentUser = studentDAL.GetStudent(username);
             return View("Index", currentUser);
         }
