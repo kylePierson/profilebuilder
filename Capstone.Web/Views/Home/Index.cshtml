@@ -3,31 +3,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Students</h2>
+
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+      
+        <h2>Home</h2>
+        <br/><br />
+        <div class="col-sm-5 student">
+              <h3>.NET</h3>
+                @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
+                {
+                    if (item.Class == ".NET")
+                    {
+                        <ul class="studentDisplay">
+                            <li><img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" /></li>
+                            <li>@*<img src="@string.Concat("/App_Data/uploads/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />*@</li>
+                            <li>@item.FirstName  @item.LastName</li>
+                           
 
-        </div>
+                        </ul>
+                    }
 
-        <div class="col-sm-4 student">
+                }
+            </div>
+        <div class="col-sm-2 student">
+         </div>
+            <div class="col-sm-5 student">
+                <h3>Java</h3>
+                @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
+            {
+                if (item.Class == "JAVA")
+                {
+                        <ul class="studentDisplay">
+                            <li><img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" /></li>
+                            <li>@*<img src="@string.Concat("/App_Data/uploads/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />*@</li>
+                            <li>@item.FirstName  @item.LastName</li>
 
-            @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
-            {   <ul class="studentDisplay">
-                <li><img src="@string.Concat("/Content/images/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" /></li>
 
-                <li>@item.FirstName</li>
-                <li>@item.LastName</li>
-            </ul>
-            }
+                        </ul>
+                    }
+
+                }
+            </div>
 
 
 
-        </div>
 
-        <div class="col-sm-4">
 
         </div>
     </div>
-</div>
+
 
