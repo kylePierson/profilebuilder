@@ -22,8 +22,16 @@ namespace Capstone.Data.DataAccess
                                                         where username = @username";
         private const string SQL_GetAllStudents = "";
 
+        private const string SQL_GetSkill = @"SELECT * FROM softskills WHERE skill=@skill";
+
+        private const string SQL_AddSkill = @"INSERT INTO softskills VALUES(@skill);";
+
+        private const string SQL_AddSkillToSkillStudent = @"INSERT INTO student_softskills VALUES(@skillid, @studentid);";
+
+        private const string SQL_UpdateSkills = @"Update";
+
         //Edit the next query VVV
-        private const string SQL_GetStudent = @"SELECT student.firstname,student.lastname, student.username, student.summary, 
+        private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, 
                                               student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest
                                               FROM student
                                               INNER JOIN academic on student.student_id = academic.student_id
@@ -151,11 +159,12 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@previousexperience", previousExperience);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
-                    cmd.Parameters.AddWithValue("@skills", skills);
+
                     cmd.Parameters.AddWithValue("@interests", interests);
 
                     cmd.ExecuteNonQuery();
-                    updateIsDone = true;
+
+                    UpdateSkill(skills, GetStudent(username).StudentId, conn);
                 }
             }
             catch (SqlException ex)
@@ -222,6 +231,7 @@ namespace Capstone.Data.DataAccess
                         output.LastName = Convert.ToString(reader["lastname"]);
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
+                        output.StudentId = Convert.ToInt32(reader["student_id"]);
 
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         //output.AcademicDegree = Convert.ToString(reader["degree"]);
@@ -259,7 +269,7 @@ namespace Capstone.Data.DataAccess
                         inner join employer on employer.employer_id = employer_language.employer_id
                         where employer.username =@username";
 
-          
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -274,7 +284,7 @@ namespace Capstone.Data.DataAccess
                     languages.Add(language);
                 }
             }
-           
+
             for (int i = 0; i < languages.Count; i++)
             {
                 if (i == 0)
@@ -349,6 +359,54 @@ namespace Capstone.Data.DataAccess
             }
             return output;
 
+        }
+
+        private void UpdateSkill(string skill, int studentId, SqlConnection conn)
+        {
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(SQL_GetSkill, conn);
+                cmd.Parameters.AddWithValue("@skill", skill);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                Skill s = null;
+                int skillId;
+
+                while (reader.Read())
+                {
+                    s = new Skill();
+                    s.Id = Convert.ToInt32(reader["softskill_id"]);
+                    s.Name = Convert.ToString(reader["skill"]);
+
+                }
+
+                if (s == null)
+                {
+                    cmd = new SqlCommand(SQL_AddSkill, conn);
+                    cmd.Parameters.AddWithValue("@skill", skill);
+
+                    skillId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
+                    cmd.Parameters.AddWithValue("@skillid", skillId);
+                    cmd.Parameters.AddWithValue("@studenid", studentId);
+
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
+                    cmd.Parameters.AddWithValue("@skillid", s.Id);
+                    cmd.Parameters.AddWithValue("@studenid", studentId);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
