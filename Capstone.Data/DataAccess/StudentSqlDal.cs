@@ -151,8 +151,8 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@previousexperience", previousExperience);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
-                    cmd.Parameters.AddWithValue("@skill", skills);
-                    cmd.Parameters.AddWithValue("@interest", interests);
+                    cmd.Parameters.AddWithValue("@skills", skills);
+                    cmd.Parameters.AddWithValue("@interests", interests);
 
                     cmd.ExecuteNonQuery();
                     updateIsDone = true;
