@@ -91,7 +91,7 @@ namespace Capstone.Data.DataAccess
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<string> languages  = new List<string>();
-
+                    currentEmployer.Username = username;
                     while (reader.Read())
                     {
                         //currentEmployer.CompanyName = Convert.ToString(reader["company"]);

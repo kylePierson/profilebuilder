@@ -59,7 +59,7 @@ namespace Capstone.Web.Controllers
         public ActionResult NewsFeedByLanguage(string username)
         {
 
-            List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(username);
+            HashSet<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(username);
 
             return View("StudentNewsFeed", model);
 

@@ -8,6 +8,7 @@
     font-weight: bold;
 }
 
+
 /*---------------------     Log In    -----------------------*/
 .login {
     background-color: #f2ebeb;
@@ -26,9 +27,7 @@
 }
 
 /*---------------------    Staff dashboard    -----------------------*/
-.profileImage {
-    box-shadow: 10px 10px 5px #888888;
-}
+
 
 .creatNewUser {
     padding: 7px;
@@ -70,6 +69,7 @@
     background-color: #c1c1c1;
     width: 500px;
     padding: 50px;
+    display: inline-block;
 }
 
     .studentDisplay li {
@@ -79,6 +79,10 @@
         font-weight: bold;
     }
 
+    .profileImage {
+    box-shadow: 10px 10px 5px #888888;
+   width:50%;
+}
 /*---------- emloyer dashboard--------------*/
 .imgNewsfeed {
     width: 100px;
