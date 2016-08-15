@@ -24,14 +24,16 @@ namespace Capstone.Data.DataAccess
 
         //Edit the next query VVV
         private const string SQL_GetStudent = @"SELECT student.firstname,student.lastname, student.username, student.summary, 
-                                              student.perviousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest
+                                              student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest
                                               FROM student
                                               INNER JOIN academic on student.student_id = academic.student_id
                                               INNER JOIN student_softskills ON student.student_id = student_softskills.student_id
                                               INNER JOIN softskills ON student_softskills.softskill_id = softskills.softskill_id
                                               INNER JOIN student_interests ON student.student_id = student_interests.student_id
                                               INNER JOIN interests ON student_interests.interest_id = interests.interest_id
-                                              WHERE username = @username";
+                                              WHERE username = @username;";
+
+        private const string SQL_GetStudentTest = @"SELECT * FROM student WHERE username = @username;";
 
 
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
@@ -145,7 +147,7 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_UpdateStudentUser, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@summary", summary);
-                    cmd.Parameters.AddWithValue("@perviousexperience", previousExperience);
+                    cmd.Parameters.AddWithValue("@previousexperience", previousExperience);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
                     cmd.Parameters.AddWithValue("@skill", skills);
@@ -207,7 +209,7 @@ namespace Capstone.Data.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(SQL_GetStudent, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_GetStudentTest, conn);
                     cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -220,7 +222,6 @@ namespace Capstone.Data.DataAccess
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
 
-                        output.Username = Convert.ToString(reader["username"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         //output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);

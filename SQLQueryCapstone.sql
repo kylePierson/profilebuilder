@@ -1,4 +1,3 @@
---DROP DATABASE ProfileBuilder
 
 create table student (
  student_id integer identity,
@@ -7,11 +6,10 @@ create table student (
  class varchar(32) NOT NULL,
  summary varchar (max),
  previousexperience varchar (max),
-
+ linkedin varchar(200),
  contactinfo varchar (200),
  username varchar (32) NOT NULL,
  CONSTRAINT pk_student_student_id PRIMARY KEY (student_id),
-
  CONSTRAINT ck_class CHECK (class IN ('.NET', 'Java'))
  );
 
@@ -21,7 +19,6 @@ company varchar (200) NOT NULL,
 contactfirstname varchar(32) NOT NULL,
 contactlastname varchar(32) NOT NULL,
 address varchar (max) NOT NULL,
-
 username varchar (32) NOT NULL,
 contactinfo varchar (200) NOT NULL,
 CONSTRAINT pk_employer_employer_id PRIMARY KEY(employer_id)
@@ -32,7 +29,6 @@ staff_id integer identity NOT NULL,
 firstname varchar (32) NOT NULL,
 lastname varchar (32) NOT NULL,
 title varchar (32) NOT NULL,
-
 username varchar (32) NOT NULL,
 CONSTRAINT staff_staff_id PRIMARY KEY (staff_id)
 );
@@ -83,13 +79,9 @@ CONSTRAINT student_softskills_student_id_softskill_id PRIMARY KEY (student_id,so
 create table project (
  project_id integer identity NOT NULL,
  title varchar (32) NOT NULL,
- summary varchar (max) NOT NULL
+ summary varchar (max) NOT NULL,
+ student_id integer NOT NULL
  CONSTRAINT project_project_id PRIMARY KEY (project_id)
-);
-create table project_student (
-student_id integer NOT NULL,
-project_id integer NOT NULL
-CONSTRAINT project_student_project_id_strudent_id PRIMARY KEY (project_id,student_id)
 );
 
 create table programming_language (
@@ -100,8 +92,6 @@ CONSTRAINT programming_language_programminglanguage_id PRIMARY KEY (programmingl
 
 create table project_programming (
 project_id integer NOT NULL,
-
-
 programminglanguage_id integer NOT NULL,
 CONSTRAINT project_programming_project_id_programminglanguage_id PRIMARY KEY (project_id,programminglanguage_id)
 );
@@ -118,7 +108,7 @@ programminglanguage_id integer NOT NULL
 CONSTRAINT student_language_student_id_programminglanguage_id PRIMARY KEY (student_id,programminglanguage_id)
 );
 
-gv
+
 ALTER TABLE student ADD FOREIGN KEY (username) REFERENCES user_password(username);
 ALTER TABLE employer ADD FOREIGN KEY (username) REFERENCES user_password(username);
 ALTER TABLE staff ADD FOREIGN KEY (username) REFERENCES user_password(username);
@@ -127,25 +117,7 @@ ALTER TABLE student_interests ADD FOREIGN KEY (interest_id) REFERENCES interests
 ALTER TABLE student_interests ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
 ALTER TABLE student_softskills ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
 ALTER TABLE student_softskills ADD FOREIGN KEY (softskill_id) REFERENCES softskills(softskill_id);
---
 ALTER TABLE project ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
---dropped table
---ALTER TABLE project_student ADD FOREIGN KEY (project_id) REFERENCES project(project_id);
 ALTER TABLE student_language ADD FOREIGN KEY (programminglanguage_id) REFERENCES programming_language (programminglanguage_id)
 ALTER TABLE student_language ADD FOREIGN KEY (student_id) REFERENCES student (student_id)
 ALTER TABLE employer_language ADD FOREIGN KEY (programminglanguage_id) REFERENCES programming_language (programminglanguage_id)
-
-
-DROP TABLE project_student 
-
-insert into project (title, summary, student_id)
-values ('TicTacToe', 'A interactive webpage using JavaScript', 2)
-
-SELECT * 
-FROM project
-
-ALTER TABLE project
-ADD student_id integer
-
-ALTER TABLE student
-ADD linkedin varchar(200)

@@ -79,7 +79,9 @@ namespace Capstone.Web.Controllers
             {
                 if (file.ContentLength > 0)
                 {
-                    var fileName = fileNames[iteration];
+                    string[] segments = file.FileName.Split('.');
+                    string fileExt = segments[segments.Length - 1];
+                    var fileName = fileNames[iteration]+"."+fileExt;
                     var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
 
                     file.SaveAs(path);

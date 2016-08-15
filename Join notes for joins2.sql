@@ -31,8 +31,7 @@ INNER JOIN academic ON student.student_id = academic.student_id
 
 --inserting and updating student_language
 --(id = 1)
-INSERT INTO programming_language (name)
-VALUES ('JavaScript')
+
 
 --(id = 2)
 INSERT INTO programming_language (name)
@@ -65,8 +64,7 @@ INNER JOIN programming_language ON student_language.programminglanguage_id = pro
 INSERT INTO programming_language (name)
 VALUES ('COBOL')
 
-INSERT INTO programming_language (name)
-VALUES ('Java')
+
 
 INSERT INTO employer_language (employer_id, programminglanguage_id)
 VALUES (1,3)
