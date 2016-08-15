@@ -241,22 +241,22 @@ namespace Capstone.Data.DataAccess
             return output;
         }
 
-        public List<Student> GetAllStudentsWithKnowLanguage(string username)
+        public HashSet<Student> GetAllStudentsWithKnowLanguage(string username)
         {
-            string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname, student.class
+            string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname
                                 from student
                                 inner join student_language on student_language.student_id = student.student_id
                                 inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
-                                where ;";
+                                where ";
 
-            List<Student> output = new List<Student>();
+            HashSet<Student> output = new HashSet<Student>();
             List<string> languages = new List<string>();
 
             string query = @"select programming_language.name
                         from programming_language
                         inner join employer_language on employer_language.programminglanguage_id = programming_language.programminglanguage_id
                         inner join employer on employer.employer_id = employer_language.employer_id
-                        where employer.username =@username ";
+                        where employer.username =@username";
 
           
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -277,11 +277,12 @@ namespace Capstone.Data.DataAccess
             for (int i = 0; i < languages.Count; i++)
             {
                 if (i == 0)
-                    SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, "programming_language.name = ", languages[i]);
+                    SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, "programming_language.name = '", languages[i], "' ");
                 else
-                    SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, " OR programming_language.name = ", languages[i]);
+                    SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, " OR programming_language.name = '", languages[i], "' ");
 
             }
+            SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, ";");
             try
             {
                 //string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname, student.class
@@ -302,7 +303,7 @@ namespace Capstone.Data.DataAccess
 
                         newStudent.FirstName = Convert.ToString(reader["firstname"]);
                         newStudent.LastName = Convert.ToString(reader["lastname"]);
-                        newStudent.Class = Convert.ToString(reader["class"]);
+                        //newStudent.Class = Convert.ToString(reader["class"]);
                         output.Add(newStudent);
                     }
                 }
