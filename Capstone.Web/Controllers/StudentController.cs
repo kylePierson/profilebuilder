@@ -20,11 +20,11 @@ namespace Capstone.Web.Controllers
             this.studentDAL = studentDAL;
             this.userPasswordDAL = userPasswordDAL;
         }
- 
+
         // GET: Student
         public ActionResult Index(string username)
         {
-           
+            
             Student currentUser = studentDAL.GetStudent(username);
             return View("Index", currentUser);
         }
@@ -56,11 +56,10 @@ namespace Capstone.Web.Controllers
             }
         }
 
-        public ActionResult NewsFeedByLanguage(string language)
+        public ActionResult NewsFeedByLanguage(string username)
         {
-            // for simplisity assume language is c#
-            language = "C#";
-            List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(language);
+          
+            List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(username);
 
             return View("StudentNewsFeed", model);
 
@@ -112,7 +111,16 @@ namespace Capstone.Web.Controllers
             };
             ViewBag.languagesDropDownList = languagesDropDown;
             ViewBag.classDropDownList = classDropDown;
+
+            
             return View("SearchStudents");
+        }
+        [HttpPost]
+        public ActionResult SearchStudentsByLanguage(string language, string studentClass)
+        {
+            List<Student> model = studentDAL.GetAllStudentsWithKnowLanguageAndClass(language, studentClass);
+
+            return View("StudentSearchResult", model);
         }
     }
 }

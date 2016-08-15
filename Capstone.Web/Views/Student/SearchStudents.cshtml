@@ -3,15 +3,17 @@
     Layout = null;
 }
 
-@using (Html.BeginForm("SearchStudentsByLanguage", "Student", FormMethod.Post))
+@using (Html.BeginForm("SearchStudentsByLanguage", "Student",  FormMethod.Post))
 {
 
     <label for="language"> language</label>
     @Html.DropDownList("language", (IEnumerable<SelectListItem>)ViewBag.languagesDropDownList)
+   
+  
     <br/>
 
-    <label for="class"> Class</label>
-    @Html.DropDownList("class", (IEnumerable<SelectListItem>)ViewBag.classDropDownList)
-    <br />
+    <label for="studentClass"> Class</label>
+    @Html.DropDownList("studentClass", (IEnumerable<SelectListItem>)ViewBag.classDropDownList)
+    <br />    <br />    <br />    <br />
     <button>Search</button>
 }

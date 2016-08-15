@@ -36,9 +36,11 @@ VALUES ('siminN', 'password', 'Student');
 
 --since the staff creates the student profile.
 INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
+
 VALUES('Simin', 'Nickelsen', '.NET', 'I am rocking dis shit', 'Adobe', 'SNickelsen@yahoo.com', 'siminN');
 -----------------------------------------------------------------------------------
 --Softskills
+
 
 --inserting Adchiever into softskills table and only have to define ( skill). 
 --The skill_id is already generated when a new skill is inserted

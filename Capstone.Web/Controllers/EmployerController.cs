@@ -19,8 +19,7 @@ namespace Capstone.Web.Controllers
         // GET: Employer
         public ActionResult Index(string username)
         {
-            //assign a username for test
-            username = "user";
+            
 
             Employer model = employerDAL.GetEmployer(username);
 
