@@ -220,11 +220,16 @@ namespace Capstone.Data.DataAccess
                         output.LastName = Convert.ToString(reader["lastname"]);
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
-                        output.PreviousExperience = Convert.ToString(reader["perviousexperience"]);
-                        output.AcademicDegree = Convert.ToString(reader["degree"]);
+
+                        output.Username = Convert.ToString(reader["username"]);
+                        output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+                        //output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                        output.Skills = Convert.ToString(reader["skill"]);
-                        output.Interests = Convert.ToString(reader["interest"]);
+                        //output.Skills = Convert.ToString(reader["skills"]);
+                        //output.Interests = Convert.ToString(reader["interests"]);
+
+
+
                     }
                 }
             }

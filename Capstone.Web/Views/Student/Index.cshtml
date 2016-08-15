@@ -10,7 +10,7 @@
         <div class="col-md-9">
             <div class="well dash" >
                 <h2>Hello @Model.FirstName ! </h2>
-                <img src="@string.Concat("~/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
                 <br />
                 
                 <br />
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-3">
             <ul class="creatNewUser">
-                <li><a href='@Url.Action("UpdateProfile", "Student")'> Update Profile</a></li>
+                <li>@Html.ActionLink("Update Profile", "UpdateProfile","Student", new { username = Model.Username }, null) </li>
                 <li>Change Password</li>
             </ul>
         </div>

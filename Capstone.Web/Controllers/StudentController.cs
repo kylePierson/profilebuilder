@@ -31,25 +31,28 @@ namespace Capstone.Web.Controllers
 
         public ActionResult UpdateProfile(string username)
         {
-            return View("UpdateProfile", username);
+            string model = username;
+            return View("UpdateProfile");
         }
 
         [HttpPost]
-        public ActionResult UpdateProfile(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests)
+        public ActionResult UpdateProfile(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests, IEnumerable<HttpPostedFileBase> files)
         {
             if (!ModelState.IsValid)
             {
                 return View("UpdateProfile");
             }
 
+            UploadFiles(username, files);
+
             bool updateSuccess = studentDAL.UpdateStudentUser(username, summary, previousExperience, degree, contactInfo, skills, interests);
             if (updateSuccess)
             {
-                return RedirectToAction("Success", "Staff");
+                return View("Success");
             }
             else
             {
-                return RedirectToAction("Fail", "Staff");
+                return View("Fail");
             }
         }
 
@@ -63,11 +66,13 @@ namespace Capstone.Web.Controllers
         }
 
         //maybe combine uploads into edit profile actionresult and view
-        [HttpPost]
-        public ActionResult Uploads(string username, IEnumerable<HttpPostedFileBase> files)
+
+        private void UploadFiles(string username, IEnumerable<HttpPostedFileBase> files)
         {
+            Student s = studentDAL.GetStudent(username);
+            string fullName = s.FirstName.ToLower() + s.LastName.ToLower();
             int iteration = 0;
-            string[] fileNames = new string[] { username, username + "_Resume", username + "_CoverLetter" };
+            string[] fileNames = new string[] { fullName, fullName + "_Resume", fullName + "_CoverLetter" };
 
             foreach (var file in files)
             {
@@ -75,11 +80,11 @@ namespace Capstone.Web.Controllers
                 {
                     var fileName = fileNames[iteration];
                     var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+
                     file.SaveAs(path);
                 }
                 iteration++;
             }
-            return RedirectToAction("Index");
         }
 
 
