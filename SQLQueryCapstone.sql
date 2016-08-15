@@ -6,7 +6,7 @@ create table student (
  lastname varchar(32) NOT NULL,
  class varchar(32) NOT NULL,
  summary varchar (max),
- perviousexperience varchar (max),
+ previousexperience varchar (max),
 
  contactinfo varchar (200),
  username varchar (32) NOT NULL,
