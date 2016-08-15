@@ -21,7 +21,7 @@ INSERT INTO user_password (username, password, role_title)
 VALUES ('TolegitToQuit', 'password', 'Student');
 
 -- same as the staff, but now it is populating student table and columns 
-INSERT INTO student (firstname, lastname, class, summary, perviousexperience, contactinfo, username)
+INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
 VALUES('Kyle', 'Pierson', '.NET', 'I am the best .NET student in this bitch', 'Bindows', 'myShitIsLegit@yahoo.com', 'TolegitToQuit');
 
 
@@ -30,7 +30,15 @@ INSERT INTO user_password (username, password, role_title)
 VALUES ('siminN', 'password', 'Student');
 
 --since the staff creates the student profile.
-INSERT INTO student (firstname, lastname, class, summary, perviousexperience, contactinfo, username)
+INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
+VALUES('Tyler', 'Pompeii', '.NET', 'I am rocking dis shit', 'Adobe', '432-345-543', 'tylerP');
+
+
+INSERT INTO user_password (username, password, role_title)
+VALUES ('tylerP', 'password', 'Student');
+
+--since the staff creates the student profile.
+INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
 VALUES('Simin', 'Nickelsen', '.NET', 'I am rocking dis shit', 'Adobe', '432-345-543', 'siminN');
 
 UPDATE student
@@ -49,6 +57,9 @@ VALUES ('Detail oriented');
 --Same as above
 INSERT INTO softskills ( skill)
 VALUES ('Listener');
+
+INSERT INTO student (firstname, lastname, class, summary, perviousexperience, contactinfo, username)
+VALUES('Tyler', 'Pompeii', '.NET', 'I am the best .NET student in this bitch', 'Bindows', 'myShitIsLegit@yahoo.com', 'Tyler');
 
 -- Now if want assign a student with a soft skill, we insert id values into student_softskills.
 --the (student_id, softskill_id) are the only two columns in student_softskills.

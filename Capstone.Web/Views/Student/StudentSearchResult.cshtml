@@ -1,0 +1,23 @@
+﻿@model List<Capstone.Data.Models.Student>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+
+            <h2>Search Result</h2>
+            <div>
+                <ul>
+                    @foreach (var student in Model)
+                    {
+                        <li>@student.FirstName  @student.LastName</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

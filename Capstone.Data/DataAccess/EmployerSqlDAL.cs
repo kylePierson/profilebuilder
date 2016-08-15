@@ -16,7 +16,13 @@ namespace Capstone.Data.DataAccess
         private const string SQL_AddEmployerUser = @"INSERT INTO employer 
                                                     VALUES (@username, @firstname, @lastname);";
 
-        private const string SQL_GetEmployer = @"select employer.company,programming_language.name
+        private const string SQL_GetEmployer = @"select programming_language.name
+                                    from employer
+                                    inner join employer_language on employer.employer_id = employer_language.employer_id
+                                    inner join programming_language on programming_language.programminglanguage_id = employer_language.programminglanguage_id
+                                    where employer.username = @username;";
+
+        private const string SQL_GetEmployer_CompanyName = @"select employer.company
                                     from employer
                                     inner join employer_language on employer.employer_id = employer_language.employer_id
                                     inner join programming_language on programming_language.programminglanguage_id = employer_language.programminglanguage_id
@@ -84,22 +90,47 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
+                    List<string> languages  = new List<string>();
 
                     while (reader.Read())
                     {
-                        currentEmployer.CompanyName = Convert.ToString(reader["company"]);
-                        currentEmployer.Programming_language = Convert.ToString(reader["name"]);
+                        //currentEmployer.CompanyName = Convert.ToString(reader["company"]);
+                        currentEmployer.Language= Convert.ToString(reader["name"]);
                         //currentEmployer.ContactFirstName = Convert.ToString(reader["contactFirstName"]);
                         //currentEmployer.ContactLastName = Convert.ToString(reader["contactLastName"]);
                         //currentEmployer.Address = Convert.ToString(reader["address"]);
                         //currentEmployer.ContactInfo = Convert.ToString(reader["contactInfo"]);
                         //currentEmployer.Username = Convert.ToString(reader["username"]);
+                       languages.Add(currentEmployer.Language = Convert.ToString(reader["name"]));
                     }
+                    currentEmployer.Programming_language = languages;
+
                 }
             }
             catch (SqlException ex)
             {
+                throw ex;
+            }
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetEmployer_CompanyName, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
 
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        currentEmployer.CompanyName = Convert.ToString(reader["company"]);
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
             return currentEmployer;
         }

@@ -11,6 +11,7 @@
                 <h4>Search</h4>
                 @Html.Action("SearchStudentsByLanguage", "Student")
             </div>
+           
         </div>
         <div class="col-md-6">
             <div class="well">
@@ -19,12 +20,12 @@
                 <ul id="employerSkills">
                    
                     @*for now assume there is only one interest*@
-                    @*@foreach(var item in Model.Programming_language)
+                    @foreach(var item in Model.Programming_language)
                     {
                         <li>@item</li>
-                    }*@
+                    }
 
-                    <li>@Model.Programming_language</li>
+                   
                 </ul>
                 <br/>
                 
@@ -44,9 +45,10 @@
             <div class="well">
                 <h4>List of students:</h4>
                <br/>
-                @Html.Action("NewsFeedByLanguage", "Student")
+                @Html.Action("NewsFeedByLanguage", "Student", new { username = Model.Username})
 
             </div>
+            
         </div>
     </div>
   
