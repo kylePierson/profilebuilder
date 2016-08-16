@@ -15,5 +15,6 @@ namespace Capstone.Data.DataAccess
         Student GetStudent(string username);
         HashSet<Student> GetAllStudentsWithKnowLanguage(string username);
         List<Student> GetAllStudentsWithKnowLanguageAndClass(string language, string studentClass);
+        void AddProject(string username, Project project);
     }
 }

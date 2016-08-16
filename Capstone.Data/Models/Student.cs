@@ -23,6 +23,7 @@ namespace Capstone.Data.Models
         public string Skills { get; set; }
         public string Interests { get; set; }
         public string Project { get; set; }
+        public string LinkedIn { get; set; }
         //public List<string> PreviousExperience { get; set; }
         //public List<string> AcademicDegree { get; set; }
     }

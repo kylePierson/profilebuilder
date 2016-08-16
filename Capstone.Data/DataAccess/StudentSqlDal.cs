@@ -31,8 +31,8 @@ namespace Capstone.Data.DataAccess
         private const string SQL_UpdateSkills = @"Update";
 
         //Edit the next query VVV
-        private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, 
-                                              student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest
+        private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, student.linkedin, programming_language.name,
+                                              student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest, project.title, project.summary
                                               FROM student
                                               INNER JOIN academic on student.student_id = academic.student_id
                                               INNER JOIN student_softskills ON student.student_id = student_softskills.student_id
@@ -232,12 +232,13 @@ namespace Capstone.Data.DataAccess
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
-
+                        output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
                         output.Skills = Convert.ToString(reader["skill"]);
                         output.Interests = Convert.ToString(reader["interest"]);
+
                         
                     }
                 }
