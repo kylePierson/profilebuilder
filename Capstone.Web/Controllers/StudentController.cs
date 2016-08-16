@@ -24,7 +24,7 @@ namespace Capstone.Web.Controllers
         // GET: Student
         public ActionResult Index(string username)
         {
-            
+
             Student currentUser = studentDAL.GetStudent(username);
             return View("Index", currentUser);
         }
@@ -36,14 +36,14 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateProfile(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult UpdateProfile(string username, string summary, string previousExperience, string degree, string contactInfo, string skills, string interests, HttpPostedFileBase photo, HttpPostedFileBase resume, HttpPostedFileBase coverLetter)
         {
             if (!ModelState.IsValid)
             {
                 return View("UpdateProfile");
             }
 
-            UploadFiles(username, files);
+            UploadFiles(username, photo, resume, coverLetter);
 
             bool updateSuccess = studentDAL.UpdateStudentUser(username, summary, previousExperience, degree, contactInfo, skills, interests);
             if (updateSuccess)
@@ -58,8 +58,8 @@ namespace Capstone.Web.Controllers
 
         public ActionResult NewsFeedByLanguage(string username)
         {
-          
-            List<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(username);
+
+            HashSet<Student> model = studentDAL.GetAllStudentsWithKnowLanguage(username);
 
             return View("StudentNewsFeed", model);
 
@@ -67,25 +67,38 @@ namespace Capstone.Web.Controllers
 
         //maybe combine uploads into edit profile actionresult and view
 
-        private void UploadFiles(string username, IEnumerable<HttpPostedFileBase> files)
+        private void UploadFiles(string username, HttpPostedFileBase photo, HttpPostedFileBase resume, HttpPostedFileBase coverLetter)
         {
             Student s = studentDAL.GetStudent(username);
             string fullName = s.FirstName.ToLower() + s.LastName.ToLower();
-            int iteration = 0;
+
             string[] fileNames = new string[] { fullName, fullName + "_Resume", fullName + "_CoverLetter" };
 
-            foreach (var file in files)
+            if (photo!=null && photo.ContentLength > 0)
             {
-                if (file.ContentLength > 0)
-                {
-                    string[] segments = file.FileName.Split('.');
-                    string fileExt = segments[segments.Length - 1];
-                    var fileName = fileNames[iteration]+"."+fileExt;
-                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                string[] segments = photo.FileName.Split('.');
+                var fileName = fileNames[0] + ".jpg";
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
 
-                    file.SaveAs(path);
-                }
-                iteration++;
+                photo.SaveAs(path);
+            }
+            if (resume!=null && resume.ContentLength > 0)
+            {
+                string[] segments = photo.FileName.Split('.');
+                string fileExt = segments[segments.Length - 1];
+                var fileName = fileNames[1] + "." + fileExt;
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+
+                resume.SaveAs(path);
+            }
+            if (coverLetter != null && coverLetter.ContentLength > 0)
+            {
+                string[] segments = photo.FileName.Split('.');
+                string fileExt = segments[segments.Length - 1];
+                var fileName = fileNames[2] + "." + fileExt;
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+
+                coverLetter.SaveAs(path);
             }
         }
 
@@ -107,12 +120,12 @@ namespace Capstone.Web.Controllers
             List<SelectListItem> classDropDown = new List<SelectListItem>()
             {
                 new SelectListItem() { Text = ".NET" },
-                new SelectListItem() { Text = "JAVA" }               
+                new SelectListItem() { Text = "JAVA" }
             };
             ViewBag.languagesDropDownList = languagesDropDown;
             ViewBag.classDropDownList = classDropDown;
 
-            
+
             return View("SearchStudents");
         }
         [HttpPost]

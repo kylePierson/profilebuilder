@@ -159,6 +159,7 @@
     <Content Include="bin\System.Web.Webpages.Razor.xml" />
     <Content Include="bin\System.Web.Webpages.xml" />
     <Content Include="bin\WebActivatorEx.dll" />
+    <Content Include="Content\AddANewLanguage.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -251,16 +252,13 @@
     <Content Include="Views\Emails\StaffEmailPage.cshtml" />
     <Content Include="Views\Emails\EmployerEmailPage.cshtml" />
     <Content Include="Views\Student\SearchStudents.cshtml" />
-
     <Content Include="Views\Student\SearchStudentsByLanguage.cshtml" />
     <Content Include="Views\Student\UpdateProfile.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\Employer\ViewStudent.cshtml" />
-
     <Content Include="Views\Student\StudentSearchResult.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -269,12 +267,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-
     <Folder Include="App_Data\uploads\" />
-
-    <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
-
     <Folder Include="Views\ProfileBuilder\" />
   </ItemGroup>
   <ItemGroup>
