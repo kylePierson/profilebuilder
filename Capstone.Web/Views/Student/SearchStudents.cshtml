@@ -3,17 +3,33 @@
     Layout = null;
 }
 
-@using (Html.BeginForm("SearchStudentsByLanguage", "Student",  FormMethod.Post))
+@using (Html.BeginForm("SearchStudentsByLanguage", "Student", FormMethod.Post))
 {
 
     <label for="language"> language</label>
     @Html.DropDownList("language", (IEnumerable<SelectListItem>)ViewBag.languagesDropDownList)
-   
-  
-    <br/>
+
+
+    <br />
 
     <label for="studentClass"> Class</label>
     @Html.DropDownList("studentClass", (IEnumerable<SelectListItem>)ViewBag.classDropDownList)
     <br />    <br />    <br />    <br />
-    <button>Search</button>
+    <button type="submit" id="searchbutton">Search</button>
+
+
 }
+
+@*<script>
+    $(document).ready(function () {
+        $("#searchbutton").click(function () {
+            setInterval(function () {
+                var randomnumber = Math.floor(Math.random() * 100);
+                $('#searchResultPartialView').text(
+                        '<div class="row searchResultPartialView"> <br /> @Html.Action("SearchStudentsByLanguage", "Student")</div>'
+                                + randomnumber);
+            }, 3000);
+        });
+            });
+</script>*@
+

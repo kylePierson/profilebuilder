@@ -164,12 +164,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\backgroundImage.jpg" />
     <Content Include="Content\images\failToDo.jpg" />
     <Content Include="Content\images\josh.jpg" />
     <Content Include="Content\images\kylepierson.jpg" />
     <Content Include="Content\images\siminnickelsen.jpg" />
     <Content Include="Content\images\Sucess.jpg" />
     <Content Include="Content\images\tylerpompeii.jpg" />
+    <Content Include="Content\ShowMoreLess.js" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -259,9 +261,7 @@
     <Content Include="Scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\Employer\ViewStudent.cshtml" />
     <Content Include="Views\Student\StudentSearchResult.cshtml" />
-
     <Content Include="Views\Student\AddProject.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
