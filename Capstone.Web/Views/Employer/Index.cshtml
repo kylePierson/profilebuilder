@@ -11,48 +11,50 @@
                 <h4>Search</h4>
                 @Html.Action("SearchStudentsByLanguage", "Student")
             </div>
-           
+
         </div>
         <div class="col-md-6">
             <div class="well">
                 <h3>Welcome @Model.CompanyName ! </h3>
-            
+
                 <h4>Programming languages you are intersted in: </h4>
-                <ul id="employerSkills">
-                   
+                <table id="employerSkills">
+
                     @*for now assume there is only one interest*@
-                    @foreach(var item in Model.Programming_language)
+                    @foreach (var item in Model.Programming_language)
                     {
-                        <li>@item</li>
+                        <tr>
+                            <td>@item</td>
+                            <td>@Html.ActionLink("Delete", "DeleteSkillInterested",  new { skill = item , username = Model.Username} )</td>
+                        </tr>
                     }
 
-                   
-                </ul>
-                <br/>
-                
+
+                </table>
+                <br />
+
                 <div id="editDiv">
-                    <ul>
-                        @*@foreach (var item in Model.Programming_language)
-                        {
-                            <li>@item &nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("DeleteSkillInterested", "Employer",new { skill = item})'>delete</a></li>
-                        }*@
-                    </ul>
-                    <button id="addskill">Add</button>
-                    <button id="deleteSkill">Delete</button>
+
+                    <script src="/Content/AddANewLanguage.js"></script>
+
+                    <label for="AddLanguage"></label>
+                    <input type="text" name="AddLanguage" id="newLanguageTextbox"/>
+                    <button id="addskill" type="submit">Add</button>
+                    <input id="hiddenusername" value="@Model.Username" type="hidden" />
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well">
                 <h4>List of students:</h4>
-               <br/>
-                @Html.Action("NewsFeedByLanguage", "Student", new { username = Model.Username})
+                <br />
+                @Html.Action("NewsFeedByLanguage", "Student", new { username = Model.Username })
 
             </div>
-            
+
         </div>
     </div>
-  
+
 
 </div>
 

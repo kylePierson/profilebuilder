@@ -189,6 +189,7 @@ namespace Capstone.Data.DataAccess
 
                     UpdateSkill(skills, GetStudent(username).StudentId, conn);
                     UpdateInterest(interests, GetStudent(username).StudentId, conn);
+
                 }
             }
             catch (SqlException ex)
@@ -384,6 +385,7 @@ namespace Capstone.Data.DataAccess
             return output;
 
         }
+
 
         private void UpdateSkill(string skill, int studentId, SqlConnection conn)
         {
