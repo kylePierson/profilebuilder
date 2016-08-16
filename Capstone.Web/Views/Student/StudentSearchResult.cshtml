@@ -1,10 +1,9 @@
 ﻿@model List<Capstone.Data.Models.Student>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<div class="container">
     <div class="row">
 
         <div class="col-md-9">
@@ -14,10 +13,12 @@
                 <ul>
                     @foreach (var student in Model)
                     {
+                        <li><img src="@string.Concat("/Content/images/", student.FirstName.ToLower(), student.LastName.ToLower(), ".jpg")" class="img-circle profileImage" /></li>
                         <li>@student.FirstName  @student.LastName</li>
                     }
                 </ul>
             </div>
         </div>
     </div>
-</div>
+    
+

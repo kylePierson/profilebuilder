@@ -365,7 +365,7 @@ namespace Capstone.Data.DataAccess
 
                         newStudent.FirstName = Convert.ToString(reader["firstname"]);
                         newStudent.LastName = Convert.ToString(reader["lastname"]);
-
+                        
                         output.Add(newStudent);
                     }
                 }

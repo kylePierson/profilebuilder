@@ -1,26 +1,28 @@
 ﻿@model HashSet<Capstone.Data.Models.Student>
-@{ 
+@{
     Layout = null;
 }
 
 @*Check to see if the model is not null, then display the list of students with specific skills*@
 
-
+<script src="/Content/ShowMoreLess.js"></script>
 @if (Model != null)
 {
     <div>
-        @foreach (var item in Model)
-       {
-            <div class="newsFeedStudent">
-                <br />
-                <ul>
-                    <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" /></li>  
-                    <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName," ", item.LastName) </li>
+        <div id="newsFeedStudent">
+            @foreach (var item in Model)
+            {
+                <ul class="hide">
+                    <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" /></li>
+                    <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName, " ", item.LastName) </li>
                     <li class="newsfeedInfo">@item.Class</li>
                     <li>LinkedIn link comes here!</li>
                 </ul>
-            </div>
-        }
+            }
+
+        </div>
+        <div id="loadMore">Load more...</div>
+        @*<div id="showLess">Show less...</div>*@
     </div>
 }
 
