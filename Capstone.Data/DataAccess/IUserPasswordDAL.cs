@@ -14,5 +14,6 @@ namespace Capstone.Data.DataAccess
         UserPassword GetUser(string username, string password);
         UserPassword GetUser(string username);
         bool AddUser(string username, string password, string role);
+        string ResetPassword(string username);
     }
 }

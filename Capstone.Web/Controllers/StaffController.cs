@@ -94,7 +94,7 @@ namespace Capstone.Web.Controllers
             }
 
             SendEmail(emailAddress, firstname, newUsername, "Student");
-            return RedirectToAction("Success", new { username = currentUsername });
+            return RedirectToAction("Success", new { username = base.CurrentUser });
         }
 
         public ActionResult CreateEmployerUser()
@@ -126,12 +126,13 @@ namespace Capstone.Web.Controllers
 
             SendEmail(email, firstname, newUsername, "Employer");
             return RedirectToAction("Success", new { username = currentUsername });
+
         }
 
         public ActionResult Success(string username)
         {
-            //UserPassword user = userPasswordDal.GetUser(currentUser);
-            return View("Success", username);
+            UserPassword model = userPasswordDal.GetUser(username);
+            return View("Success", model);
         }
 
         private void SendEmail(string emailAddress, string firstName, string username, string role)

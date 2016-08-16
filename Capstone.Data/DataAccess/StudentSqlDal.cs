@@ -160,7 +160,7 @@ namespace Capstone.Data.DataAccess
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
             // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-            s.ContantInfo = Convert.ToString(reader["contactinfo"]);
+            s.ContactInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
 
@@ -255,7 +255,7 @@ namespace Capstone.Data.DataAccess
                         output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
-                        output.ContantInfo = Convert.ToString(reader["contactInfo"]);
+                        output.ContactInfo = Convert.ToString(reader["contactInfo"]);
 
                         //output.InterestList = GetInterestList(username, conn, reader);
                         //output.SkillList = GetSkillList(username, conn, reader);
