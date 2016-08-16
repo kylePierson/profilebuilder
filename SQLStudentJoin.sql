@@ -1,4 +1,4 @@
-SELECT student.firstname,student.lastname, student.summary, student.perviousexperience, student.class, student.contactinfo,
+SELECT student.firstname,student.lastname, student.summary, student.previousexperience, student.class, student.contactinfo,
 academic.degree,academic.school, academic.major, softskills.skill, interests.interest, programming_language.name, project.title, project.summary
 FROM student
 INNER JOIN academic on student.student_id = academic.student_id

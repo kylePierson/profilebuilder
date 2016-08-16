@@ -31,9 +31,9 @@ namespace Capstone.Data.DataAccess
                                               INNER JOIN softskills ON student_softskills.softskill_id = softskills.softskill_id
                                               INNER JOIN student_interests ON student.student_id = student_interests.student_id
                                               INNER JOIN interests ON student_interests.interest_id = interests.interest_id
-                                              WHERE username = @username;";
+                                              WHERE username = @username";
 
-        private const string SQL_GetStudentTest = @"SELECT * FROM student WHERE username = @username;";
+       //private const string SQL_GetStudentTest = @"SELECT * FROM student WHERE username = @username;";
 
 
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
@@ -131,7 +131,7 @@ namespace Capstone.Data.DataAccess
             s.StudentId = Convert.ToInt32(reader["student_id"]);
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
-            // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+           // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
             s.ContantInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
@@ -210,7 +210,7 @@ namespace Capstone.Data.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(SQL_GetStudentTest, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_GetStudent, conn);
                     cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -224,13 +224,11 @@ namespace Capstone.Data.DataAccess
                         output.Summary = Convert.ToString(reader["summary"]);
 
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-                        //output.AcademicDegree = Convert.ToString(reader["degree"]);
+                        output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                        //output.Skills = Convert.ToString(reader["skills"]);
-                        //output.Interests = Convert.ToString(reader["interests"]);
-
-
-
+                        output.Skills = Convert.ToString(reader["skill"]);
+                        output.Interests = Convert.ToString(reader["interest"]);
+                        
                     }
                 }
             }

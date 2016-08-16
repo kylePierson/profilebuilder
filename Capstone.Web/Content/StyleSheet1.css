@@ -99,13 +99,15 @@
         padding-bottom: 5px;
     }
 
+
 #editinfo tr td {
-    display: inline-block;
+    display: block;
     width: 150px;
-    height: 75px;
+    height: 45px;
     margin: 10px;
-    border: 3px solid #73AD21;
+    
 }
+
 
 
 .newsfeedInfo li img {
@@ -116,6 +118,3 @@
     
 }
 
-.dash {
-  height:500px;
-}
