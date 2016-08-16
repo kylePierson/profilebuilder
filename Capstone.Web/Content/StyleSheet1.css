@@ -10,17 +10,18 @@
     font-weight: bold;
 }
 
+button{
+    background-color:#f5dddd;
+    border-radius: 10px;
+    border:1px solid #f5dddd;
+    box-shadow: 5px 5px 5px #8d5252;
+}
 
 /*---------------------     Log In    -----------------------*/
 .login {
-    background-color: #f2ebeb;
+    background-color: #ee9898;
     border-radius: 15px;
-    padding: 50px;
-}
-
-#loginButton {
-    border-radius: 10px;
-    box-shadow: 10px 10px 5px #888888;
+   padding: 20px 50px 20px 5px;
 }
 
 #forgotPassword {
@@ -28,6 +29,17 @@
     text-decoration: none;
 }
 
+.login input{
+    margin-left: 20px;
+    padding-left:10px;
+    border-radius:40px;
+    border: 1px solid #f5dddd;
+}
+
+.login button {
+     margin-left: 20px;
+    
+}
 /*---------------------    Staff dashboard    -----------------------*/
 
 
@@ -77,8 +89,6 @@
 .classTitle{
     padding:10px;
     border-radius: 30px;
-    margin-right:auto;
-    margin-left:auto;
     background-color:#ee9898;
 }
 
