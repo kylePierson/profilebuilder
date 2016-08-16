@@ -1,7 +1,9 @@
 ﻿body {
-    background-color: #bcb9b9;
+    /*background-color: #bcb9b9;*/
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.4em;
+   
+    background-image: url('images/backgroundImage.jpg');
 }
 
 .fontBold {
@@ -66,10 +68,18 @@
     list-style: none;
     border: 1px solid black;
     border-radius: 20px;
-    background-color: #c1c1c1;
+    background-color: #ee9898;
     width: 500px;
     padding: 50px;
     display: inline-block;
+}
+
+.classTitle{
+    padding:10px;
+    border-radius: 30px;
+    margin-right:auto;
+    margin-left:auto;
+    background-color:#ee9898;
 }
 
     .studentDisplay li {
@@ -117,7 +127,9 @@
     
 }
 
-
+.hide{
+    display:none;
+}
 
 .newsfeedInfo li img {
    

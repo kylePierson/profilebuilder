@@ -10,21 +10,19 @@
 {
     <div>
         <div id="newsFeedStudent">
-            <ul>
-                @foreach (var item in Model)
-                {
-
+            @foreach (var item in Model)
+            {
+                <ul class="hide">
                     <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" /></li>
                     <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName, " ", item.LastName) </li>
                     <li class="newsfeedInfo">@item.Class</li>
                     <li>LinkedIn link comes here!</li>
+                </ul>
+            }
 
-
-                }
-            </ul>
         </div>
         <div id="loadMore">Load more...</div>
-        <div id="showLess">Show less...</div>
+        @*<div id="showLess">Show less...</div>*@
     </div>
 }
 
