@@ -42,6 +42,11 @@ namespace Capstone.Data.DataAccess
 
         private const string SQL_CountLanguages = @"SELECT COUNT(*) from programming_language
                                     where name = @interest;";
+
+        private const string SQL_CheckEmployerHasLanguage = @"SELECT COUNT(*) from employer_language
+                                 inner join employer on employer.employer_id = employer_language.employer_id
+                                 inner join programming_language on programming_language.programminglanguage_id = employer_language.programminglanguage_id
+                                 where programming_language.name = @interest and employer.username =@username;";
         public EmployerSqlDAL()
             : this(ConfigurationManager.ConnectionStrings["CapstoneDatabaseConnection"].ConnectionString)
         {
@@ -180,17 +185,35 @@ namespace Capstone.Data.DataAccess
 
         }
 
-        private void AddInterestToEmployer(string interest, string username)
+        private bool EmployerDoesNotHaveTheLanguage(string interest, string username)
         {
+            int count=0;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(SQL_AddInterestToEmployer, conn);
+                SqlCommand cmd = new SqlCommand(SQL_CheckEmployerHasLanguage, conn);
                 cmd.Parameters.AddWithValue("@interest", interest);
                 cmd.Parameters.AddWithValue("@username", username);
 
-                cmd.ExecuteNonQuery();
+                count = (int)cmd.ExecuteNonQuery();
+            }
+            return (count <= 0);
+        }
+        private void AddInterestToEmployer(string interest, string username)
+        {
+            if (EmployerDoesNotHaveTheLanguage(interest, username))
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_AddInterestToEmployer, conn);
+                    cmd.Parameters.AddWithValue("@interest", interest);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
