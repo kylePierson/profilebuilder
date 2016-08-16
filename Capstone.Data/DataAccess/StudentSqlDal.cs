@@ -30,15 +30,15 @@ namespace Capstone.Data.DataAccess
 
 
         //Edit the next query VVV
-        private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, 
-                                              student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest
-                                              FROM student
-                                              INNER JOIN academic on student.student_id = academic.student_id
-                                              INNER JOIN student_softskills ON student.student_id = student_softskills.student_id
-                                              INNER JOIN softskills ON student_softskills.softskill_id = softskills.softskill_id
-                                              INNER JOIN student_interests ON student.student_id = student_interests.student_id
-                                              INNER JOIN interests ON student_interests.interest_id = interests.interest_id
-                                              WHERE username = @username;";
+        private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, student.linkedin, programming_language.name,
+                                                student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest, project.title, project.summary
+                                                FROM student
+                                                INNER JOIN academic on student.student_id = academic.student_id
+                                                INNER JOIN student_softskills ON student.student_id = student_softskills.student_id
+                                                INNER JOIN softskills ON student_softskills.softskill_id = softskills.softskill_id
+                                                INNER JOIN student_interests ON student.student_id = student_interests.student_id
+                                                INNER JOIN interests ON student_interests.interest_id = interests.interest_id
+                                                WHERE username = @username;";
 
         private const string SQL_GetStudentTest = @"SELECT * FROM student WHERE username = @username;";
 
@@ -264,7 +264,7 @@ namespace Capstone.Data.DataAccess
                         output.Skills = Convert.ToString(reader["skills"]);
                         output.Interests = Convert.ToString(reader["interests"]);
 
-
+                        output.ProjectList = GetProjectList(username);
 
                     }
                 }
@@ -510,7 +510,7 @@ namespace Capstone.Data.DataAccess
             }
         }
 
-        private List<Project> ProjectList(string username)
+        private List<Project> GetProjectList(string username)
         {
             List<Project> output = new List<Project>();
 
@@ -521,7 +521,7 @@ namespace Capstone.Data.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(SQL_GetAllStudent_Language_Class, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
                     cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
 
 
