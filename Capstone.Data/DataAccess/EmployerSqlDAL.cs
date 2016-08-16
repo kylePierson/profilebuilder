@@ -198,7 +198,7 @@ namespace Capstone.Data.DataAccess
 
                 count = (int)cmd.ExecuteNonQuery();
             }
-            return (count <= 0);
+            return (count > 0);
         }
         private void AddInterestToEmployer(string interest, string username)
         {
