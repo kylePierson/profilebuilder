@@ -14,7 +14,7 @@
                 <h2>Create a New Student Account</h2>
                 @using (Html.BeginForm("CreateStudentUser", "Staff", FormMethod.Post))
                 {
-                    @Html.Hidden("currentUsername", Model.Username)
+                    @*@Html.Hidden("currentUsername", Model.Username)*@
                     <label for="newUsername"> Username: </label>
                     <input type="text" name="newUsername" />
 

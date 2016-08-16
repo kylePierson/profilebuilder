@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +56,9 @@
     <Compile Include="DataAccess\UserPasswordSqlDAL.cs" />
     <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\EmployerStudent.cs" />
+    <Compile Include="Models\Interest.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UserPassword.cs" />

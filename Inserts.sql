@@ -1,3 +1,4 @@
+
 -----------------------------------------------------------------------------------
 --Employer
 --  assigning James, using username to identify him, a password and roll
@@ -23,11 +24,11 @@ Values('Josh', 'Tucholski', 'Instructor', 'jTucholski');
 
 --  assigning Kyle, using username to identify him, a password and roll
 INSERT INTO user_password (username, password, role_title)
-VALUES ('TolegitToQuit', 'password', 'Student');
+VALUES ('piersonkyle90', 'password', 'Student');
 
 -- same as the staff, but now it is populating student table and columns 
 INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
-VALUES('Kyle', 'Pierson', '.NET', 'I am the best .NET student in this bitch', 'Bindows', 'myShitIsLegit@yahoo.com', 'TolegitToQuit');
+VALUES('Kyle', 'Pierson', '.NET', 'I am the best .NET student in this bitch', 'Bindows', 'piersonkyle90@yahoo.com', 'piersonkyle90');
 
 
 --  assigning Simin, using username to identify her, a password and roll
