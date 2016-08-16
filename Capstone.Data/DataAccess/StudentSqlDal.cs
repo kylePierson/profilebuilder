@@ -164,7 +164,7 @@ namespace Capstone.Data.DataAccess
 
                     cmd.ExecuteNonQuery();
 
-                    UpdateSkill(skills, GetStudent(username).StudentId, conn);
+                    //UpdateSkill(skills, GetStudent(username).StudentId, conn);
                 }
             }
             catch (SqlException ex)
@@ -361,52 +361,52 @@ namespace Capstone.Data.DataAccess
 
         }
 
-        private void UpdateSkill(string skill, int studentId, SqlConnection conn)
-        {
-            try
-            {
+        //private void UpdateSkill(string skill, int studentId, SqlConnection conn)
+        //{
+        //    try
+        //    {
 
-                SqlCommand cmd = new SqlCommand(SQL_GetSkill, conn);
-                cmd.Parameters.AddWithValue("@skill", skill);
+        //        SqlCommand cmd = new SqlCommand(SQL_GetSkill, conn);
+        //        cmd.Parameters.AddWithValue("@skill", skill);
 
-                SqlDataReader reader = cmd.ExecuteReader();
+        //        SqlDataReader reader = cmd.ExecuteReader();
 
-                Skill s = null;
-                int skillId;
+        //        Skill s = null;
+        //        int skillId;
 
-                while (reader.Read())
-                {
-                    s = new Skill();
-                    s.Id = Convert.ToInt32(reader["softskill_id"]);
-                    s.Name = Convert.ToString(reader["skill"]);
+        //        while (reader.Read())
+        //        {
+        //            s = new Skill();
+        //            s.Id = Convert.ToInt32(reader["softskill_id"]);
+        //            s.Name = Convert.ToString(reader["skill"]);
 
-                }
+        //        }
 
-                if (s == null)
-                {
-                    cmd = new SqlCommand(SQL_AddSkill, conn);
-                    cmd.Parameters.AddWithValue("@skill", skill);
+        //        if (s == null)
+        //        {
+        //            cmd = new SqlCommand(SQL_AddSkill, conn);
+        //            cmd.Parameters.AddWithValue("@skill", skill);
 
-                    skillId = Convert.ToInt32(cmd.ExecuteScalar());
+        //            skillId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
-                    cmd.Parameters.AddWithValue("@skillid", skillId);
-                    cmd.Parameters.AddWithValue("@studenid", studentId);
+        //            cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
+        //            cmd.Parameters.AddWithValue("@skillid", skillId);
+        //            cmd.Parameters.AddWithValue("@studenid", studentId);
 
-                    cmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
-                    cmd.Parameters.AddWithValue("@skillid", s.Id);
-                    cmd.Parameters.AddWithValue("@studenid", studentId);
-                }
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //        else
+        //        {
+        //            cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
+        //            cmd.Parameters.AddWithValue("@skillid", s.Id);
+        //            cmd.Parameters.AddWithValue("@studenid", studentId);
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }

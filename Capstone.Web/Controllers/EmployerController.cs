@@ -26,14 +26,21 @@ namespace Capstone.Web.Controllers
             return View("Index",model);
         }
 
-        public ActionResult DeleteSkillInterested(string skill)
+        public ActionResult DeleteSkillInterested(string skill, string username)
         {
-            return View();
+           
+            employerDAL.DeleteInterest(skill, username);
+            Employer model = employerDAL.GetEmployer(username);
+            return View("Index", model);
         }
 
-        public ActionResult AddSkillInterested()
+        public bool AddSkillInterested(string interest, string username)
         {
-            return View();
+            
+            employerDAL.AddInterest(username, interest);
+            Employer model = employerDAL.GetEmployer(username);
+
+            return true;
         }
 
     }
