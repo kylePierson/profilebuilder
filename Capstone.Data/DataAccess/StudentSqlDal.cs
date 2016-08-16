@@ -28,7 +28,6 @@ namespace Capstone.Data.DataAccess
 
         private const string SQL_AddSkillToSkillStudent = @"INSERT INTO student_softskills VALUES(@skillid, @studentid);";
 
-        private const string SQL_UpdateSkills = @"Update";
 
         //Edit the next query VVV
         private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, 
@@ -69,6 +68,32 @@ namespace Capstone.Data.DataAccess
             connectionString = databaseconnectionString;
         }
 
+        private int GetStudentId(string username, SqlConnection conn)
+        {
+            int output = 0;
+            string SQL_GetStudentId = @"SELECT student_id FROM student WHERE username=@username;";
+            try
+            {
+
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL_GetStudentId, conn);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    output = Convert.ToInt32(reader["student_id"]);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return output;
+        }
         //*************************************************
         public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
         {
@@ -160,11 +185,10 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
 
-                    cmd.Parameters.AddWithValue("@interests", interests);
-
                     cmd.ExecuteNonQuery();
 
                     UpdateSkill(skills, GetStudent(username).StudentId, conn);
+                    UpdateInterest(interests, GetStudent(username).StudentId, conn);
                 }
             }
             catch (SqlException ex)
@@ -391,7 +415,7 @@ namespace Capstone.Data.DataAccess
 
                     cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
                     cmd.Parameters.AddWithValue("@skillid", skillId);
-                    cmd.Parameters.AddWithValue("@studenid", studentId);
+                    cmd.Parameters.AddWithValue("@studentid", studentId);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -399,7 +423,7 @@ namespace Capstone.Data.DataAccess
                 {
                     cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
                     cmd.Parameters.AddWithValue("@skillid", s.Id);
-                    cmd.Parameters.AddWithValue("@studenid", studentId);
+                    cmd.Parameters.AddWithValue("@studentid", studentId);
                 }
 
             }
@@ -407,6 +431,117 @@ namespace Capstone.Data.DataAccess
             {
                 throw;
             }
+        }
+        private void UpdateInterest(string interest, int studentId, SqlConnection conn)
+        {
+            string SQL_GetInterest = @"SELECT * FROM softskills WHERE interest=@interest";
+
+            string SQL_AddInterest = @"INSERT INTO softskills VALUES(@interest);";
+
+            string SQL_AddInterestToInterestStudent = @"INSERT INTO student_softskills VALUES(@interestid, @studentid);";
+
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(SQL_GetInterest, conn);
+                cmd.Parameters.AddWithValue("@interest", interest);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                Interest s = null;
+                int interestId;
+
+                while (reader.Read())
+                {
+                    s = new Interest();
+                    s.Id = Convert.ToInt32(reader["interest_id"]);
+                    s.Name = Convert.ToString(reader["interest"]);
+
+                }
+
+                if (s == null)
+                {
+                    cmd = new SqlCommand(SQL_AddInterest, conn);
+                    cmd.Parameters.AddWithValue("@interest", interest);
+
+                    interestId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    cmd = new SqlCommand(SQL_AddSkillToSkillStudent, conn);
+                    cmd.Parameters.AddWithValue("@interestid", interestId);
+                    cmd.Parameters.AddWithValue("@studentid", studentId);
+
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    cmd = new SqlCommand(SQL_AddInterestToInterestStudent, conn);
+                    cmd.Parameters.AddWithValue("@interestid", s.Id);
+                    cmd.Parameters.AddWithValue("@studentid", studentId);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void AddProject(string username, Project project)
+        {
+            string SQL_AddProject = @"INSERT INTO project VALUES (@title,@summary,@studentid);";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    project.StudentId = GetStudentId(username, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_AddProject, conn);
+                    cmd.Parameters.AddWithValue("@title", project.Title);
+                    cmd.Parameters.AddWithValue("@summary", project.Summary);
+                    cmd.Parameters.AddWithValue("@studentid", project.StudentId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private List<Project> ProjectList(string username)
+        {
+            List<Project> output = new List<Project>();
+
+            string SQL_GetProjects = @"SELECT * FROM project WHERE student_id=@studentid;";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllStudent_Language_Class, conn);
+                    cmd.Parameters.AddWithValue("@studentid", GetStudentId(username,conn));
+
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Project p = new Project();
+
+                        p.Title = Convert.ToString(reader["title"]);
+                        p.Summary = Convert.ToString(reader["summary"]);
+
+                        output.Add(p);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return output;
+
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model Capstone.Data.Models.Project
+
+@{
+    ViewBag.Title = "AddProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddProject</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="well creatNewUserForm">
+                <h2>Create a New Student Account</h2>
+                @using (Html.BeginForm("CreateStudentUser", "Staff", FormMethod.Post))
+                {
+                    @Html.Hidden("username", Model.StudentUsername)
+
+                    @Html.LabelFor(m =>m.Title,"Title:")
+                    @Html.TextBoxFor(m=>m.Title)
+                    @Html.ValidationMessageFor(m=>m.Title)
+
+                    @Html.LabelFor(m=>m.Summary, "Description")
+                    @Html.TextAreaFor(m=>m.Summary)
+                    @Html.ValidationMessageFor(m => m.Summary)
+
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+
+</div>

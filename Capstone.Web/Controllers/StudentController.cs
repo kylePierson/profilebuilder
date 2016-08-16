@@ -135,5 +135,23 @@ namespace Capstone.Web.Controllers
 
             return View("StudentSearchResult", model);
         }
+
+        public ActionResult AddProject(string username)
+        {
+            Project model = new Project();
+            model.StudentUsername = username;
+            return View("AddProject", model);
+        }
+
+        [HttpPost]
+        public ActionResult AddProject(string username, Project newProject)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("AddProject", newProject);
+            }
+            studentDAL.AddProject(username, newProject);
+            return RedirectToAction("Index");
+        }
     }
 }
