@@ -30,14 +30,8 @@ namespace Capstone.Data.DataAccess
 
 
         //Edit the next query VVV
-        private const string SQL_GetStudent = @"SELECT student.student_id, student.firstname,student.lastname, student.username, student.summary, student.linkedin, programming_language.name,
-                                                student.previousexperience, student.class, student.contactinfo, academic.degree, softskills.skill, interests.interest, project.title, project.summary
+        private const string SQL_GetStudent = @"SELECT *
                                                 FROM student
-                                                INNER JOIN academic on student.student_id = academic.student_id
-                                                INNER JOIN student_softskills ON student.student_id = student_softskills.student_id
-                                                INNER JOIN softskills ON student_softskills.softskill_id = softskills.softskill_id
-                                                INNER JOIN student_interests ON student.student_id = student_interests.student_id
-                                                INNER JOIN interests ON student_interests.interest_id = interests.interest_id
                                                 WHERE username = @username;";
 
         private const string SQL_GetStudentTest = @"SELECT * FROM student WHERE username = @username;";
@@ -75,17 +69,17 @@ namespace Capstone.Data.DataAccess
             try
             {
 
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(SQL_GetStudentId, conn);
-                cmd.Parameters.AddWithValue("@username", username);
 
-                SqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand c = new SqlCommand(SQL_GetStudentId, conn);
+                c.Parameters.AddWithValue("@username", username);
+
+                SqlDataReader reader = c.ExecuteReader();
 
                 while (reader.Read())
                 {
                     output = Convert.ToInt32(reader["student_id"]);
                 }
-
+                reader.Close();
             }
             catch (SqlException ex)
             {
@@ -94,6 +88,7 @@ namespace Capstone.Data.DataAccess
 
             return output;
         }
+
         //*************************************************
         public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
         {
@@ -259,14 +254,18 @@ namespace Capstone.Data.DataAccess
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
                         output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-                        output.AcademicDegree = Convert.ToString(reader["degree"]);
+                        output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
 
-                        output.InterestList = GetInterestList(username, conn);
-                        output.SkillList = GetSkillList(username, conn);
-                        output.ProjectList = GetProjectList(username, conn);
+                        //output.InterestList = GetInterestList(username, conn, reader);
+                        //output.SkillList = GetSkillList(username, conn, reader);
+                        //output.ProjectList = GetProjectList(username, conn, reader);
 
                     }
+                    reader.Close();
+                    output.InterestList = GetInterestList(username, conn);
+                    output.SkillList = GetSkillList(username, conn);
+                    output.ProjectList = GetProjectList(username, conn);
                 }
             }
             catch (SqlException ex)
@@ -518,24 +517,25 @@ namespace Capstone.Data.DataAccess
 
             try
             {
-                
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
-                    cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
 
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
+                cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
 
-                    while (reader.Read())
-                    {
-                        Project p = new Project();
 
-                        p.Title = Convert.ToString(reader["title"]);
-                        p.Summary = Convert.ToString(reader["summary"]);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                        output.Add(p);
-                    }
-                
+                while (reader.Read())
+                {
+                    Project p = new Project();
+
+                    p.Title = Convert.ToString(reader["title"]);
+                    p.Summary = Convert.ToString(reader["summary"]);
+
+                    output.Add(p);
+                }
+                reader.Close();
+
             }
             catch (SqlException ex)
             {
@@ -553,23 +553,23 @@ namespace Capstone.Data.DataAccess
 
             try
             {
-                
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
-                    cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
+
+                SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
+                cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
 
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        
+                while (reader.Read())
+                {
 
-                        string skill = Convert.ToString(reader["skill"]);
 
-                        output.Add(skill);
-                    }
-                
+                    string skill = Convert.ToString(reader["skill"]);
+
+                    output.Add(skill);
+                }
+                reader.Close();
+
             }
             catch (SqlException ex)
             {
@@ -587,7 +587,6 @@ namespace Capstone.Data.DataAccess
             try
             {
 
-                conn.Open();
                 SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
                 cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
 
@@ -602,6 +601,7 @@ namespace Capstone.Data.DataAccess
 
                     output.Add(skill);
                 }
+                reader.Close();
 
             }
             catch (SqlException ex)
