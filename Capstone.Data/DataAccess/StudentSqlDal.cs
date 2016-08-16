@@ -244,7 +244,7 @@ namespace Capstone.Data.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(SQL_GetStudentTest, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_GetStudent, conn);
                     cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -257,12 +257,12 @@ namespace Capstone.Data.DataAccess
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
-
+                        output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-                        //output.AcademicDegree = Convert.ToString(reader["degree"]);
+                        output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                        //output.Skills = Convert.ToString(reader["skills"]);
-                        //output.Interests = Convert.ToString(reader["interests"]);
+                        output.Skills = Convert.ToString(reader["skills"]);
+                        output.Interests = Convert.ToString(reader["interests"]);
 
 
 
