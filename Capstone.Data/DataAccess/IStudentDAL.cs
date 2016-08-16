@@ -22,5 +22,6 @@ namespace Capstone.Data.DataAccess
         void UpdateSkill(string skill, int studentId, SqlConnection conn);
         int GetStudentId(string username, SqlConnection conn);
         Student CreateStudentFromReader(SqlDataReader reader);
+
     }
 }
