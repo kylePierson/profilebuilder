@@ -187,7 +187,7 @@ namespace Capstone.Data.DataAccess
 
         private bool EmployerDoesNotHaveTheLanguage(string interest, string username)
         {
-            int count=0;
+            int count;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -198,7 +198,7 @@ namespace Capstone.Data.DataAccess
 
                 count = (int)cmd.ExecuteNonQuery();
             }
-            return (count > 0);
+            return (count == 0);
         }
         private void AddInterestToEmployer(string interest, string username)
         {

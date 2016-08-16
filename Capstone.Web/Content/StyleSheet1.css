@@ -93,13 +93,13 @@
 
 
 }
-.newsFeedStudent {
+#newsFeedStudent {
     border: 1px solid black;
     margin: auto;
 
 }
 
-.newsFeedStudent ul {
+#newsFeedStudent ul {
         list-style: none;
         background-color: #e6eeeb;
         margin: auto;

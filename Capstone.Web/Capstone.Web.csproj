@@ -170,6 +170,7 @@
     <Content Include="Content\images\siminnickelsen.jpg" />
     <Content Include="Content\images\Sucess.jpg" />
     <Content Include="Content\images\tylerpompeii.jpg" />
+    <Content Include="Content\ShowMoreLess.js" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
