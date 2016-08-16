@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace Capstone.Data.DataAccess
 {
-    public class StudentSqlDAL : IStudentDAL
+    public class StudentSqlDAL : IStudentDAL  
     {
         private string connectionString;
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
