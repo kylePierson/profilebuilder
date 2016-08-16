@@ -261,10 +261,10 @@ namespace Capstone.Data.DataAccess
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["degree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-                        output.Skills = Convert.ToString(reader["skills"]);
-                        output.Interests = Convert.ToString(reader["interests"]);
 
-                        output.ProjectList = GetProjectList(username);
+                        output.InterestList = GetInterestList(username, conn);
+                        output.SkillList = GetSkillList(username, conn);
+                        output.ProjectList = GetProjectList(username, conn);
 
                     }
                 }
@@ -510,7 +510,7 @@ namespace Capstone.Data.DataAccess
             }
         }
 
-        private List<Project> GetProjectList(string username)
+        private List<Project> GetProjectList(string username, SqlConnection conn)
         {
             List<Project> output = new List<Project>();
 
@@ -518,8 +518,7 @@ namespace Capstone.Data.DataAccess
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
+                
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
                     cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
@@ -536,7 +535,7 @@ namespace Capstone.Data.DataAccess
 
                         output.Add(p);
                     }
-                }
+                
             }
             catch (SqlException ex)
             {
@@ -544,6 +543,72 @@ namespace Capstone.Data.DataAccess
             }
             return output;
 
+        }
+
+        private List<string> GetSkillList(string username, SqlConnection conn)
+        {
+            List<string> output = new List<string>();
+
+            string SQL_GetProjects = @"SELECT softskills.skill FROM softskills, student_softskills WHERE softskills.softskill_id= student_softskills.softskill_id AND student_softskills.student_id=@studentid;";
+
+            try
+            {
+                
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
+                    cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
+
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        
+
+                        string skill = Convert.ToString(reader["skill"]);
+
+                        output.Add(skill);
+                    }
+                
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return output;
+        }
+
+        private List<string> GetInterestList(string username, SqlConnection conn)
+        {
+            List<string> output = new List<string>();
+
+            string SQL_GetProjects = @"SELECT interests.interest FROM interests, student_interests WHERE interests.interest_id= student_interests.interest_id AND student_interests.student_id=@studentid;";
+
+            try
+            {
+
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
+                cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+
+                    string skill = Convert.ToString(reader["interest"]);
+
+                    output.Add(skill);
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return output;
         }
     }
 }

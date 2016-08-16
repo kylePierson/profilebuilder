@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Capstone.Data.Models;
+using System.Data.SqlClient;
 
 namespace Capstone.Data.DataAccess
 {
@@ -16,5 +17,10 @@ namespace Capstone.Data.DataAccess
         HashSet<Student> GetAllStudentsWithKnowLanguage(string username);
         List<Student> GetAllStudentsWithKnowLanguageAndClass(string language, string studentClass);
         void AddProject(string username, Project project);
+        List<Project> GetProjectList(string username);
+        void UpdateInterest(string interest, int studentId, SqlConnection conn);
+        void UpdateSkill(string skill, int studentId, SqlConnection conn);
+        int GetStudentId(string username, SqlConnection conn);
+        Student CreateStudentFromReader(SqlDataReader reader)
     }
 }

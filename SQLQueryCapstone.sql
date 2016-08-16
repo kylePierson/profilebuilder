@@ -9,6 +9,7 @@ create table student (
  linkedin varchar(200),
  contactinfo varchar (200),
  username varchar (32) NOT NULL,
+ acedemicdegree varchar (200),
  CONSTRAINT pk_student_student_id PRIMARY KEY (student_id),
  CONSTRAINT ck_class CHECK (class IN ('.NET', 'Java'))
  );
@@ -42,15 +43,6 @@ CONSTRAINT user_password_username_password PRIMARY KEY (username)
 CONSTRAINT ck_role_title CHECK (role_title in('Student', 'Employer', 'Staff'))
 );
 
-create table academic (
-academic_id integer identity NOT NULL,
-degree varchar (32) NOT NULL,
-school varchar (32) NOT NULL,
-student_id integer NOT NULL,
-school_address varchar (64) NOT NULL,
-major varchar (32) NOT NULL,
-CONSTRAINT academic_academic_id PRIMARY KEY (academic_id)
-);
 
 create table interests (
 interest_id integer identity NOT NULL,
@@ -112,7 +104,6 @@ CONSTRAINT student_language_student_id_programminglanguage_id PRIMARY KEY (stude
 ALTER TABLE student ADD FOREIGN KEY (username) REFERENCES user_password(username);
 ALTER TABLE employer ADD FOREIGN KEY (username) REFERENCES user_password(username);
 ALTER TABLE staff ADD FOREIGN KEY (username) REFERENCES user_password(username);
-ALTER TABLE academic ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
 ALTER TABLE student_interests ADD FOREIGN KEY (interest_id) REFERENCES interests(interest_id);
 ALTER TABLE student_interests ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
 ALTER TABLE student_softskills ADD FOREIGN KEY (student_id) REFERENCES student(student_id);

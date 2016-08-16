@@ -70,16 +70,7 @@ Values ('Vending machine', 'people paid money and got snacks', 1);
 
 INSERT INTO project (title, summary, student_id)
 values ('TicTacToe', 'A interactive webpage using JavaScript', 2)
------------------------------------------------------------------------------------
---Academic
 
---using the student_id (1) to insert data in academic
-INSERT INTO academic(degree, school, student_id, school_address, major)
-VALUES ('Certificate','Tech Elevator', 1, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science');
-
---using the student_id (2) to insert data in academic
-INSERT INTO academic(degree, school, student_id, school_address, major)
-VALUES ('Certificate','Tech Elevator', 2, '7100 Euclid Ave #140, Cleveland, OH ','Computer Science');
 -----------------------------------------------------------------------------------
 --Interests
 
