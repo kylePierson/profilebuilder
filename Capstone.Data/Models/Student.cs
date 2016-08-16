@@ -15,16 +15,13 @@ namespace Capstone.Data.Models
         public string LastName { get; set; }
         public string Class { get; set; }
         public string Summary { get; set; }
-        //public List<string>  PreviousExperience { get; set; } 
-        //public List<string> AcademicDegree { get; set; }
         public string PreviousExperience { get; set; }
         public string AcademicDegree { get; set; }
         public string ContantInfo { get; set; }
-        public string Skills { get; set; }
-        public string Interests { get; set; }
+        public List<string> InterestList { get; set; }
+        public List<string> SkillList { get; set; }
         public List<Project> ProjectList { get; set; }
         public string LinkedIn { get; set; }
-        //public List<string> PreviousExperience { get; set; }
-        //public List<string> AcademicDegree { get; set; }
+
     }
 }
