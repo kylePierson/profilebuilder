@@ -146,21 +146,15 @@ namespace Capstone.Data.DataAccess
             int rowsAffected = 0;
             if (LanguageCount(interest) == 0)
             {
-                try
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
+                    conn.Open();
 
-                        SqlCommand cmd = new SqlCommand(SQL_AddLanguage_To_LanguageTable, conn);
-                        cmd.Parameters.AddWithValue("@interest", interest);
+                    SqlCommand cmd = new SqlCommand(SQL_AddLanguage_To_LanguageTable, conn);
+                    cmd.Parameters.AddWithValue("@interest", interest);
 
-                        rowsAffected = cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException ex)
-                {
-
+                    rowsAffected = cmd.ExecuteNonQuery();
                 }
             }
 
@@ -187,7 +181,7 @@ namespace Capstone.Data.DataAccess
 
         private bool EmployerDoesNotHaveTheLanguage(string interest, string username)
         {
-            int count;
+            int count=0;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -196,10 +190,11 @@ namespace Capstone.Data.DataAccess
                 cmd.Parameters.AddWithValue("@interest", interest);
                 cmd.Parameters.AddWithValue("@username", username);
 
-                count = (int)cmd.ExecuteNonQuery();
+                count = (int)cmd.ExecuteScalar();
             }
             return (count == 0);
         }
+
         private void AddInterestToEmployer(string interest, string username)
         {
             if (EmployerDoesNotHaveTheLanguage(interest, username))
