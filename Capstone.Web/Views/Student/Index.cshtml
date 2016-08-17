@@ -1,51 +1,80 @@
 ﻿@model Capstone.Data.Models.Student
 
-@{ 
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <div class="row">
-        
-        <div class="col-md-9">
-            <div class="well dash" >
-                <h2>Hello @Model.FirstName ! </h2>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="well dash">
+                <h2>Hello @Model.FirstName! </h2>
                 <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
                 <br />
-                
-                <br />
-                <table id="editinfo">
-                        <tr>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="well">
+                <table>
+                    <thead>
+                        <tr>                          
                             <td>Summary</td>
-                            <td>Previous Experience</td>
-                            <td>Degree</td>
-                            <td>Contact Info</td>
-                            <td>Skills</td>
-                            <td>Interests</td>
                         </tr>
 
-                        <tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>  
                             <td>@Model.Summary</td>
-                            <td>@Model.PreviousExperience</td>
-                            <td>@Model.AcademicDegree</td>
-                            <td>@Model.AcademicDegree</td>
-                            <td>@Model.ContactInfo</td>
-                            @for (int i = 0; i < Model.SkillList.Count; i++)
-                            {
-                                <td>@Model.SkillList[i]</td>
-                            }
-                            @for (int i = 0; i < Model.InterestList.Count; i++)
-                            {
-                                <td>@Model.InterestList[i]</td>
-                            }
                         </tr>
+                        <tr>
+                            <td><button type="submit">edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well dash">
+                <br />
+                <table id="editinfo">
+                    <tr>
+                    
+                        <td>Previous Experience</td>
+                        <td>Degree</td>
+                        <td>Contact Info</td>
+                        <td>Skills</td>
+                        <td>Interests</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>@Model.PreviousExperience</td>
+                        <td>@Model.AcademicDegree</td>
+                        <td>@Model.AcademicDegree</td>
+                        <td>@Model.ContactInfo</td>
+                        @for (int i = 0; i < Model.SkillList.Count; i++)
+                        {
+                            <td>@Model.SkillList[i]</td>
+                        }
+                        @for (int i = 0; i < Model.InterestList.Count; i++)
+                        {
+                            <td>@Model.InterestList[i]</td>
+                        }
+                    </tr>
                 </table>
                 <table>
                     <tr>
                         <th>Title</th>
                         <th>Summary</th>
                     </tr>
-                    @for( int i = 0; i < Model.ProjectList.Count; i++)
+                    @for (int i = 0; i < Model.ProjectList.Count; i++)
                     {
                         <tr>
                             <td>@Model.ProjectList[i].Title</td>
@@ -56,14 +85,39 @@
                 <a href="@Url.Content("~/App_Data/uploads/"+Model.FirstName.ToLower()+Model.LastName.ToLower()+"_Resume.pdf")">Master Plan</a>
             </div>
         </div>
-        <div class="col-md-3">
-            <ul class="creatNewUser">
-                <li>@Html.ActionLink("Update Profile", "UpdateProfile","Student", new { username = Model.Username }, null) </li>
-                <li>Change Password</li>
-            </ul>
+        <div class="col-md-4">
+            <div class="well">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Summary</td>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>@Model.Summary</td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-   
+<div class="col-md-3">
+    <ul class="creatNewUser">
+        <li>@Html.ActionLink("Update Profile", "UpdateProfile", "Student", new { username = Model.Username }, null) </li>
+        <li>Change Password</li>
+    </ul>
+</div>
+</div>
+
+
+
+
 
 </div>
 
