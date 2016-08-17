@@ -256,13 +256,10 @@ namespace Capstone.Data.DataAccess
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
                         output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-<<<<<<< HEAD
-                       // output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
-                        output.ContantInfo = Convert.ToString(reader["contactInfo"]);
-=======
+
                         output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
                         output.ContactInfo = Convert.ToString(reader["contactInfo"]);
->>>>>>> 9f545f330fe5d0918259fa52c5506688d986791f
+
 
                         //output.InterestList = GetInterestList(username, conn, reader);
                         //output.SkillList = GetSkillList(username, conn, reader);
