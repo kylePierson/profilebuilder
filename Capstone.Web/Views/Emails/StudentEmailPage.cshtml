@@ -5,7 +5,7 @@ Subject:Join Us
 Hello @ViewBag.FirstName,
 
 We want to let you know that an account for you has been created and that we invite you to update your profile. You
-can <a href='@Url.Action("LogIn", "Home")'>click here</a> to visit the web page where you will be prompted to sign in
+can @Html.ActionLink("Click Here", "LogIn", "User") to visit the web page where you will be prompted to sign in
 with the following username and temporary password:
 
 Username: @ViewBag.Username

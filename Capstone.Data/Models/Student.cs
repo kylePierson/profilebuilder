@@ -17,7 +17,7 @@ namespace Capstone.Data.Models
         public string Summary { get; set; }
         public string PreviousExperience { get; set; }
         public string AcademicDegree { get; set; }
-        public string ContantInfo { get; set; }
+        public string ContactInfo { get; set; }
         public List<string> InterestList { get; set; }
         public List<string> SkillList { get; set; }
         public List<Project> ProjectList { get; set; }

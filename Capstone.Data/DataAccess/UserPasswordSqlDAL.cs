@@ -142,6 +142,35 @@ namespace Capstone.Data.DataAccess
             }
             return result > 0;
         }
+
+        public string ResetPassword(string username)
+        {
+            string SQL_ResetPassword = @"UPDATE user_password SET password = @password WHERE username=@username;";
+            // generate guid
+            string newPassword = null;
+            try
+            {
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    newPassword= Guid.NewGuid().ToString();
+
+                    SqlCommand cmd = new SqlCommand(SQL_ResetPassword, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", newPassword);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            return newPassword;
+
+        }
     }
 }
 

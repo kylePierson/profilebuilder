@@ -3,6 +3,7 @@ using Capstone.Data.Models;
 using Capstone.Web.Filters;
 using Capstone.Web.Models;
 using Critter.Web.Models;
+using Postal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,15 @@ namespace Capstone.Web.Controllers
     public class UserController : ProfileBuilderController
     {
         private readonly IUserPasswordDAL userPasswordDal;
+        private readonly IStudentDAL studentDal;
+        private readonly IEmployerDAL employerDal;
 
-        public UserController(IUserPasswordDAL userPasswordDal)
+        public UserController(IUserPasswordDAL userPasswordDal, IStudentDAL studentDal, EmployerSqlDAL employerDal)
             : base(userPasswordDal)
         {
             this.userPasswordDal = userPasswordDal;
+            this.studentDal = studentDal;
+            this.employerDal = employerDal;
         }
 
         public ActionResult LogIn()
@@ -95,5 +100,51 @@ namespace Capstone.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ForgotPassword()
+        {           
+            List<SelectListItem> roleDropDown = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text = "Student" },
+                new SelectListItem() { Text = "Employer" },
+            };
+
+            ViewBag.RoleDropDownList = roleDropDown;
+            return View("ForgotPassword");
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(string username, string role)
+        {
+            UserPassword user = userPasswordDal.GetUser(username);
+            if (user == null)
+            {
+                ModelState.AddModelError("invalid username", "A registered username is required");
+            }
+
+            if (user.RoleTitle == "Employer")
+            {
+                string contactEmail = employerDal.GetEmployer(username).ContactInfo;
+                string newPassword = userPasswordDal.ResetPassword(username);
+                SendEmail(contactEmail, username, newPassword);
+            }
+            else if (user.RoleTitle == "Student")
+            {
+                string contactEmail = studentDal.GetStudent(username).ContactInfo;
+                string newPassword = userPasswordDal.ResetPassword(username);
+                SendEmail(contactEmail, username, newPassword);               
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        private void SendEmail(string emailAddress, string username, string newPassword)
+        {
+            dynamic email = new Email("ForgotPasswordEmailPage");
+            email.To = emailAddress;
+            email.Username = username;
+            email.NewPassword = newPassword;
+            email.Send();
+        }
+
     }
 }

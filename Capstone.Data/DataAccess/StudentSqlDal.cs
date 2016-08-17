@@ -13,8 +13,8 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
-        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class) 
-                                                    VALUES (@username, @firstname, @lastname, @class);";
+        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class, contactinfo) 
+                                                    VALUES (@username, @firstname, @lastname, @class, @contactinfo);";
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
 
         private const string SQL_UpdateStudentUser = @"UPDATE student 
@@ -91,7 +91,7 @@ namespace Capstone.Data.DataAccess
         }
 
         //*************************************************
-        public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
+        public bool AddStudentUser(string username, string firstName, string lastName, string cohort, string emailAddress)
         {
             int rowsAffected = 0;
             try
@@ -105,6 +105,7 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@firstname", firstName);
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@class", cohort);
+                    cmd.Parameters.AddWithValue("@contactinfo", emailAddress);
 
                     rowsAffected = cmd.ExecuteNonQuery();
                 }
@@ -161,7 +162,7 @@ namespace Capstone.Data.DataAccess
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
             // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-            s.ContantInfo = Convert.ToString(reader["contactinfo"]);
+            s.ContactInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
 
@@ -255,8 +256,13 @@ namespace Capstone.Data.DataAccess
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
                         output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
+<<<<<<< HEAD
                        // output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
                         output.ContantInfo = Convert.ToString(reader["contactInfo"]);
+=======
+                        output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
+                        output.ContactInfo = Convert.ToString(reader["contactInfo"]);
+>>>>>>> 9f545f330fe5d0918259fa52c5506688d986791f
 
                         //output.InterestList = GetInterestList(username, conn, reader);
                         //output.SkillList = GetSkillList(username, conn, reader);
@@ -279,58 +285,27 @@ namespace Capstone.Data.DataAccess
 
         public HashSet<Student> GetAllStudentsWithKnowLanguage(string username)
         {
-            string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname
-                                from student
-                                inner join student_language on student_language.student_id = student.student_id
-                                inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
-                                where ";
+            string SQL_GetAllStudent_Language = @"select distinct student.firstname, student.lastname from 
+                                    employer 
+                                    inner join employer_language 
+                                    on employer.employer_id = employer_language.employer_id
+                                    inner join student_language  
+                                    on student_language.programminglanguage_id = employer_language.programminglanguage_id
+                                    inner join student  on
+                                    student.student_id = student_language.student_id
+                                    where employer.username = @username; ";
 
             HashSet<Student> output = new HashSet<Student>();
-            List<string> languages = new List<string>();
 
-            string query = @"select programming_language.name
-                        from programming_language
-                        inner join employer_language on employer_language.programminglanguage_id = programming_language.programminglanguage_id
-                        inner join employer on employer.employer_id = employer_language.employer_id
-                        where employer.username =@username";
-
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@username", username);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string language = Convert.ToString(reader["name"]);
-                    languages.Add(language);
-                }
-            }
-
-            for (int i = 0; i < languages.Count; i++)
-            {
-                if (i == 0)
-                    SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, "programming_language.name = '", languages[i], "' ");
-                else
-                    SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, " OR programming_language.name = '", languages[i], "' ");
-
-            }
-            SQL_GetAllStudent_Language = String.Concat(SQL_GetAllStudent_Language, ";");
+          
             try
             {
-                //string SQL_GetAllStudent_Language = @"SELECT student.firstname , student.lastname, student.class
-                //                from student
-                //                inner join student_language on student_language.student_id = student.student_id
-                //                inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
-                //               where programming_language.name = 'C#' ;";
+                
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetAllStudent_Language, conn);
-
+                    cmd.Parameters.AddWithValue("@username", username);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
