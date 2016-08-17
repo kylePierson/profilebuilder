@@ -164,7 +164,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Expand_collaps.js" />
     <Content Include="Content\images\backgroundImage.jpg" />
     <Content Include="Content\images\blue1.jpg" />
     <Content Include="Content\images\blue2.jpg" />
