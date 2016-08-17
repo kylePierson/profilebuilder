@@ -129,7 +129,7 @@ namespace Capstone.Web.Controllers
             return View("SearchStudents");
         }
         [HttpPost]
-        public ActionResult SearchStudentsByLanguage(string language, string studentClass)
+        public ActionResult SearchStudentsByLanguage(string language, string studentClass, string username)
         {
             List<Student> model = studentDAL.GetAllStudentsWithKnowLanguageAndClass(language, studentClass);
 
