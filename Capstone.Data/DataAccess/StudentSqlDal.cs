@@ -46,7 +46,7 @@ namespace Capstone.Data.DataAccess
                         where programming_language.name = @language";
 
 
-        private const string SQL_GetAllStudent_Language_Class = @"SELECT student.firstname , student.lastname
+        private const string SQL_GetAllStudent_Language_Class = @"SELECT student.firstname , student.lastname , student.username
                                 from student
                                 inner join student_language on student_language.student_id = student.student_id
                                 inner join programming_language on programming_language.programminglanguage_id = student_language.programminglanguage_id
@@ -336,6 +336,7 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_GetAllStudent_Language_Class, conn);
                     cmd.Parameters.AddWithValue("@language", language);
                     cmd.Parameters.AddWithValue("@StudentClass", studentClass);
+                    
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -345,8 +346,8 @@ namespace Capstone.Data.DataAccess
 
                         newStudent.FirstName = Convert.ToString(reader["firstname"]);
                         newStudent.LastName = Convert.ToString(reader["lastname"]);
-                        //newStudent.Username = Convert.ToString(reader["uername"]);
-                        
+                        newStudent.Username = Convert.ToString(reader["username"]);
+
                         output.Add(newStudent);
                     }
                 }
