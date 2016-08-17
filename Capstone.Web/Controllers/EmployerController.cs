@@ -11,10 +11,12 @@ namespace Capstone.Web.Controllers
     public class EmployerController : Controller
     {
         IEmployerDAL employerDAL;
+        IStudentDAL studentDAL;
 
-        public EmployerController(IEmployerDAL employerDal)
+        public EmployerController(IEmployerDAL employerDal, IStudentDAL studentDAL)
         {    
             this.employerDAL = employerDal;
+            this.studentDAL = studentDAL;
         }
         // GET: Employer
         public ActionResult Index(string username)
@@ -43,5 +45,11 @@ namespace Capstone.Web.Controllers
             return true;
         }
 
+        public ActionResult ViewStudent(string username)
+        {
+            Student model = studentDAL.GetStudent(username);
+
+            return View("ViewStudent", model);
+        }
     }
 }
