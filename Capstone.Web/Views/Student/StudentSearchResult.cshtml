@@ -9,11 +9,11 @@
     @foreach (var student in Model)
     {
         <ul>
-            @*<li>
-                <a href='@Url.Action("ViewStudent", "Employer", new { username = student.Username },null)'>
-                    <img src="@string.Concat("/Content/images/", student.FirstName.ToLower(), student.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
-                </a></li>*@
-            <li>@student.Username</li>
+            <li>
+                <a href='@url.action("viewstudent", "employer", new { username = student.username },null)'>
+                    <img src="@string.concat("/content/images/", student.firstname.tolower(), student.lastname.tolower(), ".jpg")" class="img-circle profileimage" />
+                </a></li>
+           
             <li class="fontBold">@student.FirstName  @student.LastName<br /></li>
         </ul>
     }

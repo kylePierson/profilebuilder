@@ -254,16 +254,12 @@ namespace Capstone.Data.DataAccess
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
-                        output.LinkedIn = Convert.ToString(reader["linkedin"]);
+                        output.LinkedIn = Convert.ToString(reader["linkedin"]);                  
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-
                         output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
                         output.ContactInfo = Convert.ToString(reader["contactInfo"]);
 
 
-                        //output.InterestList = GetInterestList(username, conn, reader);
-                        //output.SkillList = GetSkillList(username, conn, reader);
-                        //output.ProjectList = GetProjectList(username, conn, reader);
 
                     }
                     reader.Close();
@@ -346,7 +342,8 @@ namespace Capstone.Data.DataAccess
 
                         newStudent.FirstName = Convert.ToString(reader["firstname"]);
                         newStudent.LastName = Convert.ToString(reader["lastname"]);
-                        newStudent.Username = Convert.ToString(reader["username"]);
+
+                        //newStudent.Username = Convert.ToString(reader["uername"]);
 
                         output.Add(newStudent);
                     }
