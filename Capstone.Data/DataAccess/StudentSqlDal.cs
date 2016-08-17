@@ -18,7 +18,7 @@ namespace Capstone.Data.DataAccess
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
 
         private const string SQL_UpdateStudentUser = @"UPDATE student 
-                                                        SET summary=@summary, previousexperience=@previousexperience, degree=@degree, contactinfo=@contactInfo, skill=@skills, interests=@interests 
+                                                        SET summary=@summary, previousexperience=@previousexperience, acedemicdegree=@degree, contactinfo=@contactInfo 
                                                         where username = @username";
         private const string SQL_GetAllStudents = "";
 
@@ -185,8 +185,8 @@ namespace Capstone.Data.DataAccess
 
                     cmd.ExecuteNonQuery();
 
-                    UpdateSkill(skills, GetStudent(username).StudentId, conn);
-                    UpdateInterest(interests, GetStudent(username).StudentId, conn);
+                    UpdateSkill(skills, GetStudentId(username,conn), conn);
+                    UpdateInterest(interests, GetStudentId(username, conn), conn);
 
                 }
             }
@@ -379,9 +379,11 @@ namespace Capstone.Data.DataAccess
                     s.Name = Convert.ToString(reader["skill"]);
 
                 }
+                reader.Close();
 
                 if (s == null)
                 {
+
                     cmd = new SqlCommand(SQL_AddSkill, conn);
                     cmd.Parameters.AddWithValue("@skill", skill);
 
@@ -432,7 +434,7 @@ namespace Capstone.Data.DataAccess
                     s.Name = Convert.ToString(reader["interest"]);
 
                 }
-
+                reader.Close();
                 if (s == null)
                 {
                     cmd = new SqlCommand(SQL_AddInterest, conn);
@@ -452,7 +454,6 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@interestid", s.Id);
                     cmd.Parameters.AddWithValue("@studentid", studentId);
                 }
-
             }
             catch (Exception ex)
             {

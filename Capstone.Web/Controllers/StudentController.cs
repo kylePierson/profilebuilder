@@ -84,19 +84,19 @@ namespace Capstone.Web.Controllers
             }
             if (resume!=null && resume.ContentLength > 0)
             {
-                string[] segments = photo.FileName.Split('.');
+                string[] segments = resume.FileName.Split('.');
                 string fileExt = segments[segments.Length - 1];
                 var fileName = fileNames[1] + "." + fileExt;
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
 
                 resume.SaveAs(path);
             }
             if (coverLetter != null && coverLetter.ContentLength > 0)
             {
-                string[] segments = photo.FileName.Split('.');
+                string[] segments = coverLetter.FileName.Split('.');
                 string fileExt = segments[segments.Length - 1];
                 var fileName = fileNames[2] + "." + fileExt;
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
 
                 coverLetter.SaveAs(path);
             }

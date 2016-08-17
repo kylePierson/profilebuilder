@@ -91,7 +91,9 @@ namespace Capstone.Web.Controllers
             userPasswordDal.ChangePassword(username, model.NewPassword);
             //TODO: Come back and fix change password
 
-            return RedirectToAction("Dashboard", "Messages", new { username = base.CurrentUser });
+            string role = userPasswordDal.GetUser(username).RoleTitle;
+
+            return RedirectToAction("Index", role, new { username = base.CurrentUser });
         }
 
         public ActionResult Logout()
