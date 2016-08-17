@@ -5,10 +5,15 @@
 INSERT INTO user_password (username, password, role_title)
 VALUES ('pokemonGo69', 'password', 'Employer');
 
+INSERT INTO user_password (username, password, role_title)
+VALUES ('techelevator', 'password', 'Employer');
 
 --This is inserting employer contact info into employer and inserting data(values) for all the columns 
 INSERT INTO employer (company, contactfirstname, contactlastname, address, username, contactinfo)
 VALUES('Hyland', 'James', 'Vorous','Westlake, OH','pokemonGo69', 'J.valous@onbase.com');
+
+INSERT INTO employer (company, contactfirstname, contactlastname, address, username, contactinfo)
+VALUES('Tech Elevator', 'Josh', 'T.','CLE','techelevator', 'test@tech.com');
 -----------------------------------------------------------------------------------
 --Staff
 
@@ -26,10 +31,15 @@ Values('Josh', 'Tucholski', 'Instructor', 'jTucholski');
 INSERT INTO user_password (username, password, role_title)
 VALUES ('piersonkyle90', 'password', 'Student');
 
+INSERT INTO user_password (username, password, role_title)
+VALUES ('james', 'password', 'Student');
+
 -- same as the staff, but now it is populating student table and columns 
 INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
 VALUES('Kyle', 'Pierson', '.NET', 'I am the best .NET student in this bitch', 'Bindows', 'piersonkyle90@yahoo.com', 'piersonkyle90');
 
+INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
+VALUES('James', 'Vouros', 'JAVA', 'I am the best JAVA student in this bitch', 'Bindows', 'piersonkyle90@yahoo.com', 'james');
 
 --  assigning Simin, using username to identify her, a password and roll
 INSERT INTO user_password (username, password, role_title)
@@ -86,6 +96,7 @@ VALUES (1,1)
 INSERT INTO student_interests (student_id, interest_id)
 VALUES (2,2)
 
+
 -----------------------------------------------------------------------------------
 --Programming languages
 
@@ -103,6 +114,15 @@ VALUES ('JavaScript')
 -- insert into employer_language
 INSERT INTO employer_language (employer_id, programminglanguage_id)
 VALUES (1,1);
+
+INSERT INTO employer_language (employer_id, programminglanguage_id)
+VALUES (1,2);
+
+INSERT INTO employer_language (employer_id, programminglanguage_id)
+VALUES (2,3);
+
+INSERT INTO employer_language (employer_id, programminglanguage_id)
+VALUES (2,1);
 -----------------------------------------------------------------------------------
 --Programming languages for students
 
@@ -112,3 +132,12 @@ Values (1, 2);
 
 INSERT INTO student_language (student_id, programminglanguage_id)
 Values (2, 3);
+
+INSERT INTO student_language (student_id, programminglanguage_id)
+Values (3, 3);
+
+INSERT INTO student_language (student_id, programminglanguage_id)
+Values (1, 1);
+
+INSERT INTO student_language (student_id, programminglanguage_id)
+Values (2, 1);
