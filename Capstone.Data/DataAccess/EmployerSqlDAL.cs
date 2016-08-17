@@ -14,7 +14,7 @@ namespace Capstone.Data.DataAccess
         private string connectionString;
 
         private const string SQL_AddEmployerUser = @"INSERT INTO employer 
-                                                    VALUES (@username, @firstname, @lastname);";
+                                                    VALUES (@company, @firstname, @lastname, @address, @username, @contactinfo);";
 
         private const string SQL_GetEmployer = @"select programming_language.name
                                     from employer
@@ -58,7 +58,7 @@ namespace Capstone.Data.DataAccess
             connectionString = databaseconnectionString;
         }
 
-        public bool AddEmployerUser(string username, string firstName, string lastName, string company, string programingLanguge)
+        public bool AddEmployerUser(string username, string firstName, string lastName, string company, string emailAdress, string location)
         {
             int rowsAffected = 0;
             try
@@ -72,7 +72,8 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@firstname", firstName);
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@company", company);
-                    cmd.Parameters.AddWithValue("@programming_language", programingLanguge);
+                    cmd.Parameters.AddWithValue("@contactinfo", emailAdress);
+                    cmd.Parameters.AddWithValue("@address", location);
 
                     rowsAffected = cmd.ExecuteNonQuery();
                 }

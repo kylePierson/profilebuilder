@@ -13,8 +13,8 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
-        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class) 
-                                                    VALUES (@username, @firstname, @lastname, @class);";
+        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class, contactinfo) 
+                                                    VALUES (@username, @firstname, @lastname, @class, @contactinfo);";
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
 
         private const string SQL_UpdateStudentUser = @"UPDATE student 
@@ -90,7 +90,7 @@ namespace Capstone.Data.DataAccess
         }
 
         //*************************************************
-        public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
+        public bool AddStudentUser(string username, string firstName, string lastName, string cohort, string emailAddress)
         {
             int rowsAffected = 0;
             try
@@ -104,6 +104,7 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@firstname", firstName);
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@class", cohort);
+                    cmd.Parameters.AddWithValue("@contactinfo", emailAddress);
 
                     rowsAffected = cmd.ExecuteNonQuery();
                 }

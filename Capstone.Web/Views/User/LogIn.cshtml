@@ -6,22 +6,26 @@
 
 
 <div class="container-fluid">
+    <br/>
     <div class="row">
 
         <div class="col-sm-4">
 
         </div>
         <div class="col-sm-4 login">
-            <div class="col-sm-4">
+            <div class="loginDiv">
                 @using (Html.BeginForm("LogIn", "User", FormMethod.Post))
                 {
                     @Html.ValidationSummary()
 
                     @Html.LabelFor(m => m.Username)
+                    <br/>
                     @Html.TextBoxFor(m => m.Username)
-                    @Html.ValidationMessageFor(m => m.Username ,null, new { @class = "text-danger" })
-
+                    @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger" })
+                    <br />
+                    <br />
                     @Html.LabelFor(m => m.Password)
+                    <br/>
                     @Html.PasswordFor(m => m.Password)
                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
                     <br />
@@ -29,20 +33,15 @@
                     <button id="loginButton">Log in</button>
                     <br />
                 }
-                
+
                 @*add action link for forgot password*@
                 <br />
+
                 @Html.ActionLink("Forgot_Password?", "ForgotPassword", "User")
-
-
             </div>
-
-
         </div>
         <div class="col-sm-4 ">
-            <div class="col-sm-4 ">
-
-            </div>
+            
         </div>
     </div>
 </div>
