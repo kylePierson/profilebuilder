@@ -193,6 +193,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="c-capstone - Shortcut.lnk" />
+    <Content Include="App_Data\uploads\kylepierson_Resume.pdf" />
     <None Include="bin\Capstone.Web.dll.config" />
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
@@ -273,7 +274,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\uploads\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\ProfileBuilder\" />
   </ItemGroup>
