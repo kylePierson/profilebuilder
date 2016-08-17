@@ -1,17 +1,18 @@
-﻿
-@{
-    Layout = null;
-}
+﻿From: noreply.profilebuilder@gmail.com
+To: @ViewBag.To
+Subject:Join Us
 
-<!DOCTYPE html>
+Hello @ViewBag.FirstName,
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EmployerEmailPage</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+We want to let you know that an account for you has been created and that we invite you to update your profile. You
+can @Html.ActionLink("Click Here", "LogIn", "User") to visit the web page where you will be prompted to sign in
+with the following username and temporary password:
+
+Username: @ViewBag.Username
+Password: password
+
+After you log in please make sure you change your password.
+
+Thanks!
+
+The Profile Builder Team

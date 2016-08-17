@@ -252,7 +252,6 @@
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\StudentEmailPage.cshtml" />
-    <Content Include="Views\Emails\StaffEmailPage.cshtml" />
     <Content Include="Views\Emails\EmployerEmailPage.cshtml" />
     <Content Include="Views\Student\SearchStudents.cshtml" />
     <Content Include="Views\Student\SearchStudentsByLanguage.cshtml" />
@@ -263,6 +262,8 @@
     <Content Include="Views\Employer\ViewStudent.cshtml" />
     <Content Include="Views\Student\StudentSearchResult.cshtml" />
     <Content Include="Views\Student\AddProject.cshtml" />
+    <Content Include="Views\Emails\ForgotPasswordEmailPage.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

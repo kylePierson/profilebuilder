@@ -13,8 +13,8 @@ namespace Capstone.Data.DataAccess
     {
         private string connectionString;
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
-        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class) 
-                                                    VALUES (@username, @firstname, @lastname, @class);";
+        private const string SQL_AddStudentUser = @"INSERT INTO student (username, firstname, lastname, class, contactinfo) 
+                                                    VALUES (@username, @firstname, @lastname, @class, @contactinfo);";
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
 
         private const string SQL_UpdateStudentUser = @"UPDATE student 
@@ -90,7 +90,7 @@ namespace Capstone.Data.DataAccess
         }
 
         //*************************************************
-        public bool AddStudentUser(string username, string firstName, string lastName, string cohort)
+        public bool AddStudentUser(string username, string firstName, string lastName, string cohort, string emailAddress)
         {
             int rowsAffected = 0;
             try
@@ -104,6 +104,7 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@firstname", firstName);
                     cmd.Parameters.AddWithValue("@lastname", lastName);
                     cmd.Parameters.AddWithValue("@class", cohort);
+                    cmd.Parameters.AddWithValue("@contactinfo", emailAddress);
 
                     rowsAffected = cmd.ExecuteNonQuery();
                 }
@@ -160,7 +161,7 @@ namespace Capstone.Data.DataAccess
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
             // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
-            s.ContantInfo = Convert.ToString(reader["contactinfo"]);
+            s.ContactInfo = Convert.ToString(reader["contactinfo"]);
             return s;
         }
 
@@ -255,7 +256,7 @@ namespace Capstone.Data.DataAccess
                         output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
-                        output.ContantInfo = Convert.ToString(reader["contactInfo"]);
+                        output.ContactInfo = Convert.ToString(reader["contactInfo"]);
 
                         //output.InterestList = GetInterestList(username, conn, reader);
                         //output.SkillList = GetSkillList(username, conn, reader);
