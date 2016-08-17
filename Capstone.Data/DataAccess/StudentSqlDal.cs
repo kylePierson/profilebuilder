@@ -39,6 +39,7 @@ namespace Capstone.Data.DataAccess
 
 
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
+
         private string SQL_getstudentList_KnownLanguage = @"select student.firstname, student.lastname, student.class
                         from student
                         inner join student_language on student.student_id = student_language.student_id
@@ -342,8 +343,7 @@ namespace Capstone.Data.DataAccess
 
                         newStudent.FirstName = Convert.ToString(reader["firstname"]);
                         newStudent.LastName = Convert.ToString(reader["lastname"]);
-
-                        //newStudent.Username = Convert.ToString(reader["uername"]);
+                        newStudent.Username = Convert.ToString(reader["username"]);
 
                         output.Add(newStudent);
                     }

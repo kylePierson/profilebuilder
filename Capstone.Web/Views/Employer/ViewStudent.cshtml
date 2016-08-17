@@ -1,9 +1,157 @@
 ﻿@model Capstone.Data.Models.Student
 
 @{
-    ViewBag.Title = "ViewStudent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewStudent</h2>
+<div class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-sm-4 ">
 
+        </div>
+        <div class="col-sm-4 well">
+            <p align="center">
+                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+            </p>
+                <br />
+            <h2 align ="center">@Model.FirstName @Model.LastName</h2>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+
+    <div class="panel-group" id="accordion">
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="panel panel-default col-sm-4">
+
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Skills
+                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            @foreach (var skill in Model.SkillList)
+                            {
+                                <li>@skill</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="panel panel-success col-sm-4">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Interests
+                    </a>
+                </h4>
+            </div>
+
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        @foreach (var interest in Model.InterestList)
+                        {
+                            <li>@interest</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="panel panel-info col-sm-4">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Summary
+                    </a>
+                </h4>
+            </div>
+
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @Model.Summary
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="panel panel-warning col-sm-4">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        Projects
+                    </a>
+                </h4>
+            </div>
+
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                        @foreach (var project in Model.ProjectList)
+                        {
+                            <tr>
+                                <td>@project.Title</td>
+                                <td>@project.Summary</td>
+                            </tr>
+
+
+                        }
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
+    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#collapseFour').collapse({
+            toggle: false
+        })
+    });
+
+    $(function () { $('#collapseTwo').collapse('show') });
+    $(function () { $('#collapseThree').collapse('toggle') });
+    $(function () { $('#collapseOne').collapse('hide') });
+</script>
