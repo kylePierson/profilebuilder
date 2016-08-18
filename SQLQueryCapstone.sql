@@ -36,7 +36,7 @@ CONSTRAINT staff_staff_id PRIMARY KEY (staff_id)
 
 CREATE TABLE user_password (
 username varchar (32) NOT NULL,
-password varchar (32) NOT NULL,
+password varchar (max) NOT NULL,
 
 role_title varchar(32) NOT NULL
 CONSTRAINT user_password_username_password PRIMARY KEY (username)

@@ -139,7 +139,16 @@
 
         </div>
     </div>
+    @if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")))
+    {
+    <a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">Resume</a>
+    }
+    @if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_CoverLetter.pdf")))
+    {
+    <a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_CoverLetter.pdf")">CoverLetter</a>
+    }
 </div>
+
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
