@@ -584,16 +584,17 @@ namespace Capstone.Data.DataAccess
 
             string SQL_Update_ContactInfo = @"UPDATE student
                             set contactinfo = @contactInfo
-                            where username = @username";
+                            where username = @username ;";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
                     SqlCommand cmd = new SqlCommand(SQL_Update_ContactInfo, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
@@ -602,13 +603,13 @@ namespace Capstone.Data.DataAccess
             }
         }
 
-        public bool UpdateStudentSummary(string username, string summary)
+        public void UpdateStudentSummary(string username, string editSummary)
         {
+
             string SQL_Update_Summary = @"UPDATE student
                             set summary = @summary
-                            where username = @usename";
-
-            int rowsAffected = 0;
+                            where username = @username;";
+           
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -617,23 +618,23 @@ namespace Capstone.Data.DataAccess
 
                     SqlCommand cmd = new SqlCommand(SQL_Update_Summary, conn);
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@summary", summary);
+                    cmd.Parameters.AddWithValue("@summary", editSummary);
 
-                    rowsAffected = cmd.ExecuteNonQuery();
+                   cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
 
             }
-            return rowsAffected > 0;
+           
         }
 
-        public bool UpdateStudentAcademicDegree(string username , string degree)
+        public void UpdateStudentAcademicDegree(string username , string degree)
         {
             string SQL_Update_AcademicDegree = @"UPDATE student
                             set acedemicdegree = @degree
-                            where username = @usename";
+                            where username = @username";
 
             int rowsAffected = 0;
             try
@@ -653,17 +654,17 @@ namespace Capstone.Data.DataAccess
             {
 
             }
-            return rowsAffected > 0;
+           
         }
 
-        public bool UpdateStudentPreviousExperience(string username, string experience)
+        public void UpdateStudentPreviousExperience(string username, string experience)
         {
 
             string SQL_Update_PreviousExperience = @"UPDATE student
                             set previousexperience = @experience
-                            where username = @usename";
+                            where username = @username";
 
-            int rowsAffected = 0;
+            
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -674,14 +675,14 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@experience", experience);
 
-                    rowsAffected = cmd.ExecuteNonQuery();
+               cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
 
             }
-            return rowsAffected > 0;
+         
         }
 
         //check to see if the skill already exists in softskill table

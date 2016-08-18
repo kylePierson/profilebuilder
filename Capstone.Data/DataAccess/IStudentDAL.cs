@@ -20,9 +20,9 @@ namespace Capstone.Data.DataAccess
 
         //update student info from dash board
         void UpdateStudentContactInfo(string username, string contactInfo);
-        bool UpdateStudentSummary(string username, string summary);
-        bool UpdateStudentAcademicDegree(string username, string degree);
-        bool UpdateStudentPreviousExperience(string username, string experience);
+        void UpdateStudentSummary(string username, string summary);
+        void UpdateStudentAcademicDegree(string username, string degree);
+        void UpdateStudentPreviousExperience(string username, string experience);
         void AddStudentSkill(string username, string skill);
         void DeleteStudentSkill(string username, string skill);
         void AddStudentInterest(string username, string interest);

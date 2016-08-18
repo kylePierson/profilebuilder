@@ -50,6 +50,7 @@
         </div>
         <div class="col-md-4">
             <div class="well dash">
+
                 <table>
                     <thead>
                         <tr>
@@ -62,7 +63,7 @@
                             <td >
                                 <span class="visible" id="contactInfoSpan"> @Model.ContactInfo </span>
                                 <span class="hide">
-                                    @using (Html.BeginForm("UpdateStudentCOntactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
+                                    @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" name="editContactInfo" id="summaryEditSpan" />
                                         <button type="submit" class="btn btn-primary">Save</button>
@@ -71,6 +72,7 @@
                             </td>
                         </tr>
                     </tbody>
+
                 </table>
                 <button type="submit" class="btn btn-primary" id="editContactInfoButton">Edit</button>
 
