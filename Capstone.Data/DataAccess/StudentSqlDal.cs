@@ -20,7 +20,6 @@ namespace Capstone.Data.DataAccess
         private const string SQL_UpdateStudentUser = @"UPDATE student 
                                                         SET summary=@summary, previousexperience=@previousexperience, acedemicdegree=@degree, contactinfo=@contactInfo 
                                                         where username = @username";
-        private const string SQL_GetAllStudents = "";
 
         private const string SQL_GetSkill = @"SELECT * FROM softskills WHERE skill=@skill";
 
@@ -34,8 +33,6 @@ namespace Capstone.Data.DataAccess
         private const string SQL_GetStudent = @"SELECT *
                                                 FROM student
                                                 WHERE username = @username;";
-
-        private const string SQL_GetStudentTest = @"SELECT * FROM student WHERE username = @username;";
 
 
         private const string SQL_CreateStudentFromReader = "SELECT * FROM student;";
@@ -162,6 +159,7 @@ namespace Capstone.Data.DataAccess
             s.StudentId = Convert.ToInt32(reader["student_id"]);
             s.Class = Convert.ToString(reader["class"]);
             s.Summary = Convert.ToString(reader["summary"]);
+            s.ElevatorPitch = Convert.ToString(reader["elevatorpitch"]);
             // s.PreviousExperience = Convert.ToString(reader["previousexperience"]);
             s.ContactInfo = Convert.ToString(reader["contactinfo"]);
             return s;
