@@ -260,8 +260,6 @@ namespace Capstone.Data.DataAccess
                         output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
                         output.ContactInfo = Convert.ToString(reader["contactInfo"]);
 
-
-
                     }
                     reader.Close();
                     output.InterestList = GetInterestList(username, conn);
@@ -491,8 +489,6 @@ namespace Capstone.Data.DataAccess
 
             try
             {
-
-
                 SqlCommand cmd = new SqlCommand(SQL_GetProjects, conn);
                 cmd.Parameters.AddWithValue("@studentid", GetStudentId(username, conn));
 
@@ -536,8 +532,6 @@ namespace Capstone.Data.DataAccess
 
                 while (reader.Read())
                 {
-
-
                     string skill = Convert.ToString(reader["skill"]);
 
                     output.Add(skill);
@@ -569,8 +563,6 @@ namespace Capstone.Data.DataAccess
 
                 while (reader.Read())
                 {
-
-
                     string skill = Convert.ToString(reader["interest"]);
 
                     output.Add(skill);
@@ -583,6 +575,197 @@ namespace Capstone.Data.DataAccess
                 throw;
             }
             return output;
+        }
+
+        // update student information --- student dash board
+        
+        public void UpdateStudentContactInfo(string username, string contactInfo)
+        {
+
+            string SQL_Update_ContactInfo = @"UPDATE student
+                            set contactinfo = @contactInfo
+                            where username = @username";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_Update_ContactInfo, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@contactInfo", contactInfo);
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+        }
+
+        public bool UpdateStudentSummary(string username, string summary)
+        {
+            string SQL_Update_Summary = @"UPDATE student
+                            set summary = @summary
+                            where username = @usename";
+
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_Update_Summary, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@summary", summary);
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            return rowsAffected > 0;
+        }
+
+        public bool UpdateStudentAcademicDegree(string username , string degree)
+        {
+            string SQL_Update_AcademicDegree = @"UPDATE student
+                            set acedemicdegree = @degree
+                            where username = @usename";
+
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_Update_AcademicDegree, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@degree", degree);
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            return rowsAffected > 0;
+        }
+
+        public bool UpdateStudentPreviousExperience(string username, string experience)
+        {
+
+            string SQL_Update_PreviousExperience = @"UPDATE student
+                            set previousexperience = @experience
+                            where username = @usename";
+
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_Update_PreviousExperience, conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@experience", experience);
+
+                    rowsAffected = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            return rowsAffected > 0;
+        }
+
+        //check to see if the skill already exists in softskill table
+        private bool SkillExistInDataBase(string skill)
+        {
+            string SQL_check_skill_exists = @"SELECT COUNT(*) from softskills
+                            where skill =@skill;";
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(SQL_check_skill_exists, conn);
+                cmd.Parameters.AddWithValue("@skill", skill);
+                
+                count = (int)cmd.ExecuteScalar();
+            }
+            return (count == 0);
+        }
+
+        private bool DoesStudentHaveTheSkill(string username, string skill)
+        {
+            string SQL_check_skill_exists_for_Student = @"SELECT COUNT(*) from student_softskills
+                    inner join student on student.student_id = student_softskills.student_id
+                    inner join softskills on softskills.softskill_id = student_softskills.softskill_id
+                    where student.username = @username and softskills.skill = @skill;" ;
+
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(SQL_check_skill_exists_for_Student, conn);
+                cmd.Parameters.AddWithValue("@skill", skill);
+                cmd.Parameters.AddWithValue("@username", username);
+                count = (int)cmd.ExecuteScalar();
+            }
+            return (count == 0);
+        }
+
+        public void AddStudentSkill(string username, string skill)
+        {
+            string SQL_Add_Skill_To_Database = @"INSERT INTO softskills(skill) VALUES (@skill); ";
+            string SQL_Add_Skill_To_Student = @"INSERT INTO student_softskills (student_id , softskill_id)
+            VALUES ((select student.student_id from student where username = @username), (select softskill_id from softskills where skill =@skill))";
+
+            if (!DoesStudentHaveTheSkill(username, skill))
+            {
+               
+               if(!SkillExistInDataBase(skill))
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+
+                        SqlCommand cmd = new SqlCommand(SQL_Add_Skill_To_Database, conn);
+                        cmd.Parameters.AddWithValue("@skill", skill);
+                        cmd.Parameters.AddWithValue("@username", username);
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_Add_Skill_To_Student, conn);
+                    cmd.Parameters.AddWithValue("@skill", skill);
+                    cmd.Parameters.AddWithValue("@username", username);
+                }
+            }
+        }
+
+        public void DeleteStudentSkill(string username, string skill)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddStudentInterest(string username, string interest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStudentInterest(string username, string interest)
+        {
+            throw new NotImplementedException();
         }
     }
 }

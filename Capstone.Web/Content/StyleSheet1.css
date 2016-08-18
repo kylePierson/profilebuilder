@@ -6,9 +6,8 @@
     /*background-image: url('images/blueBackground.jpg');*/
     /*background-image: url('images/blue1.jpg');*/
     /*background-image: url('images/blue2.jpg');*/
-   
     background: -webkit-radial-gradient(circle, #3b7ca9, #56a5dc, green); /* For Safari 5.1 to 6.0 */
-   background: -o-radial-gradient(circle, red, yellow, green); /*For Opera 11.6 to 12.0 */
+    background: -o-radial-gradient(circle, red, yellow, green); /*For Opera 11.6 to 12.0 */
     background: -moz-radial-gradient(circle, #3b7ca9, #56a5dc, green); /* For Fx 3.6 to 15 */
     background: radial-gradient(circle, #c0e5ff, #56a5dc, green); /* Standard syntax (must be last) */
 }
@@ -28,7 +27,7 @@ button {
 .login {
     /*background-color: #ee9898;*/
     /*background-color:#bacbff;*/
-    background-color:#91d591;
+    background-color: #91d591;
     border-radius: 15px;
     padding: 20px 50px 20px 5px;
 }
@@ -38,9 +37,10 @@ button {
     text-decoration: none;
 }
 
-.login label{
-    padding-left:20px;
+.login label {
+    padding-left: 20px;
 }
+
 .login input {
     margin-left: 20px;
     padding-left: 10px;
@@ -48,9 +48,10 @@ button {
     border: 1px solid #f5dddd;
 }
 
-.login a{
-    padding-left:20px;
+.login a {
+    padding-left: 20px;
 }
+
 .login button {
     margin-left: 20px;
 }
@@ -118,7 +119,7 @@ button {
     width: 25%;
 }
 
-.student h3{
+.student h3 {
     box-shadow: 5px 5px 5px #888888;
 }
 
@@ -136,7 +137,7 @@ td {
     margin: auto;
 }
 
-    #newsFeedStudent ul {
+#newsFeedStudent ul {
         list-style: none;
         background-color: #e6eeeb;
         margin: auto;
@@ -157,8 +158,8 @@ td {
     display: none;
 }
 
-.show{
-    display:block;
+.show {
+    display: block;
 }
 
 .newsfeedInfo li img {
@@ -170,18 +171,17 @@ td {
 /*------------student search result----------*/
 
 
-.resultsDiv li{
-    list-style:none;
-    font-size:1.4em;
-    margin:20px 5px 20px 5px;
-   
+.resultsDiv li {
+    list-style: none;
+    font-size: 1.4em;
+    margin: 20px 5px 20px 5px;
 }
 
 /*----------view student profile*/
-.titleStudentProfile{
-    border:2px solid black;
-    padding:2px;
+.titleStudentProfile {
+    border: 2px solid black;
+    padding: 2px;
 }
+
 .panel-group .panel {
-    
 }
