@@ -74,7 +74,7 @@ namespace Capstone.Web.Controllers
 
             string[] fileNames = new string[] { fullName, fullName + "_Resume", fullName + "_CoverLetter" };
 
-            if (photo!=null && photo.ContentLength > 0)
+            if (photo != null && photo.ContentLength > 0)
             {
                 string[] segments = photo.FileName.Split('.');
                 var fileName = fileNames[0] + ".jpg";
@@ -82,7 +82,7 @@ namespace Capstone.Web.Controllers
 
                 photo.SaveAs(path);
             }
-            if (resume!=null && resume.ContentLength > 0)
+            if (resume != null && resume.ContentLength > 0)
             {
                 string[] segments = resume.FileName.Split('.');
                 string fileExt = segments[segments.Length - 1];
@@ -157,8 +157,16 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult UpdateStudentContactInfo(string username, string editContactInfo)
         {
-             studentDAL.UpdateStudentContactInfo(username, editContactInfo);
+            studentDAL.UpdateStudentContactInfo(username, editContactInfo);
             Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStudentSummary(string username, string editSummary)
+        {
+            studentDAL.UpdateStudentSummary(username, editSummary);
+             Student model = studentDAL.GetStudent(username);
             return View("Index", model);
         }
     }
