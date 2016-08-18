@@ -153,5 +153,13 @@ namespace Capstone.Web.Controllers
             studentDAL.AddProject(username, newProject);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult UpdateStudentContactInfo(string username, string editContactInfo)
+        {
+             studentDAL.UpdateStudentContactInfo(username, editContactInfo);
+            Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
+        }
     }
 }
