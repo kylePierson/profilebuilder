@@ -842,7 +842,7 @@ namespace Capstone.Data.DataAccess
         public void DeleteStudentInterest(string username, string interest)
         {
             string SQL_Delete_Student_Interest = @"DELETE FROM student_interests WHERE 
-                    (interest_id = (select interest_id from interests where interest =@interest)) AND (student_id= (select student_id from student where username =@username ));";
+                    (interest_id = (select interest_id from interests where interest = @interest)) AND (student_id= (select student_id from student where username =@username ));";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();

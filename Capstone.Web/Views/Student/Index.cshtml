@@ -166,7 +166,7 @@
                     <ul>
                         @foreach (var skill in Model.SkillList)
                         {
-                            <li>@skill  <button class="btn btn-primary" type="submit">Delete</button></li>
+                            <li>@skill <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</button></li>
 
                         }
                     </ul>
@@ -182,7 +182,7 @@
                     <ul>
                         @foreach (var interest in Model.InterestList)
                         {
-                            <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = interest , username = Model.Username })</button></li>
+                            <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest , username = Model.Username })</button></li>
                          
                         }
                     </ul>
