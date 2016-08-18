@@ -82,7 +82,7 @@
         </div>
         <div class="col-md-4">
             <div class="well">
-                @using (Html.BeginForm("UpdateProfile", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("UploadFiles", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <label for="file1">Photo:</label>
                     <input type="file" name="photo" id="file1" />
@@ -93,6 +93,8 @@
                     <label for="file3">Cover Letter:</label>
                     <input type="file" name="coverLetter" id="file3" />
                     <br>
+
+                    @Html.Hidden("username", Model.Username)
 
                     <input class="btn btn-primary" type="submit" value="Submit">
                 }

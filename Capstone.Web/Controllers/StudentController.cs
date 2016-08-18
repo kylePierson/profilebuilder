@@ -67,7 +67,7 @@ namespace Capstone.Web.Controllers
 
         //maybe combine uploads into edit profile actionresult and view
 
-        private void UploadFiles(string username, HttpPostedFileBase photo, HttpPostedFileBase resume, HttpPostedFileBase coverLetter)
+        public ActionResult UploadFiles(string username, HttpPostedFileBase photo, HttpPostedFileBase resume, HttpPostedFileBase coverLetter)
         {
             Student s = studentDAL.GetStudent(username);
             string fullName = s.FirstName.ToLower() + s.LastName.ToLower();
@@ -78,7 +78,7 @@ namespace Capstone.Web.Controllers
             {
                 string[] segments = photo.FileName.Split('.');
                 var fileName = fileNames[0] + ".jpg";
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
 
                 photo.SaveAs(path);
             }
@@ -87,7 +87,7 @@ namespace Capstone.Web.Controllers
                 string[] segments = resume.FileName.Split('.');
                 string fileExt = segments[segments.Length - 1];
                 var fileName = fileNames[1] + "." + fileExt;
-                var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
 
                 resume.SaveAs(path);
             }
@@ -96,10 +96,12 @@ namespace Capstone.Web.Controllers
                 string[] segments = coverLetter.FileName.Split('.');
                 string fileExt = segments[segments.Length - 1];
                 var fileName = fileNames[2] + "." + fileExt;
-                var path = Path.Combine(Server.MapPath("~/uploads"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
 
                 coverLetter.SaveAs(path);
             }
+            Student model = s;
+            return View("Index", model);
         }
 
 
