@@ -22,6 +22,7 @@ namespace Capstone.Data.Models
         public List<string> SkillList { get; set; }
         public List<Project> ProjectList { get; set; }
         public string LinkedIn { get; set; }
+        public string ElevatorPitch { get; set; }
 
     }
 }
