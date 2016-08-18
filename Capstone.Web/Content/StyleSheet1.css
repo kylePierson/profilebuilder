@@ -24,42 +24,48 @@ button {
 }
 
 /*---------------------     Log In    -----------------------*/
-.login {
-    /*background-color: #ee9898;*/
-    /*background-color:#bacbff;*/
-    background-color: #91d591;
-    border-radius: 15px;
+.loginDiv {
     padding: 20px 50px 20px 5px;
+    margin: 50px;
 }
+
+.loginDiv form {
+    padding-left: 20%;
+    }
 
 #forgotPassword {
     white-space: nowrap;
     text-decoration: none;
 }
 
-.login label {
+.loginDiv label {
     padding-left: 20px;
 }
 
-.login input {
+.loginDiv input {
     margin-left: 20px;
     padding-left: 10px;
     border-radius: 40px;
     border: 1px solid #f5dddd;
 }
 
-.login a {
+.loginDiv a {
     padding-left: 20px;
 }
 
-.login button {
+.loginDiv button {
     margin-left: 20px;
 }
 /*---------------------    Staff dashboard    -----------------------*/
-
-
+.creatNewUser li a{
+    font-size:1.5em
+   
+}
+.creatNewUser li{
+    padding:10px;
+}
 .creatNewUser {
-    padding: 7px;
+    padding: 50px;
     border: 2px solid black;
     border-radius: 5px;
     list-style-type: none;
@@ -70,13 +76,19 @@ button {
     padding: 30px;
 }
 
-    .creatNewUserForm input, .creatNewUserForm label {
+.creatNewUserForm input, .creatNewUserForm label {
         display: block;
     }
 
-    .creatNewUserForm input {
-        border-radius: 12px;
-    }
+.creatNewUserForm input {
+        border-radius: 5px;
+}
+
+.creatNewUserForm li{
+    list-style:none;
+    display:inline-block;
+
+}
 
 
 /*-----------------------  fail and success to update, create and ..   ---------------------*/
@@ -137,7 +149,7 @@ td {
     margin: auto;
 }
 
-#newsFeedStudent ul {
+    #newsFeedStudent ul {
         list-style: none;
         background-color: #e6eeeb;
         margin: auto;

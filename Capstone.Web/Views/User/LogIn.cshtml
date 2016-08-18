@@ -12,14 +12,9 @@
         <div class="col-sm-4">
 
         </div>
-        <div class="col-sm-4 login">
-            <div class="loginDiv">
-                @using (Html.BeginForm("LogIn", "User", FormMethod.Post))
-                {
-                    @Html.ValidationSummary()
-
-                    @Html.LabelFor(m => m.Username)
-                    <br/>
+        <div class="col-sm-4 loginDiv">
+            <div class="well">
+                @using (Html.BeginForm("LogIn", "User", FormMethod.Post)) { @Html.ValidationSummary()   @Html.LabelFor(m => m.Username)  <br/>
                     @Html.TextBoxFor(m => m.Username)
                     @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger" })
                     <br />
@@ -30,15 +25,15 @@
                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
                     <br />
                     <br />
-                    <button id="loginButton">Log in</button>
+                    <button  class="btn btn-primary">Log in</button>
                     <br />
                 }
 
-                @*add action link for forgot password*@
                 <br />
 
                 @Html.ActionLink("Forgot Password?", "ForgotPassword", "User")
             </div>
+
         </div>
         <div class="col-sm-4 ">
             

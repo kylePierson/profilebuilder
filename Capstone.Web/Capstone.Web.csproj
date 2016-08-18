@@ -172,8 +172,10 @@
     <Content Include="Content\images\blue2.jpg" />
     <Content Include="Content\images\blueBackground.jpg" />
     <Content Include="Content\images\failToDo.jpg" />
+    <Content Include="Content\images\female-unknown.png" />
     <Content Include="Content\images\heart.jpg" />
     <Content Include="Content\images\josh.jpg" />
+    <Content Include="Content\images\keys.png" />
     <Content Include="Content\images\kylepierson.jpg" />
     <Content Include="Content\images\siminnickelsen.jpg" />
     <Content Include="Content\images\Sucess.jpg" />

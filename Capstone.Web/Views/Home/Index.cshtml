@@ -6,51 +6,69 @@
 
 <div class="container">
     <div class="row">
-      
-        <h2 align="center">Home</h2>
-        <br/><br />
+
+        <p class="well">
+            We have two classes: <span class="fontBold">.NET</span> and <span class="fontBold">
+                Java
+            </span>
+            <br />
+            You can see the list of our students bellow. If you are interested to know more about us or students, please contact us.
+
+        </p>
+
         <div class="col-sm-5 student">
-              <h3 class="classTitle" style="text-align:center" >.NET</h3>
-                @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
-                {
-                    if (item.Class == ".NET")
+            <h3 class="classTitle well" style="text-align:center">.NET</h3>
+                        
+                    @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
                     {
-                        <ul class="studentDisplay">
-                            <li><img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" /></li>
-                            <li>@*<img src="@string.Concat("/App_Data/uploads/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />*@</li>
-                            <li><br/>@item.FirstName  @item.LastName</li>
-                           
+                        if (item.Class == ".NET")
+                        {
+                            <table class="studentDisplay well">
+                               <tr>
+                                   <td>
+                                       <img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                                   </td>
+                                   <td>
+                                       elevator pitch is coming here. We need to add it to model, and data access layer.
+                                       tyler is going to do it. then it will look grate.
+                                   </td>
+                               </tr>
+                                <tr>
+                                    <td><br />@item.FirstName  @item.LastName</td>
+                                </tr>
+                                
+                            </table>
+                        }
 
-                        </ul>
-                    }
-
-                }
-            </div>
+                    }         
+          
+        </div>
         <div class="col-sm-2 student">
-         </div>
-            <div class="col-sm-5 student">
-                <h3 class="classTitle" style="text-align:center">Java</h3>
-                @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
+        </div>
+        <div class="col-sm-5 student">
+            <h3 class="classTitle well" style="text-align:center">Java</h3>
+            @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
             {
                 if (item.Class == "JAVA")
                 {
-                        <ul class="studentDisplay">
-                            <li><img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" /></li>
-                            <li>@*<img src="@string.Concat("/App_Data/uploads/",item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />*@</li>
-                            <li><br />@item.FirstName  @item.LastName</li>
+                    <table class="studentDisplay well">
+                        <tr>
+                            <td>
+                                <img src="@string.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                            </td>
+                            <td>
+                                elevator pitch is coming here. We need to add it to model, and data access layer.
+                                tyler is going to do it. then it will look grate.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br />@item.FirstName  @item.LastName</td>
+                        </tr>
 
-
-                        </ul>
-                    }
-
+                    </table>
                 }
-            </div>
 
-
-
-
-
+            }
         </div>
     </div>
-
-
+</div>

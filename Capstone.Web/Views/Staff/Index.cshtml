@@ -5,29 +5,28 @@
 }
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
 
         </div>
-        <div class="col-md-4">
-            <div class="well">
-                <h2>Hello @Model.FirstName ! </h2>
-                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), ".jpg")" class="img-circle profileImage" />
+        <div class="col-md-8">
+            <div class="well staffDiv">
+                <h1 align="center">Hello @Model.FirstName ! </h1>
+                <p align="center">
+                    <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                </p>
                 <br />
                 <br />
-                <ul class="creatNewUser">
+                <ul class="creatNewUser" align="center">
                     <li><a href='@Url.Action("CreateStaffUser", "Staff", new { username = Model.Username})'> Add a new Staff</a></li>
                     <li><a href="@Url.Action("CreateStudentUser", "Staff",new { username = Model.Username})">Add a new Student</a></li>
 
                     <li><a href='@Url.Action("CreateEmployerUser", "Staff",new { username = Model.Username})'> Add a new Employer</a></li>
-                    @*<li><a href='@Url.Action("DeleteUser", "staff")'> Delete a User</a></li>*@
-                    <li>Delete a user</li>
-
-                    <li>Change Password</li>
+                    
                 </ul>
 
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
 
         </div>
     </div>

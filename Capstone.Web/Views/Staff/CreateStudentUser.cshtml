@@ -5,40 +5,55 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
 
-           
+
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div class="well creatNewUserForm">
-                <h2>Create a New Student Account</h2>
-                @using (Html.BeginForm("CreateStudentUser", "Staff", FormMethod.Post))
-                {
-                    @*@Html.Hidden("currentUsername", Model.Username)*@
-                    <label for="newUsername"> Username: </label>
-                    <input type="text" name="newUsername" />
+                <h1 align="center">Create a New Student Account</h1>
+                <br />
+                <p>
+                    To create a new staff user, fill the form. A temperory password is going to be emailed to them. They will be able to change it later.
+                </p> 
+                <ul>
+                    <li>
+                        @using (Html.BeginForm("CreateStudentUser", "Staff", FormMethod.Post))
+                        {
 
-                    <label for="firstName">First Name: </label>
-                    <input type="Text" name="firstName" />
+                            <label for="newUsername"> Username: </label>
+                            <input type="text" name="newUsername" />
 
-                    <label for="lastName">Last Name: </label>
-                    <input type="text" name="lastName" />
+                            <label for="firstName">First Name: </label>
+                            <input type="Text" name="firstName" />
 
-                    <label for="cohort">Cohort: </label>
-                    <input type="Text" name="cohort" />
+                            <label for="lastName">Last Name: </label>
+                            <input type="text" name="lastName" />
 
-                    <label for="emailAddress">Email: </label>
-                    <input type="Text" name="emailAddress" />
-                    <br>
+                            <label for="cohort">Cohort: </label>
+                            <input type="Text" name="cohort" />
 
-                    <input class="btn btn-primary" type="submit" value="Submit">
-                }
+                            <label for="emailAddress">Email: </label>
+                            <input type="Text" name="emailAddress" />
+                            <br>
+
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        }
+                    </li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li>
+                        <img src="~/Content/images/female-unknown.png" />
+                    </li>
+                </ul>
             </div>
-        </div>
-        <div class="col-md-4">
 
         </div>
-    </div>    
+        <div class="col-md-2">
+
+        </div>
+    </div>
 
 </div>
 

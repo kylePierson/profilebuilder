@@ -42,7 +42,7 @@
                                         <input type="text" name="editSummary" id="summaryEditSpan" />
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     }
-                                </span>                            
+                                </span>
                             </td>
                         </tr>
 
@@ -52,34 +52,37 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="well dash">
+            <div class="well">
+                <h3>Skills</h3>
+                <ul>
+                    @foreach (var skill in Model.SkillList)
+                    {
+                        <li>@skill <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</button></li>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Contact Info</td>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td >
-                                <span class="visible" id="contactInfoSpan"> @Model.ContactInfo </span>
-                                <span class="hide">
-                                    @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
-                                    {
-                                        <input type="text" name="editContactInfo" id="summaryEditSpan" />
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    }
-                                </span>   
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
-                <button type="submit" class="btn btn-primary" id="editContactInfoButton">Edit</button>
-
+                    }
+                </ul>
+                <label for="addSkill"></label>
+                <input type="text" name="addSkill" id="newSkillTextbox" />
+                <button id="addNewSkill" type="submit" class="btn btn-primary">Add</button>
+                <input id="hiddenusername" value="@Model.Username" type="hidden" />
             </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well">
+                <h3>Interests</h3>
+                <ul>
+                    @foreach (var interest in Model.InterestList)
+                    {
+                        <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest, username = Model.Username })</button></li>
+
+                    }
+                </ul>
+                <label for="addInterest"></label>
+                <input type="text" name="addInterest" id="newInterestTextbox" />
+                <button id="addNewInterest" type="submit" class="btn btn-primary">Add</button>
+                <input id="hiddenusername1" value="@Model.Username" type="hidden" />
+            </div>
+
         </div>
         <div class="col-md-4">
             <div class="well">
@@ -122,8 +125,9 @@
                                         <input type="text" name="editAcademicDegree" id="academicDegreeEditSpan" />
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     }
-                                </span>   
-                            @Model.AcademicDegree</td>
+                                </span>
+                                @Model.AcademicDegree
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -144,7 +148,7 @@
                         <tr>
                             <td>
                                 <span class="visible" id="experienceSpan"> @Model.PreviousExperience </span>
-                                <span class="hide" >
+                                <span class="hide">
                                     @using (Html.BeginForm("UpdateStudentPreviousExperience", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" rows="4" cols="50" name="editPreviousExperience" id="input1" />
@@ -161,45 +165,37 @@
         <div class="col-md-4">
 
             <div class="col-md-6">
-                <div class="well">
-                    <h3>Skills</h3>
-                    <ul>
-                        @foreach (var skill in Model.SkillList)
-                        {
-                            <li>@skill <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</button></li>
+                <div class="well dash">
 
-                        }
-                    </ul>
-                    <label for="addSkill"></label>
-                    <input type="text" name="addSkill" id="newSkillTextbox" />
-                    <button id="addNewSkill" type="submit" class="btn btn-primary">Add</button>
-                    <input id="hiddenusername" value="@Model.Username" type="hidden" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well">
-                    <h3>Interests</h3>
-                    <ul>
-                        @foreach (var interest in Model.InterestList)
-                        {
-                            <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest , username = Model.Username })</button></li>
-                         
-                        }
-                    </ul>
-                    <label for="addInterest"></label>
-                    <input type="text" name="addInterest" id="newInterestTextbox" />
-                    <button id="addNewInterest" type="submit" class="btn btn-primary">Add</button>
-                    @*<input id="hiddenusername1" value="@Model.Username" type="hidden" />*@
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Contact Info</td>
 
-                  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="visible" id="contactInfoSpan"> @Model.ContactInfo </span>
+                                    <span class="hide">
+                                        @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
+                                        {
+                                            <input type="text" name="editContactInfo" id="summaryEditSpan" />
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        }
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <button type="submit" class="btn btn-primary" id="editContactInfoButton">Edit</button>
+
                 </div>
 
             </div>
         </div>
     </div>
-
-
-
-
 
 </div>
