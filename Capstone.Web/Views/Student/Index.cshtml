@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="/Content/EditProfile.js"></script>
+<script src="~/Content/AddNewSkill.js"></script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-2">
@@ -114,7 +116,7 @@
                             <td>
                                 <span class="visible" id="AcademicDegreeSpan"> @Model.AcademicDegree</span>
                                 <span class="hide">
-                                    @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
+                                    @using (Html.BeginForm("UpdateStudentAcademicDegree", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" name="editAcademicDegree" id="academicDegreeEditSpan" />
                                         <button type="submit" class="btn btn-primary">Save</button>
@@ -167,7 +169,10 @@
 
                         }
                     </ul>
-                    <button class="btn btn-primary" type="submit">Add</button>
+                    <label for="addSkill"></label>
+                    <input type="text" name="addSkill" id="newSkillTextbox" />
+                    <button id="addNewSkill" type="submit" class="btn btn-primary">Add</button>
+                    <input id="hiddenusername" value="@Model.Username" type="hidden" />
                 </div>
             </div>
             <div class="col-md-6">
@@ -176,11 +181,13 @@
                     <ul>
                         @foreach (var interest in Model.InterestList)
                         {
-                            <li>@interest <button class="btn btn-primary" type="submit">Delete</button></li>
-
+                            <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = interest , username = Model.Username })</button></li>
+                            <li>@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = interest, username = Model.Username })</li>
                         }
                     </ul>
-                    <button class="btn btn-primary" type="submit">Add</button>
+                   
+
+                  
                 </div>
 
             </div>

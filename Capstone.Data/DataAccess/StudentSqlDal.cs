@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace Capstone.Data.DataAccess
 {
-    public class StudentSqlDAL : IStudentDAL  
+    public class StudentSqlDAL : IStudentDAL
     {
         private string connectionString;
         //****DO NOT DELETE SQL_AddStudentUser QUERY********
@@ -185,7 +185,7 @@ namespace Capstone.Data.DataAccess
 
                     cmd.ExecuteNonQuery();
 
-                    UpdateSkill(skills, GetStudentId(username,conn), conn);
+                    UpdateSkill(skills, GetStudentId(username, conn), conn);
                     UpdateInterest(interests, GetStudentId(username, conn), conn);
 
                 }
@@ -255,7 +255,7 @@ namespace Capstone.Data.DataAccess
                         output.Username = Convert.ToString(reader["username"]);
                         output.Summary = Convert.ToString(reader["summary"]);
                         output.StudentId = Convert.ToInt32(reader["student_id"]);
-                        output.LinkedIn = Convert.ToString(reader["linkedin"]);                  
+                        output.LinkedIn = Convert.ToString(reader["linkedin"]);
                         output.PreviousExperience = Convert.ToString(reader["previousexperience"]);
                         output.AcademicDegree = Convert.ToString(reader["acedemicdegree"]);
                         output.ContactInfo = Convert.ToString(reader["contactInfo"]);
@@ -289,10 +289,10 @@ namespace Capstone.Data.DataAccess
 
             HashSet<Student> output = new HashSet<Student>();
 
-          
+
             try
             {
-                
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -331,7 +331,7 @@ namespace Capstone.Data.DataAccess
                     SqlCommand cmd = new SqlCommand(SQL_GetAllStudent_Language_Class, conn);
                     cmd.Parameters.AddWithValue("@language", language);
                     cmd.Parameters.AddWithValue("@StudentClass", studentClass);
-                    
+
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -578,7 +578,7 @@ namespace Capstone.Data.DataAccess
         }
 
         // update student information --- student dash board
-        
+
         public void UpdateStudentContactInfo(string username, string contactInfo)
         {
 
@@ -609,7 +609,7 @@ namespace Capstone.Data.DataAccess
             string SQL_Update_Summary = @"UPDATE student
                             set summary = @summary
                             where username = @username;";
-           
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -620,23 +620,21 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@summary", editSummary);
 
-                   cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
 
             }
-           
+
         }
 
-        public void UpdateStudentAcademicDegree(string username , string degree)
+        public void UpdateStudentAcademicDegree(string username, string editAcademicDegree)
         {
             string SQL_Update_AcademicDegree = @"UPDATE student
                             set acedemicdegree = @degree
                             where username = @username";
-
-            int rowsAffected = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -645,16 +643,15 @@ namespace Capstone.Data.DataAccess
 
                     SqlCommand cmd = new SqlCommand(SQL_Update_AcademicDegree, conn);
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@degree", degree);
+                    cmd.Parameters.AddWithValue("@degree", editAcademicDegree);
 
-                    rowsAffected = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
 
             }
-           
         }
 
         public void UpdateStudentPreviousExperience(string username, string experience)
@@ -664,7 +661,7 @@ namespace Capstone.Data.DataAccess
                             set previousexperience = @experience
                             where username = @username";
 
-            
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -675,14 +672,14 @@ namespace Capstone.Data.DataAccess
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@experience", experience);
 
-               cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
 
             }
-         
+
         }
 
         //check to see if the skill already exists in softskill table
@@ -697,10 +694,10 @@ namespace Capstone.Data.DataAccess
 
                 SqlCommand cmd = new SqlCommand(SQL_check_skill_exists, conn);
                 cmd.Parameters.AddWithValue("@skill", skill);
-                
+
                 count = (int)cmd.ExecuteScalar();
             }
-            return (count == 0);
+            return (count != 0);
         }
 
         private bool DoesStudentHaveTheSkill(string username, string skill)
@@ -708,7 +705,7 @@ namespace Capstone.Data.DataAccess
             string SQL_check_skill_exists_for_Student = @"SELECT COUNT(*) from student_softskills
                     inner join student on student.student_id = student_softskills.student_id
                     inner join softskills on softskills.softskill_id = student_softskills.softskill_id
-                    where student.username = @username and softskills.skill = @skill;" ;
+                    where student.username = @username and softskills.skill = @skill;";
 
             int count = 0;
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -720,37 +717,38 @@ namespace Capstone.Data.DataAccess
                 cmd.Parameters.AddWithValue("@username", username);
                 count = (int)cmd.ExecuteScalar();
             }
-            return (count == 0);
+            return (count != 0);
         }
 
-        public void AddStudentSkill(string username, string skill)
+        public void AddStudentSkill(string username, string addSkill)
         {
             string SQL_Add_Skill_To_Database = @"INSERT INTO softskills(skill) VALUES (@skill); ";
             string SQL_Add_Skill_To_Student = @"INSERT INTO student_softskills (student_id , softskill_id)
             VALUES ((select student.student_id from student where username = @username), (select softskill_id from softskills where skill =@skill))";
 
-            if (!DoesStudentHaveTheSkill(username, skill))
+            if (!DoesStudentHaveTheSkill(username, addSkill))
             {
+
                
-               if(!SkillExistInDataBase(skill))
-                {
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
+
                         conn.Open();
-
-                        SqlCommand cmd = new SqlCommand(SQL_Add_Skill_To_Database, conn);
-                        cmd.Parameters.AddWithValue("@skill", skill);
-                        cmd.Parameters.AddWithValue("@username", username);
+                    if (!SkillExistInDataBase(addSkill))
+                    {
+                        SqlCommand cmd1 = new SqlCommand(SQL_Add_Skill_To_Database, conn);
+                        cmd1.Parameters.AddWithValue("@skill", addSkill);
+                        cmd1.Parameters.AddWithValue("@username", username);
+                        cmd1.ExecuteNonQuery();
                     }
-                }
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
                     SqlCommand cmd = new SqlCommand(SQL_Add_Skill_To_Student, conn);
-                    cmd.Parameters.AddWithValue("@skill", skill);
+                    cmd.Parameters.AddWithValue("@skill", addSkill);
                     cmd.Parameters.AddWithValue("@username", username);
+
+                    cmd.ExecuteNonQuery();
+
                 }
+             
             }
         }
 
