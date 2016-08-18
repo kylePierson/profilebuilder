@@ -6,19 +6,23 @@
 <script src="/Content/EditProfile.js"></script>
 <script src="~/Content/AddNewSkill.js"></script>
 <script src="~/Content/AddNewInterest.js"></script>
+<script src="~/Content/RefreshPage.js"></script>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-4">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
             <div class="well dash">
-                <h2>Hello @Model.FirstName! </h2>
-                <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                <h2 align="center">Hello @Model.FirstName! </h2>
+                <p align="center">
+                    <br/>
+                    <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
+                </p>
                 <br />
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
         </div>
     </div>
     <div class="row">
@@ -27,7 +31,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Summary</td>
+                            <td><h3>Summary</h3></td>
                         </tr>
 
                     </thead>
@@ -40,7 +44,7 @@
                                     @using (Html.BeginForm("UpdateStudentSummary", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" name="editSummary" id="summaryEditSpan" />
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary" id="summaryButton">Save</button>
                                     }
                                 </span>
                             </td>
@@ -57,7 +61,7 @@
                 <ul>
                     @foreach (var skill in Model.SkillList)
                     {
-                        <li>@skill <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</button></li>
+                        <li>@skill &nbsp;&nbsp;&nbsp; @Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</li>
 
                     }
                 </ul>
@@ -67,20 +71,20 @@
                 <input id="hiddenusername" value="@Model.Username" type="hidden" />
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="well">
                 <h3>Interests</h3>
                 <ul>
                     @foreach (var interest in Model.InterestList)
                     {
-                        <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest, username = Model.Username })</button></li>
+                        <li>@interest @*<button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest, username = Model.Username })</button>*@</li>
 
                     }
                 </ul>
-                <label for="addInterest"></label>
+                @*<label for="addInterest"></label>
                 <input type="text" name="addInterest" id="newInterestTextbox" />
                 <button id="addNewInterest" type="submit" class="btn btn-primary">Add</button>
-                <input id="hiddenusername1" value="@Model.Username" type="hidden" />
+                <input id="hiddenusername1" value="@Model.Username" type="hidden" />*@
             </div>
 
         </div>
@@ -100,7 +104,7 @@
 
                     @Html.Hidden("username", Model.Username)
 
-                    <input class="btn btn-primary" type="submit" value="Submit">
+                    <input class="btn btn-primary"  id="uploadFiles" type="submit" value="Submit">
                 }
             </div>
         </div>
@@ -111,7 +115,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Academic Degree</td>
+                            <td><h3>Academic Degree</h3></td>
 
                         </tr>
                     </thead>
@@ -139,7 +143,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Previous Experience</td>
+                            <td><h3>Previous Experience</h3></td>
                         </tr>
 
                     </thead>
@@ -164,7 +168,6 @@
         </div>
         <div class="col-md-4">
 
-            <div class="col-md-6">
                 <div class="well dash">
 
                     <table>
@@ -191,8 +194,6 @@
 
                     </table>
                     <button type="submit" class="btn btn-primary" id="editContactInfoButton">Edit</button>
-
-                </div>
 
             </div>
         </div>

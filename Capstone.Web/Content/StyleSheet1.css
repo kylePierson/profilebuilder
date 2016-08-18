@@ -119,16 +119,14 @@ button {
     background-color: #ee9898;
 }
 
-.studentDisplay li {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.4em;
-    font-weight: bold;
+.studentDisplay td {
+   width:auto;
 }
 
 .profileImage {
     box-shadow: 10px 10px 5px #888888;
-    width: 25%;
+    width:150px;
+   
 }
 
 .student h3 {
@@ -189,6 +187,13 @@ td {
     margin: 20px 5px 20px 5px;
 }
 
+#studentProjects td{
+    
+    border: 2px solid black;
+    border: 2px solid blanchedalmond;
+}
+    
+}
 /*----------view student profile*/
 .titleStudentProfile {
     border: 2px solid black;

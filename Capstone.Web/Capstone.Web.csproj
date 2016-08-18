@@ -174,12 +174,14 @@
     <Content Include="Content\images\failToDo.jpg" />
     <Content Include="Content\images\female-unknown.png" />
     <Content Include="Content\images\heart.jpg" />
+    <Content Include="Content\images\jamesvorous.jpg" />
     <Content Include="Content\images\josh.jpg" />
     <Content Include="Content\images\keys.png" />
     <Content Include="Content\images\kylepierson.jpg" />
     <Content Include="Content\images\siminnickelsen.jpg" />
     <Content Include="Content\images\Sucess.jpg" />
     <Content Include="Content\images\tylerpompeii.jpg" />
+    <Content Include="Content\RefreshPage.js" />
     <Content Include="Content\ShowMoreLess.js" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
