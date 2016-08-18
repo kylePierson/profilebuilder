@@ -12,8 +12,8 @@
     //---------edit summary------------
     $('#summaryEditButton').click(function () {
        
-        $('.hide').removeClass("hide").addClass("show");
-        $('.visible').removeClass("visible").addClass("hide");
+        $('#summaryEditButton').parent().removeClass("hide").addClass("show");
+        $('#summaryEditButton').parent().removeClass("visible").addClass("hide");
 
     });
 

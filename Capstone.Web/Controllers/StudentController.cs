@@ -100,7 +100,7 @@ namespace Capstone.Web.Controllers
 
                 coverLetter.SaveAs(path);
             }
-            Student model = s;
+            Student model =  studentDAL.GetStudent(username); 
             return View("Index", model);
         }
 
