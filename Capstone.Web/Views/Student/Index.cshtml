@@ -5,6 +5,7 @@
 }
 <script src="/Content/EditProfile.js"></script>
 <script src="~/Content/AddNewSkill.js"></script>
+<script src="~/Content/AddNewInterest.js"></script>
 
 <div class="container">
     <div class="row">
@@ -182,10 +183,13 @@
                         @foreach (var interest in Model.InterestList)
                         {
                             <li>@interest <button class="btn btn-primary" type="submit">@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = interest , username = Model.Username })</button></li>
-                            <li>@Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = interest, username = Model.Username })</li>
+                         
                         }
                     </ul>
-                   
+                    <label for="addInterest"></label>
+                    <input type="text" name="addInterest" id="newInterestTextbox" />
+                    <button id="addNewInterest" type="submit" class="btn btn-primary">Add</button>
+                    @*<input id="hiddenusername1" value="@Model.Username" type="hidden" />*@
 
                   
                 </div>

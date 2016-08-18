@@ -757,9 +757,75 @@ namespace Capstone.Data.DataAccess
             throw new NotImplementedException();
         }
 
+        //check to see if the Interest already exists in softskill table
+        private bool InterestExistInDataBase(string interest)
+        {
+            string SQL_check_interest_exists = @"select count (*) from interests
+                        where interest = @interest;";
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(SQL_check_interest_exists, conn);
+                cmd.Parameters.AddWithValue("@interest", interest);
+
+                count = (int)cmd.ExecuteScalar();
+            }
+            return (count != 0);
+        }
+
+        private bool DoesStudentHaveTheInterest(string username, string interest)
+        {
+            string SQL_check_interest_exists_for_Student = @"SELECT COUNT (*) FROM student_interests
+                        inner join student on student.student_id = student_interests.student_id
+                        inner join interests on interests.interest_id = student_interests.interest_id
+                        where interest = @interest and softskills.skill = @skill;";
+
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(SQL_check_interest_exists_for_Student, conn);
+                cmd.Parameters.AddWithValue("@interest", interest);
+                cmd.Parameters.AddWithValue("@username", username);
+                count = (int)cmd.ExecuteScalar();
+            }
+            return (count != 0);
+        }
+
         public void AddStudentInterest(string username, string interest)
         {
-            throw new NotImplementedException();
+            string SQL_Add_Interest_To_Database = "insert into interests (interest) values (@interest)";
+            string SQL_Add_Interest_To_Student = @"insert into student_interests (student_id, interest_id) 
+                    Values((select student_id from student where username = @username ) ,
+                    (select interest_id from interests where interest =@interest ));";
+
+            if (!DoesStudentHaveTheSkill(username, interest))
+            {
+
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    if (!SkillExistInDataBase(interest))
+                    {
+                        SqlCommand cmd1 = new SqlCommand(SQL_Add_Interest_To_Database, conn);
+                        cmd1.Parameters.AddWithValue("@interest", interest);
+                        cmd1.Parameters.AddWithValue("@username", username);
+                        cmd1.ExecuteNonQuery();
+                    }
+                    SqlCommand cmd = new SqlCommand(SQL_Add_Interest_To_Student, conn);
+                    cmd.Parameters.AddWithValue("@interest", interest);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+
+            }
         }
 
         public void DeleteStudentInterest(string username, string interest)

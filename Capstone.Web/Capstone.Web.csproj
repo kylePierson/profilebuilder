@@ -160,6 +160,7 @@
     <Content Include="bin\System.Web.Webpages.xml" />
     <Content Include="bin\WebActivatorEx.dll" />
     <Content Include="Content\AddANewLanguage.js" />
+    <Content Include="Content\AddNewInterest.js" />
     <Content Include="Content\AddNewSkill.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

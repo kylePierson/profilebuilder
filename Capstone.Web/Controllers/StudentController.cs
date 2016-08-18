@@ -194,5 +194,13 @@ namespace Capstone.Web.Controllers
             Student model = studentDAL.GetStudent(username);
             return View("Index", model);
         }
+
+        public ActionResult AddNewInterest(string username, string newInterest)
+        {
+            studentDAL.AddStudentInterest(username, newInterest);
+            Student model = studentDAL.GetStudent(username);
+
+            return View("Index", model);
+        }
     }
 }
