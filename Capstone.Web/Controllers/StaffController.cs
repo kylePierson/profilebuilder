@@ -62,7 +62,7 @@ namespace Capstone.Web.Controllers
                 return View("Fail");
             }
 
-            SendEmail(emailAddress, firstName, newUsername, "Staff");
+
             return RedirectToAction("Success", new { username = currentUsername });
         }
 
