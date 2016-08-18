@@ -169,5 +169,28 @@ namespace Capstone.Web.Controllers
              Student model = studentDAL.GetStudent(username);
             return View("Index", model);
         }
+
+        [HttpPost]
+        public ActionResult UpdateStudentAcademicDegree(string username, string editAcademicDegree)
+        {
+            studentDAL.UpdateStudentAcademicDegree(username, editAcademicDegree);
+            Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStudentPreviousExperience(string username, string editPreviousExperience)
+        {
+            studentDAL.UpdateStudentPreviousExperience(username, editPreviousExperience);
+            Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
+        }
+
+        public ActionResult AddNewSkill(string username, string addSkill)
+        {
+            studentDAL.AddStudentSkill(username, addSkill);
+            Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
+        }
     }
 }
