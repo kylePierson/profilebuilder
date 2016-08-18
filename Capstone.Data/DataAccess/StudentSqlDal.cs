@@ -754,7 +754,18 @@ namespace Capstone.Data.DataAccess
 
         public void DeleteStudentSkill(string username, string skill)
         {
-            throw new NotImplementedException();
+            string SQL_Delete_Student_Skill = @" DELETE FROM student_softskills WHERE 
+                        (softskill_id = (select softskill_id from softskills where skill = @skill)) AND (student_id= (select student_id from student where username =@username ));";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(SQL_Delete_Student_Skill, conn);
+                cmd.Parameters.AddWithValue("@skill", skill);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         //check to see if the Interest already exists in softskill table
@@ -830,7 +841,18 @@ namespace Capstone.Data.DataAccess
 
         public void DeleteStudentInterest(string username, string interest)
         {
-            throw new NotImplementedException();
+            string SQL_Delete_Student_Interest = @"DELETE FROM student_interests WHERE 
+                    (interest_id = (select interest_id from interests where interest =@interest)) AND (student_id= (select student_id from student where username =@username ));";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(SQL_Delete_Student_Interest, conn);
+                cmd.Parameters.AddWithValue("@interest", interest);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

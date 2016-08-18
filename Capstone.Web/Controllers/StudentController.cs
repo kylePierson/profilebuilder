@@ -202,5 +202,20 @@ namespace Capstone.Web.Controllers
 
             return View("Index", model);
         }
+
+        public ActionResult DeleteStudentSkill(string username, string skill)
+        {
+            studentDAL.DeleteStudentSkill(username, skill);
+            Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
+        }
+
+        public ActionResult DeleteStudentInterest(string username, string interest)
+        {
+            studentDAL.DeleteStudentInterest(username, interest);
+            Student model = studentDAL.GetStudent(username);
+
+            return View("Index", model);
+        }
     }
 }
