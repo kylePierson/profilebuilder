@@ -24,7 +24,7 @@ username varchar (32) NOT NULL,
 contactinfo varchar (200) NOT NULL,
 CONSTRAINT pk_employer_employer_id PRIMARY KEY(employer_id)
 );
-
+select * from student
 create table staff (
 staff_id integer identity NOT NULL,
 firstname varchar (32) NOT NULL,
@@ -112,3 +112,5 @@ ALTER TABLE project ADD FOREIGN KEY (student_id) REFERENCES student(student_id);
 ALTER TABLE student_language ADD FOREIGN KEY (programminglanguage_id) REFERENCES programming_language (programminglanguage_id)
 ALTER TABLE student_language ADD FOREIGN KEY (student_id) REFERENCES student (student_id)
 ALTER TABLE employer_language ADD FOREIGN KEY (programminglanguage_id) REFERENCES programming_language (programminglanguage_id)
+
+ALter table student add elevatorpitch varchar(1000) ;
