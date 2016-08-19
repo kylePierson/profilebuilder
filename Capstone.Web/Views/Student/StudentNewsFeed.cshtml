@@ -13,10 +13,15 @@
             @foreach (var item in Model)
             {
                 <ul class="hide">
-                    <li><img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" /></li>
+                    <li>
+                        @*<a href='@Url.Action("ViewStudent", "Employer", new { username = item.Username },null)'>*@
+                            <img src="@String.Concat("/Content/images/", item.FirstName.ToLower(), item.LastName.ToLower(), ".jpg")" class="img-responsive imgNewsfeed" />                        
+                        @*</a>*@
+                    </li>
+                
                     <li class="fontBold newsfeedInfo">@String.Concat(item.FirstName, " ", item.LastName) </li>
                     <li class="newsfeedInfo">@item.Class</li>
-                    <li>LinkedIn link comes here!</li>
+                   
                 </ul>
             }
             <div id="loadMore">Load more...</div>

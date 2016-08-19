@@ -34,11 +34,12 @@ INSERT INTO user_password (username, password, role_title)
 VALUES ('james', 'password', 'Student');
 
 -- same as the staff, but now it is populating student table and columns 
-INSERT INTO student (firstname, lastname, class, previousexperience, contactinfo, username)
-VALUES('Kyle', 'Pierson', '.NET', 'BioMechanic', 'piersonkyle90@yahoo.com', 'piersonkyle90');
+INSERT INTO student (firstname, lastname, class, previousexperience, contactinfo, username, summary)
+VALUES('Kyle', 'Pierson', '.NET', 'BioMechanic', 'piersonkyle90@yahoo.com', 'piersonkyle90', 'Currently I’m a .Net boot camp student at Tech Elevator with a background in Engineering and Customer Service. I spent 3 years at an Income Tax firm and 3 more in a Lab Environment where I helped in implementing procedure and interpreting the results into usable data. I am a career learner, often spending my time finding out the why or how in many different subjects. I’ve always had a knack for absorbing information, educating others, and creative problem solving. After I graduate, I’m looking to apply the knowledge I gain along with my unique skill set to a Software Developer role that allows me to collaborate, innovate, and grow as person.');
 
-INSERT INTO student (firstname, lastname, class, previousexperience, contactinfo, username)
-VALUES('James', 'Vouros', 'JAVA','Beerhead Bar & Eatery', 'piersonkyle90@yahoo.com', 'james');
+INSERT INTO student (firstname, lastname, class, previousexperience, contactinfo, username, summary)
+VALUES('James', 'Vorous', 'JAVA','Beerhead Bar & Eatery', 'piersonkyle90@yahoo.com', 'james', 'I am a Java bootcamp student at Tech Elevator, priding myself on my ability to achieve the goals I set for myself through perseverance. Though I have worked in a variety of fields, one trait that always followed me is my dedicated work ethic. I feel my programming skills coupled with my tireless enthusiasm will have a positive impact on a development team.'
+');
 
 --  assigning Simin, using username to identify her, a password and roll
 INSERT INTO user_password (username, password, role_title)
@@ -46,8 +47,7 @@ VALUES ('siminN', 'password', 'Student');
 
 --since the staff creates the student profile.
 INSERT INTO student (firstname, lastname, class, summary, previousexperience, contactinfo, username)
-
-VALUES('Simin', 'Nickelsen', '.NET', 'Engineer', 'Adobe', 'SNickelsen@yahoo.com', 'siminN');
+VALUES('Simin', 'Nickelsen', '.NET', 'I am pursuing the .NET track at Tech Elevator software developer bootcamp. I have one year of experience as a web developer at Global Vocabulary which helped me to develop my problem-solving and trouble-shooting skills.', 'Engineer', 'SNickelsen@yahoo.com', 'siminN');
 -----------------------------------------------------------------------------------
 --Softskills
 

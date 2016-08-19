@@ -109,10 +109,12 @@ button {
     border-radius: 20px;
     background-color: #ee9898;
     width: 500px;
-    padding: 50px;
     display: inline-block;
 }
 
+.studentDisplay img{
+    margin-right:8px;
+}
 .classTitle {
     padding: 10px;
     border-radius: 30px;

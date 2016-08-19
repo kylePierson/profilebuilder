@@ -39,12 +39,12 @@
                     <tbody>
                         <tr>
                             <td>
-                                <span class="visible" id="summarySpan"> @Model.Summary </span>
-                                <span class="hide">
+                                <span class="visible" data-title="summary" id="summarySpan"> @Model.Summary </span>
+                                <span class="hide" data-title="summary">
                                     @using (Html.BeginForm("UpdateStudentSummary", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" name="editSummary" id="summaryEditSpan" />
-                                        <button type="submit" class="btn btn-primary" id="summaryButton">Save</button>
+                                        <button type="submit" data-title="summary" class="btn btn-primary" id="summaryButton">Save</button>
                                     }
                                 </span>
                             </td>
@@ -122,12 +122,12 @@
                     <tbody>
                         <tr>
                             <td>
-                                <span class="visible" id="AcademicDegreeSpan"> @Model.AcademicDegree</span>
-                                <span class="hide">
+                                <span class="visible" data-title="degree" id="AcademicDegreeSpan"> @Model.AcademicDegree</span>
+                                <span class="hide" data-title="degree">
                                     @using (Html.BeginForm("UpdateStudentAcademicDegree", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" name="editAcademicDegree" id="academicDegreeEditSpan" />
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" data-title="degree" class="btn btn-primary">Save</button>
                                     }
                                 </span>
                             </td>
@@ -150,12 +150,12 @@
                     <tbody>
                         <tr>
                             <td>
-                                <span class="visible" id="experienceSpan"> @Model.PreviousExperience </span>
-                                <span class="hide">
+                                <span class="visible"data-title="experience" id="experienceSpan"> @Model.PreviousExperience </span>
+                                <span class="hide" data-title="experience">
                                     @using (Html.BeginForm("UpdateStudentPreviousExperience", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
                                         <input type="text" rows="4" cols="50" name="editPreviousExperience" id="input1" />
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" data-title="experience" class="btn btn-primary">Save</button>
                                     }
                                 </span>
                             </td>
@@ -179,12 +179,12 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <span class="visible" id="contactInfoSpan"> @Model.ContactInfo </span>
-                                    <span class="hide">
+                                    <span class="visible" data-title="contact" id="contactInfoSpan"> @Model.ContactInfo </span>
+                                    <span class="hide" data-title="contact">
                                         @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
                                         {
                                             <input type="text" name="editContactInfo" id="summaryEditSpan" />
-                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <button type="submit" data-title="contact" class="btn btn-primary">Save</button>
                                         }
                                     </span>
                                 </td>

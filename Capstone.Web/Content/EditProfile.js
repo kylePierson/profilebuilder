@@ -2,18 +2,18 @@
 
     //-------- edit experience
     $('#edit_div_1').click(function () {
-      //  $('#editPreviousExperience').val($('#experienceSpan').val());
-        $('.hide').removeClass("hide").addClass("show");
-       
-        $('.visible').removeClass("visible").addClass("hide");
+      
+        $("[data-title='experience'].hide").removeClass("hide").addClass("show");     
+        $("[data-title='experience'].visible").removeClass("visible").addClass("hide");
 
     });
 
     //---------edit summary------------
     $('#summaryEditButton').click(function () {
-       
-        $('#summaryEditButton').parent().removeClass("hide").addClass("show");
-        $('#summaryEditButton').parent().removeClass("visible").addClass("hide");
+        //console.log($("[data-title='summary']"));
+        //console.log($("[data-title='summary'].hide"));
+       $("[data-title='summary'].hide").removeClass("hide").addClass("show");
+       $("[data-title='summary'].visible").removeClass("visible").addClass("hide");
 
     });
 
@@ -21,16 +21,16 @@
     //---------edit contact info ------------
     $('#editContactInfoButton').click(function () {
        
-        $('.hide').removeClass("hide").addClass("show");
-        $('.visible').removeClass("visible").addClass("hide");
+        $("[data-title='contact'].hide").removeClass("hide").addClass("show");
+        $("[data-title='contact'].visible").removeClass("visible").addClass("hide");
 
     });
 
     //---------edit academic degree ------------
     $('#academicDegreeEditButton').click(function () {
 
-        $('.hide').removeClass("hide").addClass("show");
-        $('.visible').removeClass("visible").addClass("hide");
+        $("[data-title='degree'].hide").removeClass("hide").addClass("show");
+        $("[data-title='degree'].visible").removeClass("visible").addClass("hide");
 
     });
 
