@@ -13,7 +13,7 @@
 
         </div>
         <div class="col-sm-4 loginDiv">
-            <div class="well">
+            <div class="well tile">
                 @using (Html.BeginForm("LogIn", "User", FormMethod.Post)) { @Html.ValidationSummary()   @Html.LabelFor(m => m.Username)  <br/>
                     @Html.TextBoxFor(m => m.Username)
                     @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger" })

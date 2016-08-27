@@ -13,7 +13,7 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-            <div class="well dash">
+            <div class="well dash tile">
                 <h2 align="center">Hello @Model.FirstName! </h2>
                 <p align="center">
                     <br/>
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tile">
                 <table>
                     <thead>
                         <tr>
@@ -56,9 +56,9 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tile">
                 <h3>Skills</h3>
-                <ul>
+                <ul id="skillList">
                     @foreach (var skill in Model.SkillList)
                     {
                         <li>@skill &nbsp;&nbsp;&nbsp; @Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</li>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tile">
                 <h3>Interests</h3>
                 <ul>
                     @foreach (var interest in Model.InterestList)
@@ -89,7 +89,7 @@
 
         </div>
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tile">
                 @using (Html.BeginForm("UploadFiles", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <label for="file1">Photo:</label>
@@ -111,7 +111,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tile">
                 <table>
                     <thead>
                         <tr>
@@ -138,7 +138,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="well">
+            <div class="well tile">
                 <table>
                     <thead>
                         <tr>
@@ -167,7 +167,7 @@
         </div>
         <div class="col-md-4">
 
-                <div class="well dash">
+                <div class="well dash tile">
 
                     <table>
                         <thead>

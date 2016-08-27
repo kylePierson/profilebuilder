@@ -180,6 +180,8 @@
     <Content Include="Content\images\kylepierson.jpg" />
     <Content Include="Content\images\siminnickelsen.jpg" />
     <Content Include="Content\images\Sucess.jpg" />
+    <Content Include="Content\images\te-background.png" />
+    <Content Include="Content\images\te_logo.png" />
     <Content Include="Content\images\tylerpompeii.jpg" />
     <Content Include="Content\RefreshPage.js" />
     <Content Include="Content\ShowMoreLess.js" />

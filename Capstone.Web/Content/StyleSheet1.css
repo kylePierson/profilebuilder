@@ -6,10 +6,16 @@
     /*background-image: url('images/blueBackground.jpg');*/
     /*background-image: url('images/blue1.jpg');*/
     /*background-image: url('images/blue2.jpg');*/
-    background: -webkit-radial-gradient(circle, #3b7ca9, #56a5dc, green); /* For Safari 5.1 to 6.0 */
-    background: -o-radial-gradient(circle, red, yellow, green); /*For Opera 11.6 to 12.0 */
-    background: -moz-radial-gradient(circle, #3b7ca9, #56a5dc, green); /* For Fx 3.6 to 15 */
-    background: radial-gradient(circle, #c0e5ff, #56a5dc, green); /* Standard syntax (must be last) */
+    /*background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+    /*background: linear-gradient(#8DC63F, #00AEEF);/* Standard syntax */
+    background-image: url("images/te-background.png");
+    background-attachment: fixed;
+}
+
+.student{
+    text-align:center;
 }
 
 .fontBold {
@@ -28,6 +34,10 @@ button {
     padding: 20px 50px 20px 5px;
     margin: 50px;
 }
+
+/*#main-content{
+    margin-top:70px
+}*/
 
 .loginDiv form {
     padding-left: 20%;
@@ -104,12 +114,23 @@ button {
 
 /*--------------------Home index page -----------------------*/
 .studentDisplay {
+    text-align:center;
     list-style: none;
-    border: 1px solid black;
-    border-radius: 20px;
+    /*border: 1px solid black;*/
+    /*border-radius: 20px;*/
     background-color: #ee9898;
     width: 500px;
     display: inline-block;
+}
+
+
+
+.tile{
+    text-shadow:0 0 13px rgba(0,0,0,.3);
+    border:1px solid #bfbfbf;
+    border-radius:5px;
+    box-shadow:2px 4px 0 #a5a5a5,3px 5px 0 #565656,3px 5px 10px rgba(0,0,0,.4);
+    background-color:#f2f2f2;
 }
 
 .studentDisplay img{
@@ -131,9 +152,9 @@ button {
    
 }
 
-.student h3 {
+/*.student h3 {
     box-shadow: 5px 5px 5px #888888;
-}
+}*/
 
 /*---------- emloyer dashboard--------------*/
 .imgNewsfeed {

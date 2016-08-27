@@ -1,0 +1,6 @@
+C:\Users\Kyle\Documents\bitbucket\c-capstone\Capstone.Data\bin\Debug\Capstone.Data.dll
+C:\Users\Kyle\Documents\bitbucket\c-capstone\Capstone.Data\bin\Debug\Capstone.Data.pdb
+C:\Users\Kyle\Documents\bitbucket\c-capstone\Capstone.Data\bin\Debug\log4net.xml
+C:\Users\Kyle\Documents\bitbucket\c-capstone\Capstone.Data\obj\Debug\Capstone.Data.csprojResolveAssemblyReference.cache
+C:\Users\Kyle\Documents\bitbucket\c-capstone\Capstone.Data\obj\Debug\Capstone.Data.dll
+C:\Users\Kyle\Documents\bitbucket\c-capstone\Capstone.Data\obj\Debug\Capstone.Data.pdb

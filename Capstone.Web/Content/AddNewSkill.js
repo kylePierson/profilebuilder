@@ -3,7 +3,10 @@
         var newSkill = $("#newSkillTextbox").val();
         if (newSkill) {
             var username = $("#hiddenusername").val();
-            $.post("/Student/AddNewSkill", { username: username, addSkill: newSkill })
+            var href = "/Student/DeleteStudentSkill?skill="+newSkill+"&username="+username;
+            var linkHtml = '<a href=' + href + '>Delete</a>';
+            $("#skillList").append("<li>" + newSkill + "&nbsp;&nbsp;&nbsp;" + linkHtml + "</li>")
+            $.post("/Student/AddNewSkill", { username: username, addSkill: newSkill })           
         }
 
     });

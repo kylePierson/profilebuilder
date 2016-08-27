@@ -7,7 +7,7 @@
 <div class="container">
    
 
-        <div class="well">
+        <div class="well tile">
             <h1 align="center">Check out our students!</h1>
             <br/>
             <p>
@@ -21,13 +21,13 @@
     <div class="row">
 
         <div class="col-sm-6 student">
-            <h3 class="well" style="text-align:center">.NET</h3>
+            <h3 class="well tile" style="text-align:center">.NET</h3>
 
             @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
             {
                 if (item.Class == ".NET")
                 {
-                    <table class="studentDisplay well">
+                    <table class="studentDisplay well tile">
                         <tr>
                             
                         </tr>
@@ -55,12 +55,12 @@
 
        
         <div class="col-sm-6 student">
-            <h3 class="well" style="text-align:center">Java</h3>
+            <h3 class="well tile" style="text-align:center">Java</h3>
             @foreach (var item in (Model as List<Capstone.Data.Models.Student>))
             {
                 if (item.Class == "JAVA")
                 {
-                    <table class="studentDisplay well">
+                    <table class="studentDisplay well tile">
                         
                         <tr>
                             <td align="center">
