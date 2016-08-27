@@ -43,7 +43,8 @@
                                 <span class="hide" data-title="summary">
                                     @using (Html.BeginForm("UpdateStudentSummary", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
-                                        <input type="text" name="editSummary" id="summaryEditSpan" />
+                                        @*<input type="text" name="editSummary" id="summaryEditSpan" />*@
+                                        <textarea rows="15" cols="50" name="editSummary">@Model.Summary</textarea>
                                         <button type="submit" data-title="summary" class="btn btn-primary" id="summaryButton">Save</button>
                                     }
                                 </span>

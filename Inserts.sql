@@ -39,7 +39,7 @@ VALUES('Kyle', 'Pierson', '.NET', 'BioMechanic', 'piersonkyle90@yahoo.com', 'pie
 
 INSERT INTO student (firstname, lastname, class, previousexperience, contactinfo, username, summary)
 VALUES('James', 'Vorous', 'JAVA','Beerhead Bar & Eatery', 'piersonkyle90@yahoo.com', 'james', 'I am a Java bootcamp student at Tech Elevator, priding myself on my ability to achieve the goals I set for myself through perseverance. Though I have worked in a variety of fields, one trait that always followed me is my dedicated work ethic. I feel my programming skills coupled with my tireless enthusiasm will have a positive impact on a development team.'
-');
+);
 
 --  assigning Simin, using username to identify her, a password and roll
 INSERT INTO user_password (username, password, role_title)

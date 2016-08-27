@@ -10,10 +10,12 @@
 
     //---------edit summary------------
     $('#summaryEditButton').click(function () {
+        var data = $("[data-title='summary'].visible").val()
         //console.log($("[data-title='summary']"));
         //console.log($("[data-title='summary'].hide"));
        $("[data-title='summary'].hide").removeClass("hide").addClass("show");
        $("[data-title='summary'].visible").removeClass("visible").addClass("hide");
+       $("#summaryEditButton").hide();
 
     });
 
