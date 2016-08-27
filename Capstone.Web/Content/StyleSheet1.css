@@ -155,6 +155,85 @@ button {
 /*.student h3 {
     box-shadow: 5px 5px 5px #888888;
 }*/
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 10px solid black;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 0 solid black;
+  overflow: hidden;
+  transition: 200ms ease;
+}
+
+.caret.rotate.open {
+  transform: rotate(-90deg);
+  border-width: 10px 10px 0 10px;
+}
+
+.caret2{
+    
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 10px solid #3c763d;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 0 solid #3c763d;
+  overflow: hidden;
+  transition: 200ms ease;
+}
+
+.caret2.rotate.open {
+  transform: rotate(-90deg);
+  border-width: 10px 10px 0 10px;
+}
+
+.caret3{
+    
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 10px solid #23527c;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 0 solid #23527c;
+  overflow: hidden;
+  transition: 200ms ease;
+}
+
+.caret3.rotate.open {
+  transform: rotate(-90deg);
+  border-width: 10px 10px 0 10px;
+}
+
+.caret4{
+    
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 10px solid #8a6d3b;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 0 solid #8a6d3b;
+  overflow: hidden;
+  transition: 200ms ease;
+}
+
+.caret4.rotate.open {
+  transform: rotate(-90deg);
+  border-width: 10px 10px 0 10px;
+}
+
 
 /*---------- emloyer dashboard--------------*/
 .imgNewsfeed {

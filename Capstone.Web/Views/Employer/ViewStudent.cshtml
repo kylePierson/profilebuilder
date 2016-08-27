@@ -4,13 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <div class="container-fluid">
     <br />
     <div class="row">
         <div class="col-sm-4 ">
 
         </div>
-        <div class="col-sm-4 well">
+        <div class="col-sm-4 well tile">
             <p align="center">
                 <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
             </p>
@@ -27,11 +29,13 @@
             <div class="col-sm-4">
 
             </div>
-            <div class="panel panel-default col-sm-4">
+            <div class="panel panel-default col-sm-4 tile">
 
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="skillsDropdown">
+                            <i class="caret rotate open" id="skillsCaret"></i>
                             Skills
                         </a>
                     </h4>
@@ -57,10 +61,11 @@
         <div class="col-sm-4">
 
         </div>
-        <div class="panel panel-success col-sm-4">
+        <div class="panel panel-success col-sm-4 tile">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="interestsDropdown">
+                        <i class="caret2 rotate" id="interestsCaret"></i>
                         Interests
                     </a>
                 </h4>
@@ -86,10 +91,11 @@
         <div class="col-sm-4">
 
         </div>
-        <div class="panel panel-info col-sm-4">
+        <div class="panel panel-info col-sm-4 tile">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id="summaryDropdown">
+                        <i class="caret3 rotate" id="summaryCaret"></i>
                         Summary
                     </a>
                 </h4>
@@ -109,10 +115,11 @@
         <div class="col-sm-4">
 
         </div>
-        <div class="panel panel-warning col-sm-4">
+        <div class="panel panel-warning col-sm-4 tile">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" id="projectsDropdown">
+                        <i class="caret4 rotate open" id="projectsCaret"></i>
                         Projects
                     </a>
                 </h4>
@@ -150,7 +157,7 @@
 </div>
 
     
-
+<script src="~/Content/Caret.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
