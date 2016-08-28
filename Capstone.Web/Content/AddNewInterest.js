@@ -1,9 +1,12 @@
 ﻿$(document).ready(function () {
-    $("#addNewInterset").click(function () {
-        var interest = $("#newInterestTextbox").val();
-        if (interest) {
+    $("#addNewInterest").click(function () {
+        var newInterest = $("#newInterestTextbox").val();
+        if (newInterest) {
             var username = $("#hiddenusername1").val();
-            $.post("/Student/AddNewInterest", { username: username, newInterest: interest })
+            var href = "/Student/DeleteInterest?skill=" + newInterest + "&username=" + username;
+            var linkHtml = '<a href=' + href + '>Delete</a>';
+            $("#interestList").append("<li>" + newInterest + "&nbsp;&nbsp;&nbsp;" + linkHtml + "</li>")
+            $.post("/Student/AddNewInterest", { username: username, addInterest: newInterest })
         }
 
     });
