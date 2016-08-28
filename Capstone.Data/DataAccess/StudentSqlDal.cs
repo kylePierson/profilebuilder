@@ -464,6 +464,7 @@ namespace Capstone.Data.DataAccess
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
                     project.StudentId = GetStudentId(username, conn);
                     SqlCommand cmd = new SqlCommand(SQL_AddProject, conn);
                     cmd.Parameters.AddWithValue("@title", project.Title);

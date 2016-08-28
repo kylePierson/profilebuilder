@@ -7,6 +7,7 @@
 <script src="~/Content/AddNewSkill.js"></script>
 <script src="~/Content/AddNewInterest.js"></script>
 <script src="~/Content/RefreshPage.js"></script>
+<script src="~/Content/AddNewProject.js"></script>
 
 <div class="container">
     <div class="row">
@@ -16,7 +17,7 @@
             <div class="well dash tile">
                 <h2 align="center">Hello @Model.FirstName! </h2>
                 <p align="center">
-                    <br/>
+                    <br />
                     <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
                 </p>
                 <br />
@@ -26,7 +27,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="well tile">
                 <table>
                     <thead>
@@ -56,59 +57,24 @@
                 <button type="submit" class="btn btn-primary" id="summaryEditButton">Edit</button>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="well tile">
-                <h3>Skills</h3>
-                <ul id="skillList">
-                    @foreach (var skill in Model.SkillList)
+                <h3>Projects</h3>
+                <ul id="projectList">
+                    @foreach (var project in Model.ProjectList)
                     {
-                        <li>@skill &nbsp;&nbsp;&nbsp; @Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username })</li>
+                        <li>@project.Title &nbsp;&nbsp;&nbsp;<span style="position:absolute; right:50px"> @Html.ActionLink("Delete", "DeleteStudentProject", new { title = project.Title, username = Model.Username }) </span><br />@project.Summary</li>
 
                     }
                 </ul>
-                <label for="addSkill"></label>
-                <input type="text" name="addSkill" id="newSkillTextbox" />
-                <button id="addNewSkill" type="submit" class="btn btn-primary">Add</button>
+                <label for="addProject">Project Title and Summary</label><br />
+                <input type="text" name="addTitle" id="newTitleTextbox" required /><br />
+                <textarea rows="3" cols="50" name="projectSummary" id="newSummaryTextbox" required></textarea>
+                <button id="addNewProject" type="submit" class="btn btn-primary">Add</button>
                 <input id="hiddenusername" value="@Model.Username" type="hidden" />
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="well tile">
-                <h3>Interests</h3>
-                <ul id="interestList">
-                    @foreach (var interest in Model.InterestList)
-                    {
-                        <li>@interest &nbsp;&nbsp;&nbsp; @Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest, username = Model.Username })</li>
 
-                    }
-                </ul>
-                <label for="addInterest"></label>
-                <input type="text" name="addInterest" id="newInterestTextbox" />
-                <button id="addNewInterest" type="submit" class="btn btn-primary">Add</button>
-                <input id="hiddenusername1" value="@Model.Username" type="hidden" />
-            </div>
-
-        </div>
-        <div class="col-md-4">
-            <div class="well tile">
-                @using (Html.BeginForm("UploadFiles", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    <label for="file1">Photo:</label>
-                    <input type="file" name="photo" id="file1" />
-
-                    <label for="file2">Resume:</label>
-                    <input type="file" name="resume" id="file2" />
-
-                    <label for="file3">Cover Letter:</label>
-                    <input type="file" name="coverLetter" id="file3" />
-                    <br>
-
-                    @Html.Hidden("username", Model.Username)
-
-                    <input class="btn btn-primary"  id="uploadFiles" type="submit" value="Submit">
-                }
-            </div>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -152,7 +118,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <span class="visible"data-title="experience" id="experienceSpan"> @Model.PreviousExperience </span>
+                                <span class="visible" data-title="experience" id="experienceSpan"> @Model.PreviousExperience </span>
                                 <span class="hide" data-title="experience">
                                     @using (Html.BeginForm("UpdateStudentPreviousExperience", "Student", new { username = Model.Username }, FormMethod.Post))
                                     {
@@ -170,36 +136,88 @@
         </div>
         <div class="col-md-4">
 
-                <div class="well dash tile">
+            <div class="well dash tile">
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <td><h3>Contact Info</h3></td>
+                <table>
+                    <thead>
+                        <tr>
+                            <td><h3>Contact Info</h3></td>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <span class="visible" data-title="contact" id="contactInfoSpan"> @Model.ContactInfo </span>
-                                    <span class="hide" data-title="contact">
-                                        @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
-                                        {
-                                            
-                                            <input type="email" name="editContactInfo" id="summaryEditSpan" />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="visible" data-title="contact" id="contactInfoSpan"> @Model.ContactInfo </span>
+                                <span class="hide" data-title="contact">
+                                    @using (Html.BeginForm("UpdateStudentContactInfo", "Student", new { username = Model.Username }, FormMethod.Post))
+                                    {
+
+                                        <input type="email" name="editContactInfo" id="summaryEditSpan" />
                                             <button type="submit" data-title="contact" class="btn btn-primary">Save</button>
-                                        }
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
+                                    }
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
 
-                    </table>
-                    <button type="submit" class="btn btn-primary" id="editContactInfoButton">Edit</button>
+                </table>
+                <button type="submit" class="btn btn-primary" id="editContactInfoButton">Edit</button>
 
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="well tile">
+                <h3>Skills</h3>
+                <ul id="skillList">
+                    @foreach (var skill in Model.SkillList)
+                    {
+                        <li>@skill &nbsp;&nbsp;&nbsp; <span style="position:absolute; right:50px"> @Html.ActionLink("Delete", "DeleteStudentSkill", new { skill = skill, username = Model.Username }) </span></li>
+
+                    }
+                </ul>
+                <label for="addSkill"></label>
+                <input type="text" name="addSkill" id="newSkillTextbox" />
+                <button id="addNewSkill" type="submit" class="btn btn-primary">Add</button>
+                <input id="hiddenusername" value="@Model.Username" type="hidden" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well tile">
+                <h3>Interests</h3>
+                <ul id="interestList">
+                    @foreach (var interest in Model.InterestList)
+                    {
+                        <li>@interest &nbsp;&nbsp;&nbsp; <span style="position:absolute; right:50px"> @Html.ActionLink("Delete", "DeleteStudentInterest", new { interest = interest, username = Model.Username }) </span></li>
+
+                    }
+                </ul>
+                <label for="addInterest"></label>
+                <input type="text" name="addInterest" id="newInterestTextbox" />
+                <button id="addNewInterest" type="submit" class="btn btn-primary">Add</button>
+                <input id="hiddenusername1" value="@Model.Username" type="hidden" />
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="well tile">
+                @using (Html.BeginForm("UploadFiles", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <label for="file1">Photo:</label>
+                    <input type="file" name="photo" id="file1" />
+
+                    <label for="file2">Resume:</label>
+                    <input type="file" name="resume" id="file2" />
+
+                    @Html.Hidden("username", Model.Username)
+
+                    <input class="btn btn-primary" id="uploadFiles" type="submit" value="Submit">
+                }
+            </div>
+        </div>
+        
     </div>
 
 </div>

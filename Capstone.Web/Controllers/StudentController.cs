@@ -146,14 +146,15 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddProject(string username, Project newProject)
+        public ActionResult AddProject(string username, string projectTitle, string summary)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("AddProject", newProject);
-            }
+          
+            Project newProject = new Project();
+            newProject.Title = projectTitle;
+            newProject.Summary = summary;
             studentDAL.AddProject(username, newProject);
-            return RedirectToAction("Index");
+            Student model = studentDAL.GetStudent(username);
+            return View("Index", model);
         }
 
         [HttpPost]
