@@ -248,6 +248,26 @@ button {
   border-width: 10px 10px 0 10px;
 }
 
+.caret5{
+    
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 10px solid #d9534f;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 0 solid #8a6d3b;
+  overflow: hidden;
+  transition: 200ms ease;
+}
+
+.caret5.rotate.open {
+  transform: rotate(-90deg);
+  border-width: 10px 10px 0 10px;
+}
+
 
 /*---------- emloyer dashboard--------------*/
 .imgNewsfeed {

@@ -16,82 +16,16 @@
             <p align="center">
                 <img src="@string.Concat("/Content/images/",Model.FirstName.ToLower(), Model.LastName.ToLower(), ".jpg")" class="img-circle profileImage" />
             </p>
-                <br />
-            <h2 align ="center">@Model.FirstName @Model.LastName</h2>
+            <br />
+            <h2 align="center">@Model.FirstName @Model.LastName</h2>
         </div>
-        <div class="col-sm-4">
 
-        </div>
     </div>
+    <div class="col-md-1">
 
-    <div class="panel-group" id="accordion">
-        <div class="row">
-            <div class="col-sm-4">
-
-            </div>
-            <div class="panel panel-default col-sm-4 tile">
-
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="skillsDropdown">
-                            <i class="caret rotate open" id="skillsCaret"></i>
-                            Skills
-                        </a>
-                    </h4>
-                </div>
-
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul>
-                            @foreach (var skill in Model.SkillList)
-                            {
-                                <li>@skill</li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-
-            </div>
-        </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4">
-
-        </div>
-        <div class="panel panel-success col-sm-4 tile">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="interestsDropdown">
-                        <i class="caret2 rotate" id="interestsCaret"></i>
-                        Interests
-                    </a>
-                </h4>
-            </div>
-
-            <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <ul>
-                        @foreach (var interest in Model.InterestList)
-                        {
-                            <li>@interest</li>
-                        }
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-4">
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-
-        </div>
-        <div class="panel panel-info col-sm-4 tile">
+    <div class="col-md-4">
+        <div class="panel panel-info col-md-12 tile">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id="summaryDropdown">
@@ -107,56 +41,124 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-md-1">
 
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-
-        </div>
-        <div class="panel panel-warning col-sm-4 tile">
+        <div class="panel panel-danger col-md-12 tile">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" id="projectsDropdown">
-                        <i class="caret4 rotate open" id="projectsCaret"></i>
-                        Projects
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" id="infoDropdown">
+                        <i class="caret5 rotate open" id="infoCaret"></i>
+                        Resume & Contact Info
                     </a>
                 </h4>
             </div>
 
-            <div id="collapseFour" class="panel-collapse collapse">
+            <div id="collapseFive" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <table id="studentProjects">
-                        @foreach (var project in Model.ProjectList)
+                    <ul>
+                        <li><a href="mailto:@Model.ContactInfo">@Model.ContactInfo</a></li>
+
+                        @if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")))
                         {
-                            <tr>
-                                <td>@project.Title</td>
-                                <td>@project.Summary</td>
-                            </tr>
-
-
+                            <li>
+                                <a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">Resume</a>
+                            </li>
                         }
-                    </table>
+
+                    </ul>
+                    
                 </div>
             </div>
-
-        </div>
-        <div class="col-sm-4">
-
         </div>
     </div>
-    @if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")))
-    {
-    <a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">Resume</a>
-    }
-    @if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_CoverLetter.pdf")))
-    {
-    <a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_CoverLetter.pdf")">CoverLetter</a>
-    }
+
+    <div class="panel-group" id="accordion">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default col-md-12 tile">
+
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="skillsDropdown">
+                                <i class="caret rotate open" id="skillsCaret"></i>
+                                Skills
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul>
+                                @foreach (var skill in Model.SkillList)
+                                {
+                                    <li>@skill</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-success col-md-12 tile">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="interestsDropdown">
+                                <i class="caret2 rotate open" id="interestsCaret"></i>
+                                Interests
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul>
+                                @foreach (var interest in Model.InterestList)
+                                {
+                                    <li>@interest</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-warning col-sm-12 tile">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" id="projectsDropdown">
+                                <i class="caret4 rotate open" id="projectsCaret"></i>
+                                Projects
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table id="studentProjects">
+                                @foreach (var project in Model.ProjectList)
+                                {
+                                    <tr>
+                                        <td>@project.Title</td>
+                                        <td>@project.Summary</td>
+                                    </tr>
+
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
-    
+
 <script src="~/Content/Caret.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -167,7 +169,8 @@
         })
     });
 
-    $(function () { $('#collapseTwo').collapse('show') });
+    $(function () { $('#collapseTwo').collapse('hide') });
     $(function () { $('#collapseThree').collapse('toggle') });
     $(function () { $('#collapseOne').collapse('hide') });
+    $(function () { $('#collapseFive').collapse('hide') });
 </script>

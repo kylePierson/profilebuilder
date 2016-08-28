@@ -68,7 +68,7 @@
                     }
                 </ul>
                 <label for="addProject">Project Title and Summary</label><br />
-                <input type="text" name="addTitle" id="newTitleTextbox" required /><br />
+                <input type="text" name="addTitle" id="newTitleTextbox" required /><br /><br/>
                 <textarea rows="3" cols="50" name="projectSummary" id="newSummaryTextbox" required></textarea>
                 <button id="addNewProject" type="submit" class="btn btn-primary">Add</button>
                 <input id="hiddenusername" value="@Model.Username" type="hidden" />
@@ -205,15 +205,23 @@
             <div class="well tile">
                 @using (Html.BeginForm("UploadFiles", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    <label for="file1">Photo:</label>
-                    <input type="file" name="photo" id="file1" />
 
-                    <label for="file2">Resume:</label>
+                    <label for="file1">New Photo?</label>
+                    <input type="file" name="photo" id="file1" />
+                    <br/>
+
+                    
+                    
+                    <label for="file2">New Resume?</label>
                     <input type="file" name="resume" id="file2" />
 
                     @Html.Hidden("username", Model.Username)
-
+                    <br/>
                     <input class="btn btn-primary" id="uploadFiles" type="submit" value="Submit">
+                    if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")))
+                    {
+                        <span style="position:absolute; right:50px"><a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">View Current Resume</a></span>
+                    }
                 }
             </div>
         </div>

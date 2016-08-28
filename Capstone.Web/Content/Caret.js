@@ -48,6 +48,18 @@
         }
     });
 
+    $("#infoDropdown").on("click", function () {
+        var current = $("#infoCaret");
+        if (current.hasClass("open")) {
+            current.removeClass("open");
+            console.log(current.hasClass("open"));
+        }
+        else {
+            current.addClass("open");
+            console.log(current.hasClass("open"));
+        }
+    });
+
     //document.getElementById('skillsDropdown').addEventListener('click', function () {
     //    [].slice.call(document.getElementsById('skillsCaret')).forEach(function (arrow) {
     //        arrow.classList.toggle('open');
