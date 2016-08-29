@@ -1,5 +1,6 @@
 ﻿using Capstone.Data.DataAccess;
 using Capstone.Data.Models;
+using Capstone.Web.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
+    [ProfileBuilderAuthorizationFilter]
     public class StudentController : Controller
     {
         IStudentDAL studentDAL;

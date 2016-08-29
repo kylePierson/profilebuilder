@@ -19,14 +19,15 @@
 
                 <div class="row">
                     <div class="col-md-3"></div>
-                    <span class="btn btn-danger col-md-6 addStaffButton">+ New Staff User</span>
+                    <a href='@Url.Action("CreateStaffUser", "Staff", new { username = Model.Username })'><span class="sbtn @*btn-danger*@ col-md-6 addStaffButton" style="margin-top:20px">+ New Staff User</span></a>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col-md-2"> </div>
-                    <span class="btn btn-success col-md-3 addStudentButton">.btn-success</span>
+                    <a href="@Url.Action("CreateStudentUser", "Staff",new { username = Model.Username})"><span class="sbtn @*btn-success*@ col-md-3 addStudentButton">+ New Student User</span></a>
+                    
                     <div class="col-md-2"></div>
-                        <span class="btn btn-success col-md-3 addStudentButton">.btn-success</span>
+                    <a href='@Url.Action("CreateEmployerUser", "Staff",new { username = Model.Username})'><span class="sbtn @*btn-info*@ col-md-3 addEmployerButton">+ New Employer User</span></a>                     
                     
                 </div>
                 @*<li><a href='@Url.Action("CreateStaffUser", "Staff", new { username = Model.Username})'> Add a new Staff</a></li>*@
@@ -43,26 +44,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-
-        </div>
-        <span class="btn btn-danger col-md-4 addStaffButton">.btn-danger</span>
-        @*<div class="col-md-4">
-
-            </div>*@
-    </div>
-    <div class="row">
-        <button class="well col-md-4 tile ">
-            x   + New Staff User
-        </button>
-        <div class="col-md-4">
-
-        </div>
-        <button class="well col-md-4 tile danger">
-            x   + New Staff User
-        </button>
-    </div>
+   
 
 
 

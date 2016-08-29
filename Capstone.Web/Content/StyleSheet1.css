@@ -128,18 +128,47 @@ button {
     display: inline-block;
 }
 
+
+
+.sbtn{
+    text-shadow:0 0 13px rgba(0,0,0,.3);
+    border:1px solid #bfbfbf;
+    border-radius:5px;
+    box-shadow:0 4px 0 #a5a5a5,0 5px 0 #565656,0 5px 10px rgba(0,0,0,.4);
+    background-color:#f2f2f2;
+    text-align:center;
+    
+}
+
+.sbtn:hover{
+    text-shadow:0 0 13px #fff;
+    margin-top:-2px;
+    background-color:#efefef;
+    top:-2px;
+    box-shadow:0 7px 0 #a5a5a5,0 7px 0 #565656,0 7px 7px rgba(0,0,0,.4);
+
+}
+
+.sbtn:active{
+    margin-top:2px;
+    background-color:#efefef;
+    top:2px;
+    box-shadow:0 2px 0 #a5a5a5,0 2px 0 #565656,0 2px 5px rgba(0,0,0,.4);
+
+}
 .addStaffButton {
+    font-size:large;
     border: 1px solid #970000;
     color: #fff;
     background-color: #b85c5c;
     border-radius: 5px;
-    box-shadow: 2px 4px 0 #7e0000,2px 5px 0 #520000,0 5px 10px rgba(0,0,0,.4);
+    box-shadow: 0 5px 0 #7e0000,0 6px 0 #520000,0 5px 10px rgba(0,0,0,.4);
 }
 
     .addStaffButton:hover {
-        margin-top: -2px;
+        margin-top: -3px;
         background-color: #a15151;
-        top: -2px;
+        top: -3px;
         box-shadow: 0 7px 0 #870000,0 7px 0 #565656,0 7px 7px rgba(0,0,0,.4);
     }
 
@@ -148,6 +177,28 @@ button {
         top: 2px;
         background-color: #a15151;
         box-shadow: 0 2px 0 #870000,0 2px 0 #630000,0 2px 5px rgba(0,0,0,.4);
+    }
+
+.addEmployerButton {
+    border:1px solid #006297;
+    color:#fff;
+    background-color:#00a3ff;
+    border-radius:5px;
+    box-shadow:0 4px 0 #00587e,0 5px 0 #000f52,0 5px 10px rgba(0,0,0,.4);
+}
+    
+    .addEmployerButton:hover{
+        margin-top:-2px;
+        background-color:#0084e1;
+        top:-2px;
+        box-shadow:0 7px 0 #005687,0 7px 0 #565656,0 7px 7px rgba(0,0,0,.4);
+    }
+    
+    .addEmployerButton:active{
+        margin-top:2px;
+        top:2px;
+        background-color:#0084e1;
+        box-shadow:0 2px 0 #005687,0 2px 0 #003f64,0 2px 5px rgba(0,0,0,.4);
     }
 
 .addStudentButton {
