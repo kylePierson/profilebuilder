@@ -11,7 +11,6 @@
     /*background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
     /*background: linear-gradient(#8DC63F, #00AEEF);/* Standard syntax */
     /*background-image: url("images/te-background.png");*/
-
     background: url("images/te-background.png") no-repeat center center fixed;
     background-attachment: fixed;
     -webkit-background-size: cover;
@@ -20,8 +19,8 @@
     background-size: cover;
 }
 
-.student{
-    text-align:center;
+.student {
+    text-align: center;
 }
 
 .fontBold {
@@ -41,12 +40,12 @@ button {
     margin: 50px;
 }
 
-/*#main-content{
+    /*#main-content{
     margin-top:70px
 }*/
 
-.loginDiv form {
-    padding-left: 20%;
+    .loginDiv form {
+        padding-left: 20%;
     }
 
 #forgotPassword {
@@ -73,13 +72,14 @@ button {
     margin-left: 20px;
 }
 /*---------------------    Staff dashboard    -----------------------*/
-.creatNewUser li a{
-    font-size:1.5em
-   
+.creatNewUser li a {
+    font-size: 1.5em;
 }
-.creatNewUser li{
-    padding:10px;
+
+.creatNewUser li {
+    padding: 10px;
 }
+
 .creatNewUser {
     padding: 50px;
     border: 2px solid black;
@@ -92,19 +92,18 @@ button {
     padding: 30px;
 }
 
-.creatNewUserForm input, .creatNewUserForm label {
+    .creatNewUserForm input, .creatNewUserForm label {
         display: block;
     }
 
-.creatNewUserForm input {
+    .creatNewUserForm input {
         border-radius: 5px;
-}
+    }
 
-.creatNewUserForm li{
-    list-style:none;
-    display:inline-block;
-
-}
+    .creatNewUserForm li {
+        list-style: none;
+        display: inline-block;
+    }
 
 
 /*-----------------------  fail and success to update, create and ..   ---------------------*/
@@ -120,7 +119,7 @@ button {
 
 /*--------------------Home index page -----------------------*/
 .studentDisplay {
-    text-align:center;
+    text-align: center;
     list-style: none;
     /*border: 1px solid black;*/
     /*border-radius: 20px;*/
@@ -129,27 +128,70 @@ button {
     display: inline-block;
 }
 
-
-
-.tile{
-    text-shadow:0 0 13px rgba(0,0,0,.3);
-    border:1px solid #bfbfbf;
-    border-radius:5px;
-    box-shadow:2px 4px 0 #a5a5a5,3px 5px 0 #565656,3px 5px 10px rgba(0,0,0,.4);
-    background-color:#f2f2f2;
+.addStaffButton {
+    border: 1px solid #970000;
+    color: #fff;
+    background-color: #b85c5c;
+    border-radius: 5px;
+    box-shadow: 2px 4px 0 #7e0000,2px 5px 0 #520000,0 5px 10px rgba(0,0,0,.4);
 }
 
-.navTile{
-    text-shadow:0 0 13px rgba(0,0,0,.3);
-    border:1px solid #bfbfbf;
-    border-radius:0px 0px 5px 5px;
-    box-shadow:2px 4px 0 #a5a5a5,3px 5px 0 #565656,3px 5px 10px rgba(0,0,0,.4);
-    background-color:#f2f2f2;
+    .addStaffButton:hover {
+        margin-top: -2px;
+        background-color: #a15151;
+        top: -2px;
+        box-shadow: 0 7px 0 #870000,0 7px 0 #565656,0 7px 7px rgba(0,0,0,.4);
+    }
+
+    .addStaffButton:active {
+        margin-top: 2px;
+        top: 2px;
+        background-color: #a15151;
+        box-shadow: 0 2px 0 #870000,0 2px 0 #630000,0 2px 5px rgba(0,0,0,.4);
+    }
+
+.addStudentButton {
+    border: 1px solid #189600;
+    background-color: #5CB85C;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 0 #007c2d,0 5px 0 #00520c,0 5px 10px rgba(0,0,0,.4);
 }
 
-.studentDisplay img{
-    margin-right:8px;
+    .addStudentButton:hover {
+        margin-top: -2px;
+        background-color: #4d9d4d;
+        top: -2px;
+        box-shadow: 0 7px 0 #007c2d,0 7px 0 #565656,0 7px 7px rgba(0,0,0,.4);
+    }
+
+    .addStudentButton:active {
+        margin-top: 2px;
+        top: 2px;
+        background-color: #4d9d4d;
+        box-shadow: 0 2px 0 #007c2d,0 2px 0 #565656,0 2px 5px rgba(0,0,0,.4);
+    }
+
+.tile {
+    text-shadow: 0 0 13px rgba(0,0,0,.3);
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+    box-shadow: 2px 4px 0 #a5a5a5,3px 5px 0 #565656,3px 5px 10px rgba(0,0,0,.4);
+    background-color: #f2f2f2;
 }
+
+.navTile {
+    text-shadow: 0 0 13px rgba(0,0,0,.3);
+    border: 1px solid #bfbfbf;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 2px 4px 0 #a5a5a5,3px 5px 0 #565656,3px 5px 10px rgba(0,0,0,.4);
+    background-color: #f2f2f2;
+}
+
+.studentDisplay img {
+    margin-right: 8px;
+}
+
 .classTitle {
     padding: 10px;
     border-radius: 30px;
@@ -157,116 +199,111 @@ button {
 }
 
 .studentDisplay td {
-   width:auto;
+    width: auto;
 }
 
 .profileImage {
     box-shadow: 10px 10px 5px #888888;
-    width:150px;
-   
+    width: 150px;
 }
 
 /*.student h3 {
     box-shadow: 5px 5px 5px #888888;
 }*/
 .caret {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 10px solid black;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 0 solid black;
-  overflow: hidden;
-  transition: 200ms ease;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 10px solid black;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 0 solid black;
+    overflow: hidden;
+    transition: 200ms ease;
 }
 
-.caret.rotate.open {
-  transform: rotate(-90deg);
-  border-width: 10px 10px 0 10px;
+    .caret.rotate.open {
+        transform: rotate(-90deg);
+        border-width: 10px 10px 0 10px;
+    }
+
+.caret2 {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 10px solid #3c763d;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 0 solid #3c763d;
+    overflow: hidden;
+    transition: 200ms ease;
 }
 
-.caret2{
-    
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 10px solid #3c763d;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 0 solid #3c763d;
-  overflow: hidden;
-  transition: 200ms ease;
+    .caret2.rotate.open {
+        transform: rotate(-90deg);
+        border-width: 10px 10px 0 10px;
+    }
+
+.caret3 {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 10px solid #23527c;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 0 solid #23527c;
+    overflow: hidden;
+    transition: 200ms ease;
 }
 
-.caret2.rotate.open {
-  transform: rotate(-90deg);
-  border-width: 10px 10px 0 10px;
+    .caret3.rotate.open {
+        transform: rotate(-90deg);
+        border-width: 10px 10px 0 10px;
+    }
+
+.caret4 {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 10px solid #8a6d3b;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 0 solid #8a6d3b;
+    overflow: hidden;
+    transition: 200ms ease;
 }
 
-.caret3{
-    
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 10px solid #23527c;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 0 solid #23527c;
-  overflow: hidden;
-  transition: 200ms ease;
+    .caret4.rotate.open {
+        transform: rotate(-90deg);
+        border-width: 10px 10px 0 10px;
+    }
+
+.caret5 {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 10px solid #d9534f;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 0 solid #8a6d3b;
+    overflow: hidden;
+    transition: 200ms ease;
 }
 
-.caret3.rotate.open {
-  transform: rotate(-90deg);
-  border-width: 10px 10px 0 10px;
-}
-
-.caret4{
-    
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 10px solid #8a6d3b;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 0 solid #8a6d3b;
-  overflow: hidden;
-  transition: 200ms ease;
-}
-
-.caret4.rotate.open {
-  transform: rotate(-90deg);
-  border-width: 10px 10px 0 10px;
-}
-
-.caret5{
-    
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 10px solid #d9534f;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 0 solid #8a6d3b;
-  overflow: hidden;
-  transition: 200ms ease;
-}
-
-.caret5.rotate.open {
-  transform: rotate(-90deg);
-  border-width: 10px 10px 0 10px;
-}
+    .caret5.rotate.open {
+        transform: rotate(-90deg);
+        border-width: 10px 10px 0 10px;
+    }
 
 
 /*---------- emloyer dashboard--------------*/
@@ -323,12 +360,11 @@ td {
     margin: 20px 5px 20px 5px;
 }
 
-#studentProjects td{
-    
+#studentProjects td {
     border: 2px solid black;
     border: 2px solid blanchedalmond;
 }
-    
+
 }
 /*----------view student profile*/
 .titleStudentProfile {
