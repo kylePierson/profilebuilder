@@ -57,12 +57,12 @@
             <div id="collapseFive" class="panel-collapse collapse">
                 <div class="panel-body">
                     <ul>
-                        <li><a href="mailto:@Model.ContactInfo">@Model.ContactInfo</a></li>
+                        <li><a class="btn btn-danger" href="mailto:@Model.ContactInfo">@Model.ContactInfo</a></li>
 
                         @if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")))
                         {
                             <li>
-                                <a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">Resume</a>
+                                <a class="btn btn-danger"href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">Resume</a>
                             </li>
                         }
 

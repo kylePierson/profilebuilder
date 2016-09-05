@@ -70,6 +70,7 @@
                 <label for="addProject">Project Title and Summary</label><br />
                 <input type="text" name="addTitle" id="newTitleTextbox" required /><br /><br/>
                 <textarea rows="3" cols="50" name="projectSummary" id="newSummaryTextbox" required></textarea>
+                <br /><br />
                 <button id="addNewProject" type="submit" class="btn btn-primary">Add</button>
                 <input id="hiddenusername" value="@Model.Username" type="hidden" />
             </div>
@@ -220,7 +221,7 @@
                     <input class="btn btn-primary" id="uploadFiles" type="submit" value="Submit">
                     if (File.Exists(Server.MapPath("/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")))
                     {
-                        <span style="position:absolute; right:50px"><a href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">View Current Resume</a></span>
+                        <span style="position:absolute; right:50px"><a class="btn btn-primary" href="@Url.Content("~/Content/images/" + Model.FirstName.ToLower() + Model.LastName.ToLower() + "_Resume.pdf")">View Current Resume</a></span>
                     }
                 }
             </div>

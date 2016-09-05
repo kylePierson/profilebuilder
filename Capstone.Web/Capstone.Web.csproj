@@ -122,7 +122,9 @@
     <Content Include="bin\Capstone.Web.dll" />
     <Content Include="bin\Capstone.Web.pdb" />
     <Content Include="bin\log4net.dll" />
-    <Content Include="bin\log4net.xml" />
+    <Content Include="bin\log4net.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
@@ -162,7 +164,6 @@
     <Content Include="Content\AddANewLanguage.js" />
     <Content Include="Content\AddNewInterest.js" />
     <Content Include="Content\AddNewSkill.js" />
-    <Content Include="Content\AddNewUserButtons.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
